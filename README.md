@@ -65,4 +65,4 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
    Acesse o backlog por esse pdf : [(./backlog viva saude.pdf)](https://github.com/Flaviojr-dev/viva-saude/blob/2a149dba4858f056edf6a5a279c1d8e3eebf882f/backlog%20viva%20saude.pdf)
 
 ## Storyboards
-   ![Storyboard 1] (assets/HISTORIA1.png)
+   ![Storyboard 1](assets/HISTORIA1.png)
