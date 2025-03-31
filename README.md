@@ -62,5 +62,5 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
    Acesse o vídeo por esse link : https://youtu.be/DGZ97a13bkc?si=l23V6P_hzwcB1wMq
 
 ## Backlog
-   Acesse o backlog por esse pdf : backlog viva saude.pdf
+   Acesse o backlog por esse pdf : (./backlog viva saude.pdf)
    
