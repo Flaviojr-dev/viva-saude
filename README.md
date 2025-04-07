@@ -45,9 +45,7 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
  Permite escolher opção mais rápida
 
 ## Tecnologias Utilizadas
-  **Geolocalização**: Identificação de unidades próximas
-  **Sistema de Notificações**: Lembretes e alertas
-  **Agendamento Online**: Marcação simplificada
+  **Geolocalização**: Identificação de unidades próxima
   **Banco de Dados**: Armazenamento de informações
   **Interface Acessível**: Usabilidade para todos os públicos
 
@@ -66,7 +64,7 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 
 ## Storyboards
-  ![Storyboard 1](https://github.com/user-attachments/assets/3c1859c2-c2a4-44af-878c-86ecf64f2079)
+ ![Storyboard 1 - Tela de pesquisa de posto](https://github.com/user-attachments/assets/3ae63b32-810e-40e0-8987-8e2b60809edc)
 
   ![Storyboard 2](https://github.com/user-attachments/assets/f6961ed7-aa88-48c6-8472-ecdc38c6bb58)
   
