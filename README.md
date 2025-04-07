@@ -46,7 +46,9 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ## Tecnologias Utilizadas
   **Geolocalização**: Identificação de unidades próxima
+  
   **Banco de Dados**: Armazenamento de informações
+  
   **Interface Acessível**: Usabilidade para todos os públicos
 
 ## Público-Alvo
