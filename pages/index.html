@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva Saúde</title>
+    <link rel="stylesheet" href="../style/header/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/section/section_forms.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img src="../assets/images/logotipo.png" alt="Logotipo">
+    
+            <!-- Botão hambúrguer -->
+            <button class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <!-- Menu -->
+            <ul id="nav-menu">
+                <li><a href="#">Quem somos</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Suporte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-box">
+            <div class="form-group">
+                <span class="icon">🏥</span>
+                <label>Hospital:</label>
+                <input type="text" id="cns" placeholder="USF Santo Amaro III" style="border: none; background: transparent; outline: none; color: #999; flex: 1;">
+            </div>
+            <div class="form-group">
+                <span class="icon">🩺</span>
+                <label>Tipo de procedimento: </label>
+                <input type="text" id="cns" placeholder="Tuberculose" style="border: none; background: transparent; outline: none; color: #999; flex: 1;">
+            </div>
+            <div class="form-group">
+                <span class="icon">💳</span>
+                <label for="cns">Número do SUS (CNS):</label>
+                <input type="text" id="cns" placeholder="703 6014 56** *****" style="border: none; background: transparent; outline: none; color: #999; flex: 1;">
+              </div>
+            <div class="form-group horario">
+                <span class="icon">🕒</span>
+                <label>Horário de Funcionamento</label>
+                <button class="btn-horario">Ver horários</button>
+            </div>
+            <button class="btn-pesquisar">Pesquisar</button>
+        </div>
+        <div class="illustration">
+            <img src="../assets/images/imgheader.png" alt="Ilustração">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+    
+            hamburgerBtn.addEventListener('click', function () {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
