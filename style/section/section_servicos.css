@@ -1,0 +1,69 @@
+.servico {
+    display: flex;
+    align-items: center;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 15px; 
+    margin-top: 50px;
+}
+
+.imagem {
+    flex: 1;
+    text-align: center;
+}
+
+.imagem img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+}
+
+.texto {
+    flex: 1;
+    max-width: 600px;
+}
+
+.servico h1 {
+    font-size: 40px;
+    color: #333;
+}
+
+.servico p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.viva-saude {
+    color: #0077cc;
+    font-weight: bold;
+}
+
+.servico ul {
+    list-style: none; 
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0px;
+}
+
+.servico li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px; 
+}
+
+.servico li::before {
+    content: "✓"; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: blue; 
+    font-size: 1.2em; 
+    line-height: 1.1rem; 
+}

@@ -8,65 +8,172 @@
     <link rel="stylesheet" href="../style/header/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/section/section_forms.css">
+    <link rel="stylesheet" href="./style/section/section_servicos.css">
+    <link rel="stylesheet" href="style/section/section_espe.css">
+    <link rel="stylesheet" href="./style/footer/footer.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <img src="../assets/images/logotipo.png" alt="Logotipo">
-    
+            <img src="../assets/images/logo.png" alt="Logotipo">
+
             <button class="hamburger" id="hamburger-btn">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-    
+
             <ul id="nav-menu">
-                <li><a href="#">Quem somos</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Suporte</a></li>
+                <li><a href="#">Início</a></li>
+                <li class="dropdown">
+                    <a href="#" id="servicos-btn">Serviços</a>
+                    <ul class="dropdown-menu" id="dropdown-menu">
+                        <li><a href="#">Atendimento especializado</a></li>
+                        <li><a href="#">Funcionamento</a></li>
+                        <li><a href="#">Postos de Saúde</a></li>
+                        <li><a href="#">Serviços disponíveis</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
     </header>
+    <section class="banner">
+        <div class="content">
+            <h1>
+                Transformando o <br />
+                <span class="highlight">acesso à saúde.</span>
+            </h1>
+            <p>
+                O <span class="bold-blue">Viva Saúde</span> foi pensado para facilitar o seu dia a dia, <br />
+                conectando você aos serviços de saúde de forma prática e <br />
+                inteligente.
+            </p>
+            <div class="search-container">
+                <input type="text" placeholder="Procurar serviço">
+                <button class="search-button">
+                    <img src="/assets/images/Group (2).png" alt="Buscar">
+                </button>
+            </div>
 
-    <div class="container">
-        <div class="form-box">
-            <div class="form-group">
-                <span class="icon">🏥</span>
-                <label>Hospital:</label>
-                <input type="text" id="cns" placeholder="USF Santo Amaro III" style="border: none; background: transparent; outline: none; color: #999; flex: 1;">
-            </div>
-            <div class="form-group">
-                <span class="icon">🩺</span>
-                <label>Tipo de procedimento: </label>
-                <input type="text" id="cns" placeholder="Tuberculose" style="border: none; background: transparent; outline: none; color: #999; flex: 1;">
-            </div>
-            <div class="form-group">
-                <span class="icon">💳</span>
-                <label for="cns">Número do SUS (CNS):</label>
-                <input type="text" id="cns" placeholder="703 6014 56** *****" style="border: none; background: transparent; outline: none; color: #999; flex: 1;">
-              </div>
-            <div class="form-group horario">
-                <span class="icon">🕒</span>
-                <label>Horário de Funcionamento</label>
-                <button class="btn-horario">Ver horários</button>
-            </div>
-            <button class="btn-pesquisar">Pesquisar</button>
         </div>
-        <div class="illustration">
-            <img src="../assets/images/imgheader.png" alt="Ilustração">
+        <div class="image">
+            <img src="./assets/images/Banner_de_site_promoção_de_verão_moderno_azul_e_amarelo_1-removebg-preview.png"
+                alt="Enfermeira" />
+        </div>
+    </section>
+    <div class="base-azul"></div>
+
+    <div class="servico">
+        <div class="imagem">
+            <img src="./assets/images/Banner_de_site_promoção_de_verão_moderno_azul_e_amarelo__1__1-removebg-preview.png"
+                alt="Prontuário e estetoscópio">
+        </div>
+        <div class="texto">
+            <h1>Por que usar nosso serviço?</h1>
+            <p>Com o <strong class="viva-saude">Viva Saúde</strong>, você economiza tempo, evita filas e tem acesso
+                rápido às informações que realmente importam. Nossa plataforma foi pensada para facilitar a sua vida,
+                conectando você aos serviços de saúde de forma simples, segura e inteligente.</p>
+            <ul>
+                <li> Encontre postos próximos</li>
+                <li> Busque por especialidades médicas</li>
+                <li> Consulte horários de funcionamento</li>
+                <li> Veja unidades no mapa</li>
+            </ul>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const navMenu = document.getElementById('nav-menu');
-    
-            hamburgerBtn.addEventListener('click', function () {
-                navMenu.classList.toggle('active');
-            });
-        });
-    </script>
+
+    <div class="especialidades">
+        <h2>Especialidades Médicas Disponíveis</h2>
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">
+                    <img src="./assets/images/healthicons_pediatrics.png" alt="Pediatria">
+                </div>
+                <h3>Pediatria</h3>
+                <p>Atendimento infantil, com foco em crescimento, desenvolvimento, vacinação e prevenção de doenças,
+                    quando disponível ou conforme a necessidade da comunidade.</p>
+            </div>
+
+            <div class="card destaque">
+                <div class="icon">
+                    <img src="./assets/images/material-symbols_gynecology.png" alt="Ginecologia e Obstetrícia">
+                </div>
+                <h3>Ginecologia e Obstetrícia</h3>
+                <p>Cuidados voltados à saúde da mulher, como exames preventivos, pré-natal, planejamento reprodutivo e
+                    orientação sobre saúde sexual.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">
+                    <img src="./assets/images/fluent_dentist-12-filled.png" alt="Odontologia">
+                </div>
+                <h3>Odontologia</h3>
+                <p>Atendimento odontológico básico com ações de prevenção, restauração, extrações simples e educação em
+                    saúde bucal.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">
+                    <img src="./assets/images/mdi_heart.png" alt="Cardiologia">
+                </div>
+                <h3>Cardiologia</h3>
+                <p>Em algumas regiões, há apoio cardiológico para acompanhamento de hipertensão, arritmias,
+                    insuficiência cardíaca, etc., principalmente em áreas com alta incidência de doenças
+                    cardiovasculares.</p>
+            </div>
+
+        </div>
+
+        <div class="indicadores">
+            <span class="ativo"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>VivaSaúde</h3>
+                <p>
+                    O Viva Saúde é uma plataforma dedicada a aproximar você dos cuidados que precisa. Aqui, você
+                    encontra informações atualizadas sobre postos de saúde, Unidades de Saúde da Família (USF) e
+                    serviços públicos de saúde mais próximos da sua localização.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><img src="./assets/images/Vector (4).png" alt="Facebook"></a>
+                    <a href="#"><img src="./assets/images/Group 8.png" alt="Twitter"></a>
+                    <a href="#"><img src="./assets/images/Vector (3).png" alt="Instagram"></a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <h4>Ferramentas</h4>
+                <ul>
+                    <li><a href="#">Quem somos</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Suporte</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+            <p>© 2025 - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
