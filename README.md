@@ -86,10 +86,9 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ## Quadro Trello Viva Saúde
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
-## Diagrama de Atividade
-
 ## Diagrama de Atividades
 
+```mermaid
 flowchart TD
     Inicio([Início])
 
@@ -126,6 +125,7 @@ flowchart TD
     VerificarPostos -->|Não| InformarSemPostos[Informar: "Nenhum posto encontrado"]
     ExibirPostos --> Fim
     InformarSemPostos --> Fim
+```
 
  
  
