@@ -89,80 +89,39 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ##DIAGRAMA DE ATIVIDADES
 
-flowchart LR
-INITIAL[Initial State]
-TAG[TAG]
-TAG_OPEN[TAG_OPEN]
-TAG_OPENE[TAG_OPENE]
-OPENEDONE[OPENEDONE]
-ATTR1[ATTR1]
-ATTR2[ATTR2]
-DQSTRING[DQSTRING]
-SQSTRING[SQSTRING]
-CDATA[CDATA]
+```mermaid
+flowchart TD
+    A[Início: Página Principal] --> B{Escolha do Usuário}
+   
+    B --> C1[Buscar por Especialidade]
+    B --> C2[Consultar Guia de Serviços]
+    B --> C3[Encontrar Posto Mais Próximo]
+   
+    %% Fluxo Buscar por Especialidade
+    C1 --> D1[Exibir campo de busca por especialidade]
+    D1 --> E1[Permitir filtros de bairro/região]
+    E1 --> F1[Consultar banco de dados]
+    F1 --> G1[Exibir lista de postos: nome, endereço, horários]
+    G1 --> H1{Ordenar resultados?}
+    H1 -- Sim --> I1[Ordenar por distância ou horário]
+    H1 -- Não --> J1[Fim da busca por especialidade]
 
-INITIAL -->|"{Comment}"| INITIAL
-INITIAL -->|"<![CDATA["| CDATA
-INITIAL -->|"</"| TAG_OPENE
-INITIAL -->|"<"| TAG_OPEN
-INITIAL -->|"#quote;{NAME};"| INITIAL
-INITIAL -->|"#quote;{NAME}?"| INITIAL
-INITIAL -->|"[^<&]+"| INITIAL
-INITIAL -->|`<<EOF>>`| INITIAL
+    %% Fluxo Consultar Guia de Serviços
+    C2 --> D2[Exibir categorias de serviços]
+    D2 --> E2[Campo de busca por palavra-chave]
+    E2 --> F2[Exibir informações acessíveis]
+    F2 --> G2[Área administrativa para atualização de dados]
+    G2 --> J2[Fim da consulta ao guia]
 
-TAG_OPEN -->|"{NEWLINE}"| TAG_OPEN
-TAG_OPEN -->|"{WHITESPACE}+"| TAG_OPEN
-TAG_OPEN -->|"{NAME}"| TAG
-TAG_OPEN -->|`.`| YYINITIAL
-TAG_OPEN -->|`<<EOF>>`| YYINITIAL
-
-TAG_OPENE -->|"{NEWLINE}"| TAG_OPENE
-TAG_OPENE -->|"{WHITESPACE}+"| TAG_OPENE
-TAG_OPEN -->|"{NAME}"| OPENEDONE
-TAG_OPEN -->|`.`| YYINITIAL
-TAG_OPEN -->|`<<EOF>>`| YYINITIAL
-
-OPENEDONE -->|"{NEWLINE}"| OPENEDONE
-OPENEDONE -->|"{WHITESPACE}+"| OPENEDONE
-OPENEDONE -->|">"| INITIAL
-OPENEDONE -->|`.`| INITIAL
-OPENEDONE -->|`<<EOF>>`| INITIAL
-
-TAG -->|"{NEWLINE}"| TAG
-TAG -->|"{WHITESPACE}+"| TAG
-TAG -->|"{NAME}+"| ATTR1
-TAG -->|">"| INITIAL
-TAG -->|"/>"| INITIAL
-TAG -->|`.`| INITIAL
-TAG -->|`<<EOF>>`| INITIAL
-
-ATTR1 -->|"{NEWLINE}"| ATTR1
-ATTR1 -->|"{WHITESPACE}+"| ATTR1
-ATTR1 -->|"="| ATTR2
-ATTR1 -->|`.`| YYINITIAL
-ATTR1 -->|`<<EOF>>`| YYINITIAL
-
-ATTR2 -->|"{NEWLINE}"| ATTR2
-ATTR2 -->|"{WHITESPACE}+"| ATTR2
-ATTR2 -->|"&quote;"| DQSTRING
-ATTR2 -->|"'"| SQSTRING
-ATTR2 -->|`.`| YYINITIAL
-ATTR2 -->|`<<EOF>>`| YYINITIAL
-
-DQSTRING -->|"&quote;"| TAG
-DQSTRING -->|"&{NAME};"| DQSTRING
-DQSTRING -->|"[^&#quote;]+"| DQSTRING
-DQSTRING -->|"&{NAME}?"| TAG
-DQSTRING -->|`<<EOF>>`| INITIAL
-
-SQSTRING -->|\'| TAG
-SQSTRING -->|"&{NAME};"| SQSTRING
-SQSTRING -->|"[^&\']+"| SQSTRING
-SQSTRING -->|"&{NAME}?"| TAG
-SQSTRING -->|`<<EOF>>`| INITIAL
-
-CDATA -->|"]]>"| INITIAL
-CDATA -->|"]]"| CDATA
-CDATA -->|"]"| CDATA
-CDATA -->|"[^>\]]+"| CDATA
-CDATA -->|`<<EOF>>`| CDATA
+    %% Fluxo Encontrar Posto Mais Próximo
+    C3 --> D3{Usar localização atual?}
+    D3 -- Sim --> E3[Solicitar permissão de GPS]
+    E3 --> F3[Detectar posição]
+    D3 -- Não --> G3[Campo para digitar endereço]
+    F3 --> H3[Buscar postos mais próximos]
+    G3 --> H3[Buscar postos mais próximos]
+    H3 --> I3[Exibir lista de postos + mapa]
+    I3 --> J3{Postos encontrados?}
+    J3 -- Sim --> K3[Fim da busca por localização]
+    J3 -- Não --> L3[Exibir mensagem: 'Nenhum posto encontrado']
+    L3 --> K3
