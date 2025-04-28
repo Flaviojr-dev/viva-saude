@@ -89,56 +89,49 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ##DIAGRAMA DE ATIVIDADES
 
-```mermaid 
+```mermaid
 flowchart LR
-    A([Início]) --> B{Escolher Ação};
 
-    subgraph Buscar Atendimento
-        B -- Buscar Atendimento --> C[Inserir Termo de Busca];
-        C --> D{Filtrar por Região/Bairro?};
-        D -- Sim --> E[Selecionar Região/Bairro];
-        E --> F[Exibir Resultados (Nome do Posto, Serviços Oferecidos)];
-        D -- Não --> F;
-    end
+    %% História 1: Buscar Postos por Especialidade
+    A1([Início]) --> B1[Tela de Busca de Especialidades]
+    B1 --> C1[Usuário digita especialidade desejada]
+    C1 --> D1{Deseja aplicar filtro de região ou bairro?}
+    D1 -- Sim --> E1[Usuário seleciona filtro de região/bairro]
+    D1 -- Não --> F1[Buscar apenas pela especialidade]
+    E1 --> G1[Buscar resultados]
+    F1 --> G1
+    G1 --> H1[Exibir lista de postos com dias e horários disponíveis]
+    H1 --> I1((Fim))
 
-    subgraph Consulta de Especialidade
-        B -- Consulta de Especialidade --> G[Inserir Especialidade Desejada];
-        G --> H{Filtrar por Região/Bairro?};
-        H -- Sim --> I[Selecionar Região/Bairro];
-        I --> J[Exibir Resultados (Nome do Posto, Especialidade, Dias e Horários)];
-        H -- Não --> J;
-    end
+    %% História 2: Guia de Serviços dos Postos
+    A2([Início]) --> B2[Tela de Guia de Serviços]
+    B2 --> C2{Deseja buscar por palavra-chave?}
+    C2 -- Sim --> D2[Usuário digita palavra-chave]
+    D2 --> E2[Exibir serviços relacionados]
+    C2 -- Não --> F2[Exibir guia organizado por categorias/temas]
+    E2 --> G2((Fim))
+    F2 --> G2
 
-    subgraph Guia de Procedimentos
-        B -- Guia de Procedimentos --> K[Exibir Guia de Procedimentos (Categorias/Temas)];
-        K --> L{Buscar por Palavra-chave?};
-        L -- Sim --> M[Inserir Palavra-chave];
-        M --> K;
-        L -- Não --> N((Fim - Guia));
-    end
+    %% História 3: Encontrar Posto Mais Próximo
+    A3([Início]) --> B3[Tela de Localização]
+    B3 --> C3{Deseja usar localização atual?}
+    C3 -- Sim --> D3[Capturar localização atual]
+    C3 -- Não --> E3[Usuário digita endereço]
+    D3 --> F3[Buscar postos mais próximos]
+    E3 --> F3
+    F3 --> G3{Encontrou unidades próximas?}
+    G3 -- Sim --> H3[Exibir lista e mapa de postos]
+    G3 -- Não --> I3[Exibir mensagem: "Nenhum posto encontrado."]
+    H3 --> J3((Fim))
+    I3 --> J3
 
-    F --> O((Fim - Atendimento));
-    J --> P((Fim - Especialidade));
-
-    style A fill:#9fdf9f,stroke:#333,stroke-width:2px,color:#000
-    style O fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
-    style P fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
-    style N fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
-    style B fill:#66b3ff,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#ffcc66,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#f0e68c,stroke:#333,stroke-width:2px,color:#000
-    style E fill:#a9a9a9,stroke:#333,stroke-width:2px,color:#000
-    style F fill:#e0ffff,stroke:#333,stroke-width:2px,color:#000
-    style G fill:#ffcc66,stroke:#333,stroke-width:2px,color:#000
-    style H fill:#f0e68c,stroke:#333,stroke-width:2px,color:#000
-    style I fill:#a9a9a9,stroke:#333,stroke-width:2px,color:#000
-    style J fill:#e0ffff,stroke:#333,stroke-width:2px,color:#000
-    style K fill:#e0ffff,stroke:#333,stroke-width:2px,color:#000
-    style L fill:#f0e68c,stroke:#333,stroke-width:2px,color:#000
-    style M fill:#a9a9a9,stroke:#333,stroke-width:2px,color:#000
-```
- 
-
+    %% Estilos
+    style A1 fill:#9fdf9f,stroke:#333,stroke-width:2px
+    style I1 fill:#ff9999,stroke:#333,stroke-width:2px
+    style A2 fill:#9fdf9f,stroke:#333,stroke-width:2px
+    style G2 fill:#ff9999,stroke:#333,stroke-width:2px
+    style A3 fill:#9fdf9f,stroke:#333,stroke-width:2px
+    style J3 fill:#ff9999,stroke:#333,stroke-width:2px
  
  
 
