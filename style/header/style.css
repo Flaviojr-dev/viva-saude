@@ -5,14 +5,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
-html, body {
-    height: 100%;
-    font-family: sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-image: url("/assets/images/Ellipse 38.png");
-    background-repeat: no-repeat;
-}
+    html, body {
+        height: 100%;
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-image: url("/assets/images/Ellipse 38.png");
+        background-repeat: no-repeat;
+    }
 
 img, picture, video, canvas, svg {
     display: block;

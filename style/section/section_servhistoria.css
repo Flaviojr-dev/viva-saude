@@ -1,0 +1,154 @@
+.atendimento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.atendimento>.box-atendimentoo h1 {
+    width: 330px;
+    margin-bottom: 15px;
+    line-height: 40px;
+}
+
+.atendimento>.box-atendimentoo p {
+    margin-bottom: 15px;
+    font-size: 14px;
+    width: 300px;
+}
+
+.atendimento img {
+    width: 220px;
+}
+
+.search-container {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.search-input {
+    padding: 16px;
+    width: 500px;
+    font-size: 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    outline: none;
+    color: #374151;
+}
+
+.search-input::placeholder {
+    color: #6b7280;
+}
+
+.search-button {
+    padding: 11px 15px;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.search-button:hover {
+    background-color: #1d4ed8;
+}
+
+.especialidades {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.especialidades h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    border: 1px solid #007bce;
+    border-radius: 10px;
+    padding: 20px;
+    width: 260px;
+    height: 250px;
+    text-align: left;
+    box-sizing: border-box;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card .icon {
+    width: 50px;
+    height: 50px;
+    background: #e6f2fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.card .icon img {
+    width: 150px;
+    height: 50p;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #007bce;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #333;
+}
+
+.destaque {
+    background: #007bce;
+    color: #fff;
+}
+
+.destaque h3 {
+    color: #fff;
+}
+
+.destaque p {
+    color: #fff;
+}
+
+.indicadores {
+    margin-top: 30px;
+}
+
+.indicadores span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.indicadores .ativo {
+    background: #007bce;
+}
+
+.filtro-input {
+    border: 1px solid red;
+}

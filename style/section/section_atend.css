@@ -1,0 +1,77 @@
+.atendimento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;  
+}
+
+.box-atendimento h1 {
+    width: 250px;
+    margin-bottom: 15px;
+    line-height: 40px;
+}
+
+.box-atendimento p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.atendimento img {
+    width: 300px;
+}
+
+
+.filtro-container {
+    width: 325px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filtro-select, .filtro-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.filtro-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L10 13L15 8H5Z" fill="%23333"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.filtro-input::placeholder {
+    color: #999;
+}
+
+.botao-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.botao-buscar {
+    width: 570px;
+    padding: 14px;
+    background-color: #2E409A;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s;
+}
+
+.botao-buscar:hover {
+    background-color: #23337a;
+}

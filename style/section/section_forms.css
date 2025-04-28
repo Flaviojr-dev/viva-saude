@@ -12,13 +12,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Deixa o texto e a imagem nos cantos */
     padding: 2rem;
-    /* Igual ao header */
     max-width: 1000px;
-    /* Limita a largura */
     margin: 0 auto;
-    /* Centraliza */
     gap: 40px;
 }
 
@@ -101,11 +97,8 @@ p {
 .base-azul {
     width: 100%;
     height: 80px;
-    /* Você pode ajustar a altura */
     background-color: #0077cc;
-    /* Mesmo azul do botão */
     margin-top: -40px;
-    /* Sobe um pouco para colar abaixo da imagem */
     position: relative;
 }
 
