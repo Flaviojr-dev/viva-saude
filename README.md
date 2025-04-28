@@ -91,47 +91,51 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ```mermaid 
 flowchart LR
-    A([Início]) --> B{O que deseja fazer?}
+    A([Início]) --> B{Escolher Ação};
 
-    %% Buscar Especialidade
-    B -- Buscar Especialidade --> C[Preencher especialidade desejada]
-    C --> D[Filtros por região ou bairro (opcional)]
-    D --> E[Listar postos disponíveis]
-    E --> F[Mostrar dias e horários de atendimento]
-    F --> X[Logout]
+    subgraph Buscar Atendimento
+        B -- Buscar Atendimento --> C[Inserir Termo de Busca];
+        C --> D{Filtrar por Região/Bairro?};
+        D -- Sim --> E[Selecionar Região/Bairro];
+        E --> F[Exibir Resultados (Nome do Posto, Serviços Oferecidos)];
+        D -- Não --> F;
+    end
 
-    %% Consultar Guia de Serviços
-    B -- Consultar Guia de Serviços --> G[Visualizar serviços oferecidos]
-    G --> H{Deseja buscar por palavra-chave?}
-    H -- Sim --> I[Buscar serviço por palavra-chave]
-    H -- Não --> J[Navegar por categorias ou temas]
-    I --> K[Exibir detalhes do serviço]
-    J --> K
-    K --> X
+    subgraph Consulta de Especialidade
+        B -- Consulta de Especialidade --> G[Inserir Especialidade Desejada];
+        G --> H{Filtrar por Região/Bairro?};
+        H -- Sim --> I[Selecionar Região/Bairro];
+        I --> J[Exibir Resultados (Nome do Posto, Especialidade, Dias e Horários)];
+        H -- Não --> J;
+    end
 
-    %% Encontrar Posto Mais Próximo
-    B -- Encontrar Posto Próximo --> L[Escolher localização]
-    L --> M{Usar localização atual ou digitar endereço?}
-    M -- Localização atual --> N[Obter localização do dispositivo]
-    M -- Digitar endereço --> O[Usuário informa o endereço]
-    N --> P[Buscar postos de saúde próximos]
-    O --> P
-    P --> Q{Há postos próximos?}
-    Q -- Sim --> R[Exibir lista de postos e mapa]
-    Q -- Não --> S[Informar "Nenhum posto encontrado"]
-    R --> X
-    S --> X
+    subgraph Guia de Procedimentos
+        B -- Guia de Procedimentos --> K[Exibir Guia de Procedimentos (Categorias/Temas)];
+        K --> L{Buscar por Palavra-chave?};
+        L -- Sim --> M[Inserir Palavra-chave];
+        M --> K;
+        L -- Não --> N((Fim - Guia));
+    end
 
-    %% Encerramento
-    X --> Z((Fim))
+    F --> O((Fim - Atendimento));
+    J --> P((Fim - Especialidade));
 
-    %% Estilos
     style A fill:#9fdf9f,stroke:#333,stroke-width:2px,color:#000
-    style Z fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#99ccff,stroke:#333,stroke-width:2px,color:#000
-    style G fill:#ffcc99,stroke:#333,stroke-width:2px,color:#000
-    style L fill:#ffff99,stroke:#333,stroke-width:2px,color:#000
-    style X fill:#cccccc,stroke:#333,stroke-width:2px,color:#000
+    style O fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    style P fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    style N fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    style B fill:#66b3ff,stroke:#333,stroke-width:2px,color:#000
+    style C fill:#ffcc66,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#f0e68c,stroke:#333,stroke-width:2px,color:#000
+    style E fill:#a9a9a9,stroke:#333,stroke-width:2px,color:#000
+    style F fill:#e0ffff,stroke:#333,stroke-width:2px,color:#000
+    style G fill:#ffcc66,stroke:#333,stroke-width:2px,color:#000
+    style H fill:#f0e68c,stroke:#333,stroke-width:2px,color:#000
+    style I fill:#a9a9a9,stroke:#333,stroke-width:2px,color:#000
+    style J fill:#e0ffff,stroke:#333,stroke-width:2px,color:#000
+    style K fill:#e0ffff,stroke:#333,stroke-width:2px,color:#000
+    style L fill:#f0e68c,stroke:#333,stroke-width:2px,color:#000
+    style M fill:#a9a9a9,stroke:#333,stroke-width:2px,color:#000
 ```
  
 
