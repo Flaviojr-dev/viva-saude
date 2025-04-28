@@ -87,47 +87,43 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
 ## Diagrama de Atividade
-```mermaid
- flowchart TD
+
+flowchart TD
     Inicio([Início])
 
     EscolherAcao{O que deseja fazer?}
     Inicio --> EscolherAcao
 
     %% História 1 - Buscar por Especialidade
-    EscolherAcao -->|Buscar especialidade| BuscarEspecialidade
-    BuscarEspecialidade --> PreencherEspecialidade[Preencher campo de especialidade]
-    PreencherEspecialidade --> AplicarFiltros[Filtros por região ou bairro (opcional)]
+    EscolherAcao -->|Buscar especialidade| BuscarEspecialidade[Preencher especialidade desejada]
+    BuscarEspecialidade --> AplicarFiltros[Filtros por região ou bairro (opcional)]
     AplicarFiltros --> ListarPostosEspecialidade[Listar postos disponíveis]
-    ListarPostosEspecialidade --> MostrarDisponibilidade[Mostrar dias e horários da especialidade]
+    ListarPostosEspecialidade --> MostrarDisponibilidade[Mostrar dias e horários disponíveis]
+    MostrarDisponibilidade --> Fim([Fim])
 
     %% História 2 - Consultar Guia de Serviços
-    EscolherAcao -->|Consultar guia de serviços| AcessarGuia
-    AcessarGuia --> VerServicos[Visualizar serviços organizados por categorias/temas]
-    VerServicos --> BuscarServicoPalavraChave[Buscar serviço por palavra-chave (opcional)]
-    BuscarServicoPalavraChave --> ExibirDetalhesServico[Exibir detalhes do serviço escolhido]
+    EscolherAcao -->|Consultar guia de serviços| AcessarGuia[Visualizar serviços oferecidos]
+    AcessarGuia --> BuscarServicoPalavraChave{Deseja buscar por palavra-chave?}
+    BuscarServicoPalavraChave -->|Sim| BuscarPalavraChave[Buscar serviço por palavra-chave]
+    BuscarServicoPalavraChave -->|Não| NavegarCategorias[Navegar por categorias ou temas]
+    BuscarPalavraChave --> ExibirDetalhesServico[Exibir detalhes do serviço]
+    NavegarCategorias --> ExibirDetalhesServico
+    ExibirDetalhesServico --> Fim
 
     %% História 3 - Encontrar Posto Próximo
     EscolherAcao -->|Encontrar posto mais próximo| LocalizarPosto
-    LocalizarPosto --> DefinirLocalizacao{Usar localização atual ou digitar endereço?}
-    DefinirLocalizacao -->|Localização atual| UsarLocalizacao[Obter localização do dispositivo]
-    DefinirLocalizacao -->|Digitar endereço| DigitarEndereco[Usuário informa o endereço]
+    LocalizarPosto --> EscolherLocalizacao{Usar localização atual ou digitar endereço?}
+    EscolherLocalizacao -->|Localização atual| ObterLocalizacao[Obter localização do dispositivo]
+    EscolherLocalizacao -->|Digitar endereço| DigitarEndereco[Usuário informa o endereço]
+    
+    ObterLocalizacao --> BuscarPostos[Buscar postos de saúde próximos]
+    DigitarEndereco --> BuscarPostos
 
-    UsarLocalizacao --> BuscarPostosProximos[Buscar postos mais próximos]
-    DigitarEndereco --> BuscarPostosProximos
-
-    BuscarPostosProximos --> MostrarMapaLista[Exibir lista de postos e mapa]
-    MostrarMapaLista --> VerificarPostos{Há postos próximos?}
-    VerificarPostos -->|Sim| ExibirPostos[Exibir lista de postos de saúde]
+    BuscarPostos --> VerificarPostos{Há postos próximos?}
+    VerificarPostos -->|Sim| ExibirPostos[Exibir lista de postos e mapa]
     VerificarPostos -->|Não| InformarSemPostos[Informar: "Nenhum posto encontrado"]
-
-    %% Fim
-    MostrarDisponibilidade --> Fim([Fim])
-    ExibirDetalhesServico --> Fim
     ExibirPostos --> Fim
     InformarSemPostos --> Fim
-```
-
 
  
  
