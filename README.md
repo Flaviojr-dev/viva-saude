@@ -88,6 +88,9 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ## Diagrama de Atividade
 
+## Diagrama de Atividades
+
+```mermaid
 flowchart TD
     Inicio([Início])
 
