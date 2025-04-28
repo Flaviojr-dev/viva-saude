@@ -86,65 +86,49 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ## Quadro Trello Viva Saúde
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
-```mermaid
 flowchart LR
-    A([Início]) --> B[Tela de Login]
-    B --> C{Login realizado?}
-    C -- Não --> B
-    C -- Sim --> D[Verificar Permissões]
+    A([Início]) --> B{O que deseja fazer?}
 
-    D --> E{Tipo de Permissão}
-   
-    E -- Admin --> F[Área Admin]
-    E -- User --> G[Área Usuário]
+    %% Buscar Especialidade
+    B -- Buscar Especialidade --> C[Preencher especialidade desejada]
+    C --> D[Filtros por região ou bairro (opcional)]
+    D --> E[Listar postos disponíveis]
+    E --> F[Mostrar dias e horários de atendimento]
+    F --> X[Logout]
 
-    %% Fluxo do Admin
-    F --> F1[Gerenciar Usuários]
-    F1 --> F1a[Criar Usuário]
-    F1 --> F1b[Editar Usuário]
-    F1 --> F1c[Deletar Usuário]
+    %% Consultar Guia de Serviços
+    B -- Consultar Guia de Serviços --> G[Visualizar serviços oferecidos]
+    G --> H{Deseja buscar por palavra-chave?}
+    H -- Sim --> I[Buscar serviço por palavra-chave]
+    H -- Não --> J[Navegar por categorias ou temas]
+    I --> K[Exibir detalhes do serviço]
+    J --> K
+    K --> X
 
-    F --> F2[Gerenciar Secretarias]
-    F2 --> F2a[Criar Secretaria]
-    F2 --> F2b[Editar Secretaria]
-    F2 --> F2c[Deletar Secretaria]
+    %% Encontrar Posto Mais Próximo
+    B -- Encontrar Posto Próximo --> L[Escolher localização]
+    L --> M{Usar localização atual ou digitar endereço?}
+    M -- Localização atual --> N[Obter localização do dispositivo]
+    M -- Digitar endereço --> O[Usuário informa o endereço]
+    N --> P[Buscar postos de saúde próximos]
+    O --> P
+    P --> Q{Há postos próximos?}
+    Q -- Sim --> R[Exibir lista de postos e mapa]
+    Q -- Não --> S[Informar "Nenhum posto encontrado"]
+    R --> X
+    S --> X
 
-    F --> F3[Gerenciar Eventos]
-    F3 --> F3a[Criar Evento]
-    F3 --> F3b[Editar Evento]
-    F3 --> F3c[Deletar Evento]
+    %% Encerramento
+    X --> Z((Fim))
 
-    F --> F4[Visualizar Calendário Interativo]
-
-    %% Fluxo do Usuário
-    G --> G1[Visualizar Eventos]
-    G --> G2[Visualizar Calendário Interativo]
-
-    %% Logout disponível em todas as áreas
-    F1a --> H[Logout]
-    F1b --> H
-    F1c --> H
-    F2a --> H
-    F2b --> H
-    F2c --> H
-    F3a --> H
-    F3b --> H
-    F3c --> H
-    F4 --> H
-    G1 --> H
-    G2 --> H
-
-    H --> I((Fim))
-
-    %% Estilos de cor
+    %% Estilos
     style A fill:#9fdf9f,stroke:#333,stroke-width:2px,color:#000
-    style I fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
-    style F fill:#66b3ff,stroke:#333,stroke-width:2px,color:#000
-    style G fill:#ffcc66,stroke:#333,stroke-width:2px,color:#000
-    style H fill:#cccccc,stroke:#333,stroke-width:2px,color:#000
-```
+    style Z fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    style C fill:#99ccff,stroke:#333,stroke-width:2px,color:#000
+    style G fill:#ffcc99,stroke:#333,stroke-width:2px,color:#000
+    style L fill:#ffff99,stroke:#333,stroke-width:2px,color:#000
+    style X fill:#cccccc,stroke:#333,stroke-width:2px,color:#000
 
- 
  
 
  
