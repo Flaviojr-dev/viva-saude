@@ -90,8 +90,7 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ## Diagrama de Atividades
 
-```mermaid
-flowchart LR
+flowchart TD
     Inicio([Início])
 
     EscolherAcao{O que deseja fazer?}
@@ -127,7 +126,7 @@ flowchart LR
     VerificarPostos -->|Não| InformarSemPostos[Informar: "Nenhum posto encontrado"]
     ExibirPostos --> Fim
     InformarSemPostos --> Fim
-```
+
  
  
 
