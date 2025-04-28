@@ -86,45 +86,62 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ## Quadro Trello Viva Saúde
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
-## Diagrama de Atividades
-
 ```mermaid
 flowchart LR
-    Inicio([Início])
+    A([Início]) --> B[Tela de Login]
+    B --> C{Login realizado?}
+    C -- Não --> B
+    C -- Sim --> D[Verificar Permissões]
 
-    EscolherAcao{O que deseja fazer?}
-    Inicio --> EscolherAcao
+    D --> E{Tipo de Permissão}
+   
+    E -- Admin --> F[Área Admin]
+    E -- User --> G[Área Usuário]
 
-    %% História 1 - Buscar por Especialidade
-    EscolherAcao -->|Buscar especialidade| BuscarEspecialidade[Preencher especialidade desejada]
-    BuscarEspecialidade --> AplicarFiltros[Filtros por região ou bairro (opcional)]
-    AplicarFiltros --> ListarPostosEspecialidade[Listar postos disponíveis]
-    ListarPostosEspecialidade --> MostrarDisponibilidade[Mostrar dias e horários disponíveis]
-    MostrarDisponibilidade --> Fim([Fim])
+    %% Fluxo do Admin
+    F --> F1[Gerenciar Usuários]
+    F1 --> F1a[Criar Usuário]
+    F1 --> F1b[Editar Usuário]
+    F1 --> F1c[Deletar Usuário]
 
-    %% História 2 - Consultar Guia de Serviços
-    EscolherAcao -->|Consultar guia de serviços| AcessarGuia[Visualizar serviços oferecidos]
-    AcessarGuia --> BuscarServicoPalavraChave{Deseja buscar por palavra-chave?}
-    BuscarServicoPalavraChave -->|Sim| BuscarPalavraChave[Buscar serviço por palavra-chave]
-    BuscarServicoPalavraChave -->|Não| NavegarCategorias[Navegar por categorias ou temas]
-    BuscarPalavraChave --> ExibirDetalhesServico[Exibir detalhes do serviço]
-    NavegarCategorias --> ExibirDetalhesServico
-    ExibirDetalhesServico --> Fim
+    F --> F2[Gerenciar Secretarias]
+    F2 --> F2a[Criar Secretaria]
+    F2 --> F2b[Editar Secretaria]
+    F2 --> F2c[Deletar Secretaria]
 
-    %% História 3 - Encontrar Posto Próximo
-    EscolherAcao -->|Encontrar posto mais próximo| LocalizarPosto
-    LocalizarPosto --> EscolherLocalizacao{Usar localização atual ou digitar endereço?}
-    EscolherLocalizacao -->|Localização atual| ObterLocalizacao[Obter localização do dispositivo]
-    EscolherLocalizacao -->|Digitar endereço| DigitarEndereco[Usuário informa o endereço]
-    
-    ObterLocalizacao --> BuscarPostos[Buscar postos de saúde próximos]
-    DigitarEndereco --> BuscarPostos
+    F --> F3[Gerenciar Eventos]
+    F3 --> F3a[Criar Evento]
+    F3 --> F3b[Editar Evento]
+    F3 --> F3c[Deletar Evento]
 
-    BuscarPostos --> VerificarPostos{Há postos próximos?}
-    VerificarPostos -->|Sim| ExibirPostos[Exibir lista de postos e mapa]
-    VerificarPostos -->|Não| InformarSemPostos[Informar: "Nenhum posto encontrado"]
-    ExibirPostos --> Fim
-    InformarSemPostos --> Fim
+    F --> F4[Visualizar Calendário Interativo]
+
+    %% Fluxo do Usuário
+    G --> G1[Visualizar Eventos]
+    G --> G2[Visualizar Calendário Interativo]
+
+    %% Logout disponível em todas as áreas
+    F1a --> H[Logout]
+    F1b --> H
+    F1c --> H
+    F2a --> H
+    F2b --> H
+    F2c --> H
+    F3a --> H
+    F3b --> H
+    F3c --> H
+    F4 --> H
+    G1 --> H
+    G2 --> H
+
+    H --> I((Fim))
+
+    %% Estilos de cor
+    style A fill:#9fdf9f,stroke:#333,stroke-width:2px,color:#000
+    style I fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    style F fill:#66b3ff,stroke:#333,stroke-width:2px,color:#000
+    style G fill:#ffcc66,stroke:#333,stroke-width:2px,color:#000
+    style H fill:#cccccc,stroke:#333,stroke-width:2px,color:#000
 ```
 
  
