@@ -127,7 +127,7 @@ flowchart LR
     VerificarPostos -->|Não| InformarSemPostos[Informar: "Nenhum posto encontrado"]
     ExibirPostos --> Fim
     InformarSemPostos --> Fim
-
+```
  
  
 
