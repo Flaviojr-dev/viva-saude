@@ -86,6 +86,10 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ## Quadro Trello Viva Saúde
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
+## Diagrama de Atividade
+ ![Mapa mental para implementação de novidades simples azul](https://github.com/user-attachments/assets/61ec1f1b-3e83-47b5-aff8-9ac2a2082ec1)
+
+
  
  
 
