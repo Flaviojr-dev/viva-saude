@@ -89,50 +89,13 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ##DIAGRAMA DE ATIVIDADES
 
-```mermaid
-flowchart LR
-    %% História 1: Buscar Postos por Especialidade
-    Start1([Início]) --> BuscarEspecialidade[Tela de Busca de Especialidades]
-    BuscarEspecialidade --> DigitarEspecialidade[Usuário digita especialidade desejada]
-    DigitarEspecialidade --> FiltroEspecialidade{Deseja aplicar filtro de região ou bairro?}
-    FiltroEspecialidade -- Sim --> EscolherFiltro[Usuário seleciona filtro de região/bairro]
-    FiltroEspecialidade -- Não --> BuscarSomenteEspecialidade[Buscar apenas pela especialidade]
-    EscolherFiltro --> BuscarResultados[Buscar resultados]
-    BuscarSomenteEspecialidade --> BuscarResultados
-    BuscarResultados --> ExibirPostos[Exibir lista de postos com dias e horários disponíveis]
-    ExibirPostos --> End1((Fim))
-
-    %% História 2: Guia de Serviços dos Postos
-    Start2([Início]) --> AcessarGuia[Tela de Guia de Serviços]
-    AcessarGuia --> BuscarPalavraChave{Deseja buscar por palavra-chave?}
-    BuscarPalavraChave -- Sim --> DigitarPalavraChave[Usuário digita palavra-chave]
-    BuscarPalavraChave -- Não --> ExibirGuia[Exibir guia organizado por categorias/temas]
-    DigitarPalavraChave --> ExibirResultadosGuia[Exibir serviços relacionados]
-    ExibirGuia --> ExibirResultadosGuia
-    ExibirResultadosGuia --> End2((Fim))
-
-    %% História 3: Encontrar Posto Mais Próximo
-    Start3([Início]) --> TelaLocalizacao[Tela de Localização]
-    TelaLocalizacao --> UsarLocalizacao{Deseja usar localização atual?}
-    UsarLocalizacao -- Sim --> CapturarLocalizacao[Capturar localização atual]
-    UsarLocalizacao -- Não --> DigitarEndereco[Usuário digita endereço]
-    CapturarLocalizacao --> BuscarPostos[Buscar postos mais próximos]
-    DigitarEndereco --> BuscarPostos
-    BuscarPostos --> EncontrouPostos{Encontrou unidades próximas?}
-    EncontrouPostos -- Sim --> ExibirMapa[Exibir lista e mapa de postos]
-    EncontrouPostos -- Não --> MensagemNaoEncontrado[Exibir mensagem: "Nenhum posto encontrado."]
-    ExibirMapa --> End3((Fim))
-    MensagemNaoEncontrado --> End3
-
-    %% Estilos
-    style Start1 fill:#b5f7b5,stroke:#333,stroke-width:2px
-    style End1 fill:#f7b5b5,stroke:#333,stroke-width:2px
-    style Start2 fill:#b5f7b5,stroke:#333,stroke-width:2px
-    style End2 fill:#f7b5b5,stroke:#333,stroke-width:2px
-    style Start3 fill:#b5f7b5,stroke:#333,stroke-width:2px
-    style End3 fill:#f7b5b5,stroke:#333,stroke-width:2px
-```
-
+flowchart TD
+    A[Christmas] -->|Get money| B(Go shopping)
+    B --> C{Let me think}
+    C -->|One| D[Laptop]
+    C -->|Two| E[iPhone]
+    C -->|Three| F[fa:fa-car Car]
+  
   
 
    
