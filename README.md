@@ -89,27 +89,47 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ##DIAGRAMA DE ATIVIDADES
 
-classDiagram
-    Animal <|-- Duck
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-      +String beakColor
-      +swim()
-      +quack()
-    }
-    class Fish{
-      -int sizeInFeet
-      -canEat()
-    }
-    class Zebra{
-      +bool is_wild
-      +run()
-    }
-  
+```mermaid
+flowchart LR
+    %% História 1: Buscar Especialidade
+    Start1([Início]) --> TelaBusca[Tela de Busca]
+    TelaBusca --> DigitaEspecialidade[Digitar Especialidade]
+    DigitaEspecialidade --> FiltroRegiao{Aplicar Filtro?}
+    FiltroRegiao -- Sim --> EscolherFiltro[Filtro Região/Bairro]
+    FiltroRegiao -- Não --> BuscarDireto[Buscar Especialidade]
+    EscolherFiltro --> BuscarResultados[Buscar Resultados]
+    BuscarDireto --> BuscarResultados
+    BuscarResultados --> ExibePostos[Exibir Postos e Horários]
+    ExibePostos --> End1((Fim))
+
+    %% História 2: Guia de Serviços
+    Start2([Início]) --> TelaGuia[Tela de Guia]
+    TelaGuia --> BuscaPalavra{Buscar Palavra-Chave?}
+    BuscaPalavra -- Sim --> DigitaPalavra[Digitar Palavra]
+    BuscaPalavra -- Não --> ExibeGuia[Exibir Guia]
+    DigitaPalavra --> MostraServicos[Mostrar Serviços]
+    ExibeGuia --> MostraServicos
+    MostraServicos --> End2((Fim))
+
+    %% História 3: Posto Próximo
+    Start3([Início]) --> TelaLocaliza[Tela Localização]
+    TelaLocaliza --> UsarGPS{Usar Localização Atual?}
+    UsarGPS -- Sim --> CapturaGPS[Capturar Localização]
+    UsarGPS -- Não --> DigitaEnd[Digitar Endereço]
+    CapturaGPS --> BuscaPosto[Buscar Postos]
+    DigitaEnd --> BuscaPosto
+    BuscaPosto --> PostoEncontrado{Encontrou Posto?}
+    PostoEncontrado -- Sim --> ExibeMapa[Exibir no Mapa]
+    PostoEncontrado -- Não --> MsgNaoEncontrado[Mensagem "Não Encontrado"]
+    ExibeMapa --> End3((Fim))
+    MsgNaoEncontrado --> End3
+
+    %% Estilos
+    style Start1 fill:#b5f7b5,stroke:#333,stroke-width:2px
+    style End1 fill:#f7b5b5,stroke:#333,stroke-width:2px
+    style Start2 fill:#b5f7b5,stroke:#333,stroke-width:2px
+    style End2 fill:#f7b5b5,stroke:#333,stroke-width:2px
+    style Start3 fill:#b5f7b5,stroke:#333,stroke-width:2px
+    style End3 fill:#f7b5b5,stroke:#333,stroke-width:2px
 
    
