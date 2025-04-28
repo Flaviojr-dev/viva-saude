@@ -87,7 +87,45 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
 ## Diagrama de Atividade
- ![Mapa mental para implementação de novidades simples azul](https://github.com/user-attachments/assets/61ec1f1b-3e83-47b5-aff8-9ac2a2082ec1)
+ flowchart TD
+    Inicio([Início])
+
+    EscolherAcao{O que deseja fazer?}
+    Inicio --> EscolherAcao
+
+    %% História 1 - Buscar por Especialidade
+    EscolherAcao -->|Buscar especialidade| BuscarEspecialidade
+    BuscarEspecialidade --> PreencherEspecialidade[Preencher campo de especialidade]
+    PreencherEspecialidade --> AplicarFiltros[Filtros por região ou bairro (opcional)]
+    AplicarFiltros --> ListarPostosEspecialidade[Listar postos disponíveis]
+    ListarPostosEspecialidade --> MostrarDisponibilidade[Mostrar dias e horários da especialidade]
+
+    %% História 2 - Consultar Guia de Serviços
+    EscolherAcao -->|Consultar guia de serviços| AcessarGuia
+    AcessarGuia --> VerServicos[Visualizar serviços organizados por categorias/temas]
+    VerServicos --> BuscarServicoPalavraChave[Buscar serviço por palavra-chave (opcional)]
+    BuscarServicoPalavraChave --> ExibirDetalhesServico[Exibir detalhes do serviço escolhido]
+
+    %% História 3 - Encontrar Posto Próximo
+    EscolherAcao -->|Encontrar posto mais próximo| LocalizarPosto
+    LocalizarPosto --> DefinirLocalizacao{Usar localização atual ou digitar endereço?}
+    DefinirLocalizacao -->|Localização atual| UsarLocalizacao[Obter localização do dispositivo]
+    DefinirLocalizacao -->|Digitar endereço| DigitarEndereco[Usuário informa o endereço]
+
+    UsarLocalizacao --> BuscarPostosProximos[Buscar postos mais próximos]
+    DigitarEndereco --> BuscarPostosProximos
+
+    BuscarPostosProximos --> MostrarMapaLista[Exibir lista de postos e mapa]
+    MostrarMapaLista --> VerificarPostos{Há postos próximos?}
+    VerificarPostos -->|Sim| ExibirPostos[Exibir lista de postos de saúde]
+    VerificarPostos -->|Não| InformarSemPostos[Informar: "Nenhum posto encontrado"]
+
+    %% Fim
+    MostrarDisponibilidade --> Fim([Fim])
+    ExibirDetalhesServico --> Fim
+    ExibirPostos --> Fim
+    InformarSemPostos --> Fim
+
 
 
  
