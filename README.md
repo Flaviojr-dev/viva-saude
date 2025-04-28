@@ -78,6 +78,18 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ## Programação em par
  Durante o desenvolvimento do projeto, nossa equipe optou por não utilizar a prática de Programação em Par. A equipe de desenvolvimento avaliou que, para garantir uma maior agilidade no andamento das tarefas, seria mais eficiente dividir as atividades individualmente. Cada membro ficou responsável pela implementação de seu respectivo storyboard, o que permitiu um avanço mais rápido e organizado das entregas. Essa decisão foi tomada de forma consciente visando o melhor aproveitamento de tempo.
+
+## Site em construção da Viva Saúde (Clique na imagem para entrar no Screencast do entregável 2)
+ [![Site)](https://github.com/user-attachments/assets/03560ea2-dc4e-4cb4-b0c3-95b1656b31a7)](https://www.youtube.com/watch?v=OWLg_ma6RLw)
+ Acesse por esse link : https://viva-saude-nine.vercel.app/
+
+## Quadro Trello Viva Saúde
+ ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
+
+ 
+ 
+
+ 
  
 
 
