@@ -91,50 +91,46 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ```mermaid
 flowchart LR
-
     %% História 1: Buscar Postos por Especialidade
-    A1([Início]) --> B1[Tela de Busca de Especialidades]
-    B1 --> C1[Usuário digita especialidade desejada]
-    C1 --> D1{Deseja aplicar filtro de região ou bairro?}
-    D1 -- Sim --> E1[Usuário seleciona filtro de região/bairro]
-    D1 -- Não --> F1[Buscar apenas pela especialidade]
-    E1 --> G1[Buscar resultados]
-    F1 --> G1
-    G1 --> H1[Exibir lista de postos com dias e horários disponíveis]
-    H1 --> I1((Fim))
+    Start1([Início]) --> BuscarEspecialidade[Tela de Busca de Especialidades]
+    BuscarEspecialidade --> DigitarEspecialidade[Usuário digita especialidade desejada]
+    DigitarEspecialidade --> FiltroEspecialidade{Deseja aplicar filtro de região ou bairro?}
+    FiltroEspecialidade -- Sim --> EscolherFiltro[Usuário seleciona filtro de região/bairro]
+    FiltroEspecialidade -- Não --> BuscarSomenteEspecialidade[Buscar apenas pela especialidade]
+    EscolherFiltro --> BuscarResultados[Buscar resultados]
+    BuscarSomenteEspecialidade --> BuscarResultados
+    BuscarResultados --> ExibirPostos[Exibir lista de postos com dias e horários disponíveis]
+    ExibirPostos --> End1((Fim))
 
     %% História 2: Guia de Serviços dos Postos
-    A2([Início]) --> B2[Tela de Guia de Serviços]
-    B2 --> C2{Deseja buscar por palavra-chave?}
-    C2 -- Sim --> D2[Usuário digita palavra-chave]
-    D2 --> E2[Exibir serviços relacionados]
-    C2 -- Não --> F2[Exibir guia organizado por categorias/temas]
-    E2 --> G2((Fim))
-    F2 --> G2
+    Start2([Início]) --> AcessarGuia[Tela de Guia de Serviços]
+    AcessarGuia --> BuscarPalavraChave{Deseja buscar por palavra-chave?}
+    BuscarPalavraChave -- Sim --> DigitarPalavraChave[Usuário digita palavra-chave]
+    BuscarPalavraChave -- Não --> ExibirGuia[Exibir guia organizado por categorias/temas]
+    DigitarPalavraChave --> ExibirResultadosGuia[Exibir serviços relacionados]
+    ExibirGuia --> ExibirResultadosGuia
+    ExibirResultadosGuia --> End2((Fim))
 
     %% História 3: Encontrar Posto Mais Próximo
-    A3([Início]) --> B3[Tela de Localização]
-    B3 --> C3{Deseja usar localização atual?}
-    C3 -- Sim --> D3[Capturar localização atual]
-    C3 -- Não --> E3[Usuário digita endereço]
-    D3 --> F3[Buscar postos mais próximos]
-    E3 --> F3
-    F3 --> G3{Encontrou unidades próximas?}
-    G3 -- Sim --> H3[Exibir lista e mapa de postos]
-    G3 -- Não --> I3[Exibir mensagem: "Nenhum posto encontrado."]
-    H3 --> J3((Fim))
-    I3 --> J3
+    Start3([Início]) --> TelaLocalizacao[Tela de Localização]
+    TelaLocalizacao --> UsarLocalizacao{Deseja usar localização atual?}
+    UsarLocalizacao -- Sim --> CapturarLocalizacao[Capturar localização atual]
+    UsarLocalizacao -- Não --> DigitarEndereco[Usuário digita endereço]
+    CapturarLocalizacao --> BuscarPostos[Buscar postos mais próximos]
+    DigitarEndereco --> BuscarPostos
+    BuscarPostos --> EncontrouPostos{Encontrou unidades próximas?}
+    EncontrouPostos -- Sim --> ExibirMapa[Exibir lista e mapa de postos]
+    EncontrouPostos -- Não --> MensagemNaoEncontrado[Exibir mensagem: "Nenhum posto encontrado."]
+    ExibirMapa --> End3((Fim))
+    MensagemNaoEncontrado --> End3
 
     %% Estilos
-    style A1 fill:#9fdf9f,stroke:#333,stroke-width:2px
-    style I1 fill:#ff9999,stroke:#333,stroke-width:2px
-    style A2 fill:#9fdf9f,stroke:#333,stroke-width:2px
-    style G2 fill:#ff9999,stroke:#333,stroke-width:2px
-    style A3 fill:#9fdf9f,stroke:#333,stroke-width:2px
-    style J3 fill:#ff9999,stroke:#333,stroke-width:2px
- ```
- 
-
+    style Start1 fill:#b5f7b5,stroke:#333,stroke-width:2px
+    style End1 fill:#f7b5b5,stroke:#333,stroke-width:2px
+    style Start2 fill:#b5f7b5,stroke:#333,stroke-width:2px
+    style End2 fill:#f7b5b5,stroke:#333,stroke-width:2px
+    style Start3 fill:#b5f7b5,stroke:#333,stroke-width:2px
+    style End3 fill:#f7b5b5,stroke:#333,stroke-width:2px
 
 
   
