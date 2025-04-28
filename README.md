@@ -73,6 +73,14 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ## Storyboard 5 - Tela de especialidades mais requisitadas pela população (História 6)
  ![Storyboard 5 - Tela de atendimentos mais requisitados pela população](https://github.com/user-attachments/assets/d07c5eb1-8dd1-42bc-b962-cce08ab24932)
 
+## Issue / Bug tracker (No code)
+ ![Issue  bug tracker](https://github.com/user-attachments/assets/431d97a9-699e-4a62-8dab-34e16d82e82f)
+
+## Programação em par
+ Durante o desenvolvimento do projeto, nossa equipe optou por não utilizar a prática de Programação em Par. A equipe de desenvolvimento avaliou que, para garantir uma maior agilidade no andamento das tarefas, seria mais eficiente dividir as atividades individualmente. Cada membro ficou responsável pela implementação de seu respectivo storyboard, o que permitiu um avanço mais rápido e organizado das entregas. Essa decisão foi tomada de forma consciente visando o melhor aproveitamento de tempo.
+ 
+
+
 
   
 
