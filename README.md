@@ -86,6 +86,10 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ## Quadro Trello Viva Saúde
  ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
 
+
+##DIAGRAMA DE ATIVIDADES
+
+```mermaid 
 flowchart LR
     A([Início]) --> B{O que deseja fazer?}
 
@@ -128,7 +132,7 @@ flowchart LR
     style G fill:#ffcc99,stroke:#333,stroke-width:2px,color:#000
     style L fill:#ffff99,stroke:#333,stroke-width:2px,color:#000
     style X fill:#cccccc,stroke:#333,stroke-width:2px,color:#000
-
+```
  
 
  
