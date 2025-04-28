@@ -89,47 +89,80 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ##DIAGRAMA DE ATIVIDADES
 
-```mermaid
 flowchart LR
-    %% História 1: Buscar Especialidade
-    Start1([Início]) --> TelaBusca[Tela de Busca]
-    TelaBusca --> DigitaEspecialidade[Digitar Especialidade]
-    DigitaEspecialidade --> FiltroRegiao{Aplicar Filtro?}
-    FiltroRegiao -- Sim --> EscolherFiltro[Filtro Região/Bairro]
-    FiltroRegiao -- Não --> BuscarDireto[Buscar Especialidade]
-    EscolherFiltro --> BuscarResultados[Buscar Resultados]
-    BuscarDireto --> BuscarResultados
-    BuscarResultados --> ExibePostos[Exibir Postos e Horários]
-    ExibePostos --> End1((Fim))
+INITIAL[Initial State]
+TAG[TAG]
+TAG_OPEN[TAG_OPEN]
+TAG_OPENE[TAG_OPENE]
+OPENEDONE[OPENEDONE]
+ATTR1[ATTR1]
+ATTR2[ATTR2]
+DQSTRING[DQSTRING]
+SQSTRING[SQSTRING]
+CDATA[CDATA]
 
-    %% História 2: Guia de Serviços
-    Start2([Início]) --> TelaGuia[Tela de Guia]
-    TelaGuia --> BuscaPalavra{Buscar Palavra-Chave?}
-    BuscaPalavra -- Sim --> DigitaPalavra[Digitar Palavra]
-    BuscaPalavra -- Não --> ExibeGuia[Exibir Guia]
-    DigitaPalavra --> MostraServicos[Mostrar Serviços]
-    ExibeGuia --> MostraServicos
-    MostraServicos --> End2((Fim))
+INITIAL -->|"{Comment}"| INITIAL
+INITIAL -->|"<![CDATA["| CDATA
+INITIAL -->|"</"| TAG_OPENE
+INITIAL -->|"<"| TAG_OPEN
+INITIAL -->|"#quote;{NAME};"| INITIAL
+INITIAL -->|"#quote;{NAME}?"| INITIAL
+INITIAL -->|"[^<&]+"| INITIAL
+INITIAL -->|`<<EOF>>`| INITIAL
 
-    %% História 3: Posto Próximo
-    Start3([Início]) --> TelaLocaliza[Tela Localização]
-    TelaLocaliza --> UsarGPS{Usar Localização Atual?}
-    UsarGPS -- Sim --> CapturaGPS[Capturar Localização]
-    UsarGPS -- Não --> DigitaEnd[Digitar Endereço]
-    CapturaGPS --> BuscaPosto[Buscar Postos]
-    DigitaEnd --> BuscaPosto
-    BuscaPosto --> PostoEncontrado{Encontrou Posto?}
-    PostoEncontrado -- Sim --> ExibeMapa[Exibir no Mapa]
-    PostoEncontrado -- Não --> MsgNaoEncontrado[Mensagem "Não Encontrado"]
-    ExibeMapa --> End3((Fim))
-    MsgNaoEncontrado --> End3
+TAG_OPEN -->|"{NEWLINE}"| TAG_OPEN
+TAG_OPEN -->|"{WHITESPACE}+"| TAG_OPEN
+TAG_OPEN -->|"{NAME}"| TAG
+TAG_OPEN -->|`.`| YYINITIAL
+TAG_OPEN -->|`<<EOF>>`| YYINITIAL
 
-    %% Estilos
-    style Start1 fill:#b5f7b5,stroke:#333,stroke-width:2px
-    style End1 fill:#f7b5b5,stroke:#333,stroke-width:2px
-    style Start2 fill:#b5f7b5,stroke:#333,stroke-width:2px
-    style End2 fill:#f7b5b5,stroke:#333,stroke-width:2px
-    style Start3 fill:#b5f7b5,stroke:#333,stroke-width:2px
-    style End3 fill:#f7b5b5,stroke:#333,stroke-width:2px
+TAG_OPENE -->|"{NEWLINE}"| TAG_OPENE
+TAG_OPENE -->|"{WHITESPACE}+"| TAG_OPENE
+TAG_OPEN -->|"{NAME}"| OPENEDONE
+TAG_OPEN -->|`.`| YYINITIAL
+TAG_OPEN -->|`<<EOF>>`| YYINITIAL
 
-   
+OPENEDONE -->|"{NEWLINE}"| OPENEDONE
+OPENEDONE -->|"{WHITESPACE}+"| OPENEDONE
+OPENEDONE -->|">"| INITIAL
+OPENEDONE -->|`.`| INITIAL
+OPENEDONE -->|`<<EOF>>`| INITIAL
+
+TAG -->|"{NEWLINE}"| TAG
+TAG -->|"{WHITESPACE}+"| TAG
+TAG -->|"{NAME}+"| ATTR1
+TAG -->|">"| INITIAL
+TAG -->|"/>"| INITIAL
+TAG -->|`.`| INITIAL
+TAG -->|`<<EOF>>`| INITIAL
+
+ATTR1 -->|"{NEWLINE}"| ATTR1
+ATTR1 -->|"{WHITESPACE}+"| ATTR1
+ATTR1 -->|"="| ATTR2
+ATTR1 -->|`.`| YYINITIAL
+ATTR1 -->|`<<EOF>>`| YYINITIAL
+
+ATTR2 -->|"{NEWLINE}"| ATTR2
+ATTR2 -->|"{WHITESPACE}+"| ATTR2
+ATTR2 -->|"&quote;"| DQSTRING
+ATTR2 -->|"'"| SQSTRING
+ATTR2 -->|`.`| YYINITIAL
+ATTR2 -->|`<<EOF>>`| YYINITIAL
+
+DQSTRING -->|"&quote;"| TAG
+DQSTRING -->|"&{NAME};"| DQSTRING
+DQSTRING -->|"[^&#quote;]+"| DQSTRING
+DQSTRING -->|"&{NAME}?"| TAG
+DQSTRING -->|`<<EOF>>`| INITIAL
+
+SQSTRING -->|\'| TAG
+SQSTRING -->|"&{NAME};"| SQSTRING
+SQSTRING -->|"[^&\']+"| SQSTRING
+SQSTRING -->|"&{NAME}?"| TAG
+SQSTRING -->|`<<EOF>>`| INITIAL
+
+CDATA -->|"]]>"| INITIAL
+CDATA -->|"]]"| CDATA
+CDATA -->|"]"| CDATA
+CDATA -->|"[^>\]]+"| CDATA
+CDATA -->|`<<EOF>>`| CDATA
