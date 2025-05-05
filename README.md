@@ -77,11 +77,57 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
  ![Issue  bug tracker](https://github.com/user-attachments/assets/431d97a9-699e-4a62-8dab-34e16d82e82f)
 
 ## Programação em par
- Durante o desenvolvimento do projeto, nossa equipe optou por não utilizar a prática de Programação em Par. A equipe de desenvolvimento avaliou que, para garantir uma maior agilidade no andamento das tarefas, seria mais eficiente dividir as atividades individualmente. Cada membro ficou responsável pela implementação de seu respectivo storyboard, o que permitiu um avanço mais rápido e organizado das entregas. Essa decisão foi tomada de forma consciente visando o melhor aproveitamento de tempo.
- 
+ Durante o desenvolvimento do projeto, nossa equipe optou por não utilizar a prática de Programação em Par. A equipe de desenvolvimento avaliou que, para garantir uma maior agilidade no andamento das tarefas, seria mais eficiente dividir as atividades individualmente. Cada membro ficou responsável pela implementação de seu respectivo storyboard, o que permitiu um avanço mais rápido e organizado das entregas. Essa decisão foi tomada de forma consciente visando o melhor aproveitamento de tempo dos componentes da equipe. Além disso, foi dividido no início do projeto que 3 dos 7 integrantes estariam responsáveis pelo front-end, logo, não foi preciso fazer a programação em par, pois era mais prático para o grupo que cada um fizesse uma tela (O entregável 1 requeria apenas 3 telas).
+
+## Equipe
+ ![Equipe 1](https://github.com/user-attachments/assets/f7ca8fe4-2773-44de-9bae-b334ccfbc5f9)
+ ![Equipe 2](https://github.com/user-attachments/assets/0147098f-fc63-4a7e-b6a3-e46592682c11)
 
 
 
-  
+## Site em construção da Viva Saúde (Clique na imagem para entrar no Screencast do entregável 2)
+ [![Site)](https://github.com/user-attachments/assets/03560ea2-dc4e-4cb4-b0c3-95b1656b31a7)](https://www.youtube.com/watch?v=OWLg_ma6RLw)
+ Acesse por esse link : https://viva-saude-nine.vercel.app/
 
+## Quadro Trello Viva Saúde
+ ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
+
+
+##DIAGRAMA DE ATIVIDADES
+
+```mermaid
+flowchart TD
+    A[Início: Página Principal] --> B{Escolha do Usuário}
    
+    B --> C1[Buscar por Especialidade]
+    B --> C2[Consultar Guia de Serviços]
+    B --> C3[Encontrar Posto Mais Próximo]
+   
+    %% Fluxo Buscar por Especialidade
+    C1 --> D1[Exibir campo de busca por especialidade]
+    D1 --> E1[Permitir filtros de bairro/região]
+    E1 --> F1[Consultar banco de dados]
+    F1 --> G1[Exibir lista de postos: nome, endereço, horários]
+    G1 --> H1{Ordenar resultados?}
+    H1 -- Sim --> I1[Ordenar por distância ou horário]
+    H1 -- Não --> J1[Fim da busca por especialidade]
+
+    %% Fluxo Consultar Guia de Serviços
+    C2 --> D2[Exibir categorias de serviços]
+    D2 --> E2[Campo de busca por palavra-chave]
+    E2 --> F2[Exibir informações acessíveis]
+    F2 --> G2[Área administrativa para atualização de dados]
+    G2 --> J2[Fim da consulta ao guia]
+
+    %% Fluxo Encontrar Posto Mais Próximo
+    C3 --> D3{Usar localização atual?}
+    D3 -- Sim --> E3[Solicitar permissão de GPS]
+    E3 --> F3[Detectar posição]
+    D3 -- Não --> G3[Campo para digitar endereço]
+    F3 --> H3[Buscar postos mais próximos]
+    G3 --> H3[Buscar postos mais próximos]
+    H3 --> I3[Exibir lista de postos + mapa]
+    I3 --> J3{Postos encontrados?}
+    J3 -- Sim --> K3[Fim da busca por localização]
+    J3 -- Não --> L3[Exibir mensagem: 'Nenhum posto encontrado']
+    L3 --> K3
