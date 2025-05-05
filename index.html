@@ -5,40 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Saúde</title>
-    <link rel="stylesheet" href="../style/header/style.css">
+    <link rel="stylesheet" href="./style/nav_bar/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/section/section_forms.css">
-    <link rel="stylesheet" href="./style/section/section_servicos.css">
-    <link rel="stylesheet" href="style/section/section_espe.css">
+    <link rel="stylesheet" href="./style/inicio/section_herobanner.css">
+    <link rel="stylesheet" href="style/inicio/section_servicos.css">
+    <link rel="stylesheet" href="./style/inicio/section_especialidades.css">
     <link rel="stylesheet" href="./style/footer/footer.css">
 </head>
 
 <body>
     <header>
         <nav>
-           <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a> 
-
+            <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
+        
             <button class="hamburger" id="hamburger-btn">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-
+        
             <ul id="nav-menu">
                 <li><a href="index.html">Início</a></li>
                 <li class="dropdown">
-                    <a href="#" id="servicos-btn">Serviços</a>
-                    <ul class="dropdown-menu" id="dropdown-menu">
-                        <li><a href="atend_esp.html" target="_blank">Atendimento especializado</a></li>
+                    <a href="#" class="dropdown-toggle">Serviços</a>
+                    <ul class="dropdown-menu hidden">
+                        <li><a href="pages/atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="#">Funcionamento</a></li>
-                        <li><a href="postos.html">Postos de Saúde</a></li>
-                        <li><a href="servicos.html">Serviços disponíveis</a></li>
+                        <li><a href="pages/postos.html">Postos de Saúde</a></li>
+                        <li><a href="pages/servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="#">Geolocalização</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contato</a></li>
                 <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
+        
     </header>
     <section class="banner">
         <div class="content">
@@ -172,7 +174,7 @@
     </footer>
 
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 

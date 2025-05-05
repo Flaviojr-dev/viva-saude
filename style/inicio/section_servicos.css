@@ -1,0 +1,142 @@
+.servico {
+    display: flex;
+    align-items: center;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.imagem {
+    flex: 1;
+    text-align: center;
+}
+
+.imagem img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+}
+
+.texto {
+    flex: 1;
+    max-width: 600px;
+}
+
+.servico h1 {
+    font-size: 40px;
+    color: #333;
+}
+
+.servico p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.viva-saude {
+    color: #0077cc;
+    font-weight: bold;
+}
+
+.servico .texto ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0px;
+}
+
+.servico .texto li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.servico .texto li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: blue;
+    font-size: 1.2em;
+    line-height: 1.1rem;
+}
+
+@media (max-width: 1024px) {
+    .servico {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .imagem, .texto {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .servico h1 {
+        font-size: 32px;
+    }
+
+    .servico p, .servico .texto li {
+        font-size: 15px;
+    }
+
+    .servico .texto ul {
+        align-items: center;
+    }
+}
+
+/* Mobile (até 768px) */
+@media (max-width: 768px) {
+    .servico {
+        padding: 30px 15px;
+        gap: 25px;
+    }
+
+    .servico h1 {
+        font-size: 28px;
+    }
+
+    .servico p, .servico .texto li {
+        font-size: 14px;
+    }
+
+    .imagem img {
+        max-width: 90%;
+    }
+
+    .servico .texto li::before {
+        font-size: 1em;
+        top: 2px;
+    }
+
+    .servico .texto ul {
+        row-gap: 10px;
+    }
+}
+
+/* Celulares bem pequenos (até 480px) */
+@media (max-width: 480px) {
+    .servico h1 {
+        font-size: 24px;
+    }
+
+    .servico p, .servico .texto li {
+        font-size: 13px;
+    }
+
+    .imagem img {
+        max-width: 100%;
+    }
+
+    .servico {
+        padding: 20px 10px;
+    }
+}

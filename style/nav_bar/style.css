@@ -1,0 +1,144 @@
+@import url('../reset.css');
+
+/* Reset e base */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+#nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+#nav-menu li {
+    position: relative;
+}
+
+#nav-menu a {
+    text-decoration: none;
+    color: #1c1c1c;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+#nav-menu a:hover {
+    color: #007bce;
+}
+
+/* Dropdown submenu - desktop */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    padding: 10px 0;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    font-size: 14px;
+}
+
+/* Mobile Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #1c1c1c;
+    border-radius: 2px;
+}
+
+/* Menu oculto por padrão no mobile */
+#nav-menu.mobile {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    width: 250px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+}
+
+#nav-menu.mobile.show {
+    display: flex;
+}
+
+#nav-menu.mobile .dropdown-menu {
+    display: none;
+    flex-direction: column;
+    padding-left: 10px;
+    border-left: 3px solid #007bce;
+    margin-top: 5px;
+}
+
+#nav-menu.mobile .dropdown-menu.show {
+    display: flex;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    #nav-menu {
+        display: none;
+    }
+
+    #nav-menu.mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dropdown-menu {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 8px;
+        padding: 10px;
+        margin-top: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-menu.show {
+        display: flex;
+    }
+
+    .dropdown>a::after {
+        content: " ▼";
+        font-size: 0.6rem;
+    }
+}

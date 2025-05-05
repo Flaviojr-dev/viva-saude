@@ -1,17 +1,39 @@
-const servicosBtn = document.getElementById('servicos-btn');
-const dropdownMenu = document.getElementById('dropdown-menu');
+const hamburgerBtn = document.getElementById("hamburger-btn");
+const navMenu = document.getElementById("nav-menu");
+const dropdownToggle = document.querySelector(".dropdown-toggle");
+const dropdownMenu = document.querySelector(".dropdown-menu");
 
-servicosBtn.addEventListener('click', (e) => {
-  e.preventDefault(); // Impede de pular pra cima
-  dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// Toggle do menu hamburguer
+hamburgerBtn.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+    navMenu.classList.add("mobile");
 });
 
-// Se clicar fora, fecha o menu
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.dropdown')) {
-    dropdownMenu.style.display = 'none';
-  }
+// Toggle do submenu "Serviços" no mobile
+dropdownToggle.addEventListener("click", (e) => {
+    if (isMobile()) {
+        e.preventDefault();
+        dropdownMenu.classList.toggle("show");
+    }
 });
+
+function handleDropdownClick() {
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+  dropdownMenu.classList.toggle("show");
+}
+
+// Aplica o clique até 1024px (tablet)
+if (window.innerWidth <= 1024) {
+  const dropdownBtn = document.getElementById("servicos-btn");
+  dropdownBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      handleDropdownClick();
+  });
+}
 
 const especialidades = [
   "Clínico Geral",
@@ -38,12 +60,3 @@ especialidades.forEach(especialidade => {
   option.textContent = especialidade;
   select.appendChild(option);
 });
-
-function procurar() {
-  const endereco = document.getElementById('endereco').value;
-  if (endereco.trim() === "") {
-      alert("Por favor, digite um endereço.");
-  } else {
-      alert(`Buscando postos de saúde próximos a: ${endereco}`);
-  }
-}
