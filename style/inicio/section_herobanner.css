@@ -182,7 +182,7 @@ p {
     }
 
     .image img {
-        display: none;
+        max-width: 280px;
     }
 
     .search-container {
