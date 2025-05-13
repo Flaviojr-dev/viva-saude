@@ -172,11 +172,11 @@ p {
 /* Celulares pequenos (até 480px) */
 @media (max-width: 480px) {
     h1 {
-        font-size: 24px;
+        font-size: 40px;
     }
 
     p {
-        font-size: 13px;
+        font-size: 14px;
         margin-bottom: 20px;
     }
 
