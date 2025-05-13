@@ -41,7 +41,7 @@ nav {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     top: 100%;
     left: 0;
-    min-width: 220px;
+    max-width: 170px;
     padding: 10px 0;
     z-index: 1000;
     flex-direction: column;
