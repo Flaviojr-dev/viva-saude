@@ -120,6 +120,10 @@ nav {
     #nav-menu.mobile {
         display: none;
     }
+
+    .logo img {
+        width: 200px;;
+    }
 }
 
 @media (max-width: 1024px) {
