@@ -109,7 +109,7 @@
     }
 
     .imagem img {
-        max-width: 90%;
+        display: none;
     }
 
     .servico .texto li::before {
@@ -133,7 +133,7 @@
     }
 
     .imagem img {
-        max-width: 100%;
+        display: none;
     }
 
     .servico {

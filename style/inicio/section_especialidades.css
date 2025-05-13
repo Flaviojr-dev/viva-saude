@@ -99,3 +99,12 @@
 .indicadores .ativo {
   background: #007bce;
 }
+
+@media (max-width: 768px) {
+  .card .icon,
+  .card h3 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -11,19 +11,21 @@
     <link rel="stylesheet" href="style/inicio/section_servicos.css">
     <link rel="stylesheet" href="./style/inicio/section_especialidades.css">
     <link rel="stylesheet" href="./style/footer/footer.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body>
     <header>
         <nav>
             <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
-        
+
             <button class="hamburger" id="hamburger-btn">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-        
+
             <ul id="nav-menu">
                 <li><a href="index.html">Início</a></li>
                 <li class="dropdown">
@@ -40,40 +42,41 @@
                 <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
-        
+
     </header>
     <section class="banner">
-        <div class="content">
+        <div class="content" data-aos="fade-up">
             <h1>
                 Transformando o <br />
                 <span class="highlight">acesso à saúde.</span>
             </h1>
-            <p>
+            <p data-aos="fade-up" data-aos-delay="200">
                 O <span class="bold-blue">Viva Saúde</span> foi pensado para facilitar o seu dia a dia, <br />
                 conectando você aos serviços de saúde de forma prática e <br />
                 inteligente.
             </p>
-            <div class="search-container">
+            <div class="search-container" data-aos="fade-up" data-aos-delay="400">
                 <input type="text" placeholder="Procurar serviço">
                 <button class="search-button">
                     <img src="/assets/images/Group (2).png" alt="Buscar">
                 </button>
             </div>
-
         </div>
-        <div class="image">
+
+        <div class="image" data-aos="fade-up" data-aos-delay="600">
             <img src="./assets/images/Banner_de_site_promoção_de_verão_moderno_azul_e_amarelo_1-removebg-preview.png"
                 alt="Enfermeira" />
         </div>
     </section>
-    <div class="base-azul"></div>
 
-    <div class="servico">
-        <div class="imagem">
+    <div class="base-azul" data-aos="fade-up" data-aos-delay="20"></div>
+
+    <div class="servico" data-aos="fade-up">
+        <div class="imagem" data-aos="fade-up" data-aos-delay="100">
             <img src="./assets/images/Banner_de_site_promoção_de_verão_moderno_azul_e_amarelo__1__1-removebg-preview.png"
                 alt="Prontuário e estetoscópio">
         </div>
-        <div class="texto">
+        <div class="texto" data-aos="fade-up" data-aos-delay="200">
             <h1>Por que usar nosso serviço?</h1>
             <p>Com o <strong class="viva-saude">Viva Saúde</strong>, você economiza tempo, evita filas e tem acesso
                 rápido às informações que realmente importam. Nossa plataforma foi pensada para facilitar a sua vida,
@@ -87,11 +90,11 @@
         </div>
     </div>
 
-    <div class="especialidades">
+    <div class="especialidades" data-aos="fade-up" data-aos-delay="100">
         <h2>Especialidades Médicas Disponíveis</h2>
-        <div class="cards">
+        <div class="cards" data-aos="fade-up" data-aos-delay="200">
 
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon">
                     <img src="./assets/images/healthicons_pediatrics.png" alt="Pediatria">
                 </div>
@@ -100,7 +103,7 @@
                     quando disponível ou conforme a necessidade da comunidade.</p>
             </div>
 
-            <div class="card destaque">
+            <div class="card destaque" data-aos="fade-up" data-aos-delay="400">
                 <div class="icon">
                     <img src="./assets/images/material-symbols_gynecology.png" alt="Ginecologia e Obstetrícia">
                 </div>
@@ -109,7 +112,7 @@
                     orientação sobre saúde sexual.</p>
             </div>
 
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="500">
                 <div class="icon">
                     <img src="./assets/images/fluent_dentist-12-filled.png" alt="Odontologia">
                 </div>
@@ -118,7 +121,7 @@
                     saúde bucal.</p>
             </div>
 
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="600">
                 <div class="icon">
                     <img src="./assets/images/mdi_heart.png" alt="Cardiologia">
                 </div>
@@ -130,19 +133,18 @@
 
         </div>
 
-        <div class="indicadores">
+        <div class="indicadores" data-aos="fade-up" data-aos-delay="700">
             <span class="ativo"></span>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
         </div>
-
     </div>
 
-    <footer class="footer">
+    <footer class="footer" data-aos="fade-up">
         <div class="footer-container">
-            <div class="footer-left">
+            <div class="footer-left" data-aos="fade-up" data-aos-delay="100">
                 <h3>VivaSaúde</h3>
                 <p>
                     O Viva Saúde é uma plataforma dedicada a aproximar você dos cuidados que precisa. Aqui, você
@@ -156,7 +158,7 @@
                 </div>
             </div>
 
-            <div class="footer-right">
+            <div class="footer-right" data-aos="fade-up" data-aos-delay="200">
                 <h4>Ferramentas</h4>
                 <ul>
                     <li><a href="#">Quem somos</a></li>
@@ -173,6 +175,8 @@
         </div>
     </footer>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     <script src="./script.js"></script>
 
