@@ -221,6 +221,11 @@
     }
 
     .box-atendimento h1 {
+        max-width: 100%;
+        font-size: 32px;
+    }
+
+    .box-atendimento h1 {
         font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     }
 
