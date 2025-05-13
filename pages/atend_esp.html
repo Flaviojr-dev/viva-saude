@@ -30,10 +30,10 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">Serviços</a>
                     <ul class="dropdown-menu hidden">
-                        <li><a href="pages/atend_esp.html">Atendimento especializado</a></li>
+                        <li><a href="./atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="#">Funcionamento</a></li>
-                        <li><a href="pages/postos.html">Postos de Saúde</a></li>
-                        <li><a href="pages/servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="./postos.html">Postos de Saúde</a></li>
+                        <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
                         <li><a href="#">Geolocalização</a></li>
                     </ul>
                 </li>
@@ -88,8 +88,44 @@
 
 
 
+    <script>
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
 
-    <script src="../script.js"></script>
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Toggle do menu hamburguer
+        hamburgerBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+            navMenu.classList.add("mobile");
+        });
+
+        // Toggle do submenu "Serviços" no mobile
+        dropdownToggle.addEventListener("click", (e) => {
+            if (isMobile()) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle("show");
+            }
+        });
+
+        function handleDropdownClick() {
+            const dropdownMenu = document.querySelector(".dropdown-menu");
+            dropdownMenu.classList.toggle("show");
+        }
+
+        // Aplica o clique até 1024px (tablet)
+        if (window.innerWidth <= 1024) {
+            const dropdownBtn = document.getElementById("servicos-btn");
+            dropdownBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                handleDropdownClick();
+            });
+        }
+    </script>
 </body>
 
 </html>

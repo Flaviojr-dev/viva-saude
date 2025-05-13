@@ -1,7 +1,4 @@
-AOS.init({
-  once: true
-});
-
+AOS.init();
 const hamburgerBtn = document.getElementById("hamburger-btn");
 const navMenu = document.getElementById("nav-menu");
 const dropdownToggle = document.querySelector(".dropdown-toggle");
