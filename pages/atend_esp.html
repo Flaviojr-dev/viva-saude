@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Saúde - Atendimento Especializado</title>
-    <link rel="stylesheet" href="../style/nav_bar/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/nav_bar/style.css">
     <link rel="stylesheet" href="../style/atendimento_especializado/atendimento_especializado.css">
-    <link rel="stylesheet" href="../style/atendimento_especializado/section_local.css"
+    <link rel="stylesheet" href="../style/atendimento_especializado/section_local.css">
+    <link rel="stylesheet" href="../style/nav_bar/style.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a> 
+            <div class="logo">
+                <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
+            </div>
+
 
             <button class="hamburger" id="hamburger-btn">
                 <span></span>
@@ -24,20 +26,22 @@
             </button>
 
             <ul id="nav-menu">
-                <li><a href="../index.html">Início</a></li>
+                <li><a href="index.html">Início</a></li>
                 <li class="dropdown">
-                    <a href="#" id="servicos-btn">Serviços</a>
-                    <ul class="dropdown-menu" id="dropdown-menu">
-                        <li><a href="./atend_esp.html" target="_blank">Atendimento especializado</a></li>
+                    <a href="#" class="dropdown-toggle">Serviços</a>
+                    <ul class="dropdown-menu hidden">
+                        <li><a href="pages/atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="#">Funcionamento</a></li>
-                        <li><a href="./postos.html">Postos de Saúde</a></li>
-                        <li><a href="./servicos.html">Serviços disponíveis</a></li>
+                        <li><a href="pages/postos.html">Postos de Saúde</a></li>
+                        <li><a href="pages/servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="#">Geolocalização</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contato</a></li>
                 <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
+
     </header>
 
     <div class="atendimento">
@@ -57,32 +61,32 @@
         <button class="botao-buscar">Buscar Unidades</button>
         <div class="card">
             <div class="card-content">
-              <h2 class="card-title">Posto Santos Dumont</h2>
-              <p class="card-address">Rua das Barbas, 145<br>Jardim Horizonte</p>
-              <p class="card-service"><strong>Pediatria</strong></p>
-          
-              <div class="card-bottom">
-                <p class="card-hours">Segunda a sexta, 7:15 - 17:45</p>
-                <a href="#" class="card-link">Ver detalhes</a>
-              </div>
+                <h2 class="card-title">Posto Santos Dumont</h2>
+                <p class="card-address">Rua das Barbas, 145<br>Jardim Horizonte</p>
+                <p class="card-service"><strong>Pediatria</strong></p>
+
+                <div class="card-bottom">
+                    <p class="card-hours">Segunda a sexta, 7:15 - 17:45</p>
+                    <a href="#" class="card-link">Ver detalhes</a>
+                </div>
             </div>
-          </div>
-          
-          <div class="card">
+        </div>
+
+        <div class="card">
             <div class="card-content">
-              <h2 class="card-title">Posto Santos Dumont</h2>
-              <p class="card-address">Rua das Barbas, 145<br>Jardim Horizonte</p>
-              <p class="card-service"><strong>Pediatria</strong></p>
-          
-              <div class="card-bottom">
-                <p class="card-hours">Segunda a sexta, 7:15 - 17:45</p>
-                <a href="#" class="card-link">Ver detalhes</a>
-              </div>
+                <h2 class="card-title">Posto Santos Dumont</h2>
+                <p class="card-address">Rua das Barbas, 145<br>Jardim Horizonte</p>
+                <p class="card-service"><strong>Pediatria</strong></p>
+
+                <div class="card-bottom">
+                    <p class="card-hours">Segunda a sexta, 7:15 - 17:45</p>
+                    <a href="#" class="card-link">Ver detalhes</a>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
 
-    
+
 
 
     <script src="../script.js"></script>

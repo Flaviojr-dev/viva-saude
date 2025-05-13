@@ -35,7 +35,6 @@ main {
     margin-bottom: 30px;
 }
 
-
 .search-card {
     background-color: #ffffff;
     border: 2px solid #cccccc;
@@ -72,4 +71,43 @@ main {
 
 .search-container button:hover {
     background-color: #0056b3;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    main {
+        padding: 30px 20px;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .image-section {
+        display: none;
+    }
+
+    .text-section {
+        max-width: 100%;
+    }
+
+    .search-card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    .search-container input,
+    .search-container button {
+        width: 100%;
+    }
+
+    .search-container button {
+        margin-top: 10px;
+    }
 }

@@ -143,3 +143,39 @@
 .filtro-input {
     border: 1px solid red;
 }
+
+/* ========== MEDIA QUERY PARA TORNAR RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .atendimento {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .atendimento img {
+        display: none;
+    }
+
+    .box-atendimentoo h1,
+    .box-atendimentoo p {
+        width: 100%;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    .search-container input,
+    .search-container button {
+        width: 100%;
+    }
+
+    .search-container button {
+        margin-top: 10px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
