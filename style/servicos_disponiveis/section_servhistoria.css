@@ -1,4 +1,5 @@
 @import url('../reset.css');
+@import url('../nav_bar/');
 
 .atendimento {
     display: flex;

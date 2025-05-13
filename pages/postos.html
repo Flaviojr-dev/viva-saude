@@ -12,7 +12,10 @@
 <body>
     <header>
         <nav>
-            <a href="../index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a> 
+            <div class="logo">
+                <a href="../index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
+            </div>
+
 
             <button class="hamburger" id="hamburger-btn">
                 <span></span>
@@ -21,20 +24,22 @@
             </button>
 
             <ul id="nav-menu">
-                <li><a href="index.html">Início</a></li>
+                <li><a href="../index.html">Início</a></li>
                 <li class="dropdown">
-                    <a href="#" id="servicos-btn">Serviços</a>
-                    <ul class="dropdown-menu" id="dropdown-menu">
-                        <li><a href="./atend_esp.html" target="_blank">Atendimento especializado</a></li>
+                    <a href="#" class="dropdown-toggle">Serviços</a>
+                    <ul class="dropdown-menu hidden">
+                        <li><a href="./atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="#">Funcionamento</a></li>
                         <li><a href="./postos.html">Postos de Saúde</a></li>
                         <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="#">Geolocalização</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contato</a></li>
                 <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
+
     </header>
 
     <main>
