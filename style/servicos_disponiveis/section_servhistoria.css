@@ -145,7 +145,6 @@
     border: 1px solid red;
 }
 
-/* ========== MEDIA QUERY PARA TORNAR RESPONSIVO ========== */
 @media (max-width: 768px) {
     .atendimento {
         flex-direction: column;

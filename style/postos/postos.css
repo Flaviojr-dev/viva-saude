@@ -80,6 +80,10 @@ main {
         padding: 30px 20px;
     }
 
+    h1, p{
+        text-align: center;
+    }
+
     .content {
         flex-direction: column;
         gap: 30px;
