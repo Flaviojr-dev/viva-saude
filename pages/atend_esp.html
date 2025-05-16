@@ -96,7 +96,6 @@
             navMenu.classList.add("mobile");
         });
 
-        // Toggle do submenu "Serviços" no mobile
         dropdownToggle.addEventListener("click", (e) => {
             if (isMobile()) {
                 e.preventDefault();
@@ -117,7 +116,6 @@
             dropdownBtn.addEventListener("click", handleDropdownClick);
         }
 
-        // Caso queira, pode adicionar listener de resize para outras funcionalidades futuras
         window.addEventListener("resize", () => {
             if (!isMobile()) {
                 navMenu.classList.remove("show");
@@ -181,12 +179,8 @@
                 return;
             }
 
-            console.log("Exemplo de UBS:", lista[0]); // debug
-
             lista.forEach(ubs => {
-                const nomeUnidade =
-                    (ubs.nome_oficial && ubs.nome_oficial.trim()) ||
-                    "Nome não disponível";
+                const nomeUnidade = (ubs.nome_oficial && ubs.nome_oficial.trim()) || "Nome não disponível";
 
                 const card = document.createElement("div");
                 card.className = "card";
@@ -203,11 +197,14 @@
             });
         }
 
-        // Event listener para o botão buscar
         document.getElementById("buscarBtn").addEventListener("click", filtrarUbs);
 
-        // NOVO: filtrar automaticamente ao mudar a especialidade (importante para mobile)
-        document.getElementById("especialidades").addEventListener("change", filtrarUbs);
+        const selectEspecialidades = document.getElementById("especialidades");
+
+        // Aqui incluímos os eventos extra
+        selectEspecialidades.addEventListener("change", filtrarUbs);
+        selectEspecialidades.addEventListener("blur", filtrarUbs);
+        selectEspecialidades.addEventListener("input", filtrarUbs);
 
         carregarDados();
     </script>
