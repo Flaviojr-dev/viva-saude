@@ -5,7 +5,7 @@ body {
     color: #333;
 }
 
-.container-main {
+.container-main{
     padding: 2rem;
 }
 
@@ -147,18 +147,6 @@ body {
     margin-top: 20px;
 }
 
-#especialidades {
-    border: 3px solid red !important;
-    background-color: yellow !important;
-    color: black !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 9999 !important;
-    width: 100% !important;
-}
-
 /* Responsividade */
 
 /* Tablets e telas médias */
@@ -201,11 +189,6 @@ body {
 
     .filtro-container {
         flex-direction: column;
-    }
-
-    .filtro-select {
-        width: 100% !important;
-        min-width: 0 !important;
     }
 
     .filtro-select,
