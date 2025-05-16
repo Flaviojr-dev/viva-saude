@@ -122,8 +122,12 @@
             }
         });
 
+        // =============================
+        // Filtro de unidades de saúde
+        // =============================
+
         const API_URL = "http://dados.recife.pe.gov.br/api/3/action/datastore_search";
-        const RESOURCE_ID = "54232db8-ed15-4f1f-90b0-2b5a20eef4cf";
+        const RESOURCE_ID = "54232db8-ed15-4f1f-90b0-2b5a20eef4cf"; // Você pode trocar esse ID se necessário
         let todasUbs = [];
 
         async function carregarDados() {
@@ -154,14 +158,14 @@
                 select.appendChild(option);
             });
 
-            select.value = ""; // Garante que "Todas as especialidades" esteja selecionado
+            select.value = "";
         }
 
         function filtrarUbs() {
             const especialidadeSelecionada = document.getElementById("especialidades").value.toLowerCase();
             const filtroBairro = document.getElementById("filtro-bairro").value.toLowerCase();
 
-            console.log("Especialidade selecionada:", especialidadeSelecionada); // Log para depuração
+            console.log("Especialidade selecionada:", especialidadeSelecionada);
 
             const resultado = todasUbs.filter(ubs => {
                 const espOk = especialidadeSelecionada === "" || (ubs.especialidade || "").toLowerCase().includes(especialidadeSelecionada);
@@ -187,32 +191,37 @@
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-            <div class="card-title">${nomeUnidade}</div>
-            <div class="card-address">${ubs.endereo || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
-            <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
-            <div class="card-bottom">
-                <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
-                <a href="#" class="card-link">Ver detalhes</a>
-            </div>
-        `;
+                    <div class="card-title">${nomeUnidade}</div>
+                    <div class="card-address">${ubs.endereo || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
+                    <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
+                    <div class="card-bottom">
+                        <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
+                        <a href="#" class="card-link">Ver detalhes</a>
+                    </div>
+                `;
                 container.appendChild(card);
             });
         }
 
+        // Botão buscar
         document.getElementById("buscarBtn").addEventListener("click", filtrarUbs);
 
         const selectEspecialidades = document.getElementById("especialidades");
 
-        // Adiciona apenas o evento change
+        // NOVO: Executa ao clicar no <select>
+        selectEspecialidades.addEventListener("click", filtrarUbs);
+
+        // Executa ao alterar o valor do select
         selectEspecialidades.addEventListener("change", filtrarUbs);
 
-        // Adiciona evento touchend para dispositivos móveis
+        // Em dispositivos móveis (touch)
         if ("ontouchstart" in window) {
             selectEspecialidades.addEventListener("touchend", filtrarUbs);
         }
 
         carregarDados();
     </script>
+
 
 
 </body>
