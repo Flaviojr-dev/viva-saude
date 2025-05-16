@@ -46,32 +46,35 @@
 
     </header>
 
-    <div class="filtro-container">
-        <select class="filtro-select" id="especialidades">
-            <option value="">Todas as especialidades</option>
-        </select>
-        <input type="text" class="filtro-input" id="filtro-bairro" placeholder="Filtrar por região ou bairro">
-    </div>
-
-    <button class="botao-buscar" id="buscarBtn">Buscar Unidades</button>
-
-    <!-- Um único container para os cards -->
-    <div id="resultado-container">
-        <!-- Exemplo de card de unidade -->
-        <div class="card-unidade">
-            <span class="nome-unidade">CASA AMARELA</span>
-            <p class="especialidades"><strong>GINECOLOGISTA, PEDIATRIA, CLINICA MEDICA</strong></p>
-            <p class="horario">SEGUNDA A SEXTA 08:00 às 17:00</p>
-            <a href="#" class="detalhes">Ver detalhes</a>
+    <main class="container-main">
+        <div class="filtro-container">
+            <select class="filtro-select" id="especialidades">
+                <option value="">Todas as especialidades</option>
+            </select>
+            <input type="text" class="filtro-input" id="filtro-bairro" placeholder="Filtrar por região ou bairro">
         </div>
-
-        <div class="card-unidade">
-            <span class="nome-unidade">BEBERIBE</span>
-            <p class="especialidades"><strong>ODONTOLOGIA, CLÍNICA GERAL</strong></p>
-            <p class="horario">SEGUNDA A SEXTA 08:00 às 17:00</p>
-            <a href="#" class="detalhes">Ver detalhes</a>
+    
+        <button class="botao-buscar" id="buscarBtn">Buscar Unidades</button>
+    
+        <!-- Um único container para os cards -->
+        <div id="resultado-container">
+            <!-- Exemplo de card de unidade -->
+            <div class="card-unidade">
+                <span class="nome-unidade">CASA AMARELA</span>
+                <p class="especialidades"><strong>GINECOLOGISTA, PEDIATRIA, CLINICA MEDICA</strong></p>
+                <p class="horario">SEGUNDA A SEXTA 08:00 às 17:00</p>
+                <a href="#" class="detalhes">Ver detalhes</a>
+            </div>
+    
+            <div class="card-unidade">
+                <span class="nome-unidade">BEBERIBE</span>
+                <p class="especialidades"><strong>ODONTOLOGIA, CLÍNICA GERAL</strong></p>
+                <p class="horario">SEGUNDA A SEXTA 08:00 às 17:00</p>
+                <a href="#" class="detalhes">Ver detalhes</a>
+            </div>
         </div>
-    </div>
+    </main>
+    
 
     <script>
         const hamburgerBtn = document.getElementById("hamburger-btn");

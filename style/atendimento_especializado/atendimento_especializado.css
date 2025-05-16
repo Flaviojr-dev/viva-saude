@@ -2,8 +2,11 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f4f6f8;
     margin: 0;
-    padding: 2rem;
     color: #333;
+}
+
+.container-main{
+    padding: 2rem;
 }
 
 /* Container dos filtros */
