@@ -181,7 +181,7 @@
                 return;
             }
 
-            console.log("Exemplo de UBS:", lista[0]); // 👈 Aqui está a linha que você pediu
+            console.log("Exemplo de UBS:", lista[0]); // debug
 
             lista.forEach(ubs => {
                 const nomeUnidade =
@@ -191,22 +191,27 @@
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-        <div class="card-title">${nomeUnidade}</div>
-        <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
-        <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
-        <div class="card-bottom">
-            <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
-            <a href="#" class="card-link">Ver detalhes</a>
-        </div>
-    `;
+                    <div class="card-title">${nomeUnidade}</div>
+                    <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
+                    <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
+                    <div class="card-bottom">
+                        <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
+                        <a href="#" class="card-link">Ver detalhes</a>
+                    </div>
+                `;
                 container.appendChild(card);
             });
         }
 
+        // Event listener para o botão buscar
         document.getElementById("buscarBtn").addEventListener("click", filtrarUbs);
+
+        // NOVO: filtrar automaticamente ao mudar a especialidade (importante para mobile)
+        document.getElementById("especialidades").addEventListener("change", filtrarUbs);
 
         carregarDados();
     </script>
+
 
 </body>
 
