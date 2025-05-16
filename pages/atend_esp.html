@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../style/atendimento_especializado/atendimento_especializado.css">
     <link rel="stylesheet" href="../style/atendimento_especializado/section_local.css">
     <link rel="stylesheet" href="../style/nav_bar/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 </head>
 
@@ -52,9 +53,9 @@
             </select>
             <input type="text" class="filtro-input" id="filtro-bairro" placeholder="Filtrar por região ou bairro">
         </div>
-
+    
         <button class="botao-buscar" id="buscarBtn">Buscar Unidades</button>
-
+    
         <!-- Um único container para os cards -->
         <div id="resultado-container">
             <!-- Exemplo de card de unidade -->
@@ -64,7 +65,7 @@
                 <p class="horario">SEGUNDA A SEXTA 08:00 às 17:00</p>
                 <a href="#" class="detalhes">Ver detalhes</a>
             </div>
-
+    
             <div class="card-unidade">
                 <span class="nome-unidade">BEBERIBE</span>
                 <p class="especialidades"><strong>ODONTOLOGIA, CLÍNICA GERAL</strong></p>
@@ -73,30 +74,76 @@
             </div>
         </div>
     </main>
-
+    
 
     <script>
-        const API_URL = "https://dados.recife.pe.gov.br/api/3/action/datastore_search";
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        function isTabletOrMobile() {
+            return window.innerWidth <= 1024;
+        }
+
+        // Toggle do menu hamburguer
+        hamburgerBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+            navMenu.classList.add("mobile");
+        });
+
+        // Toggle do submenu "Serviços" no mobile
+        dropdownToggle.addEventListener("click", (e) => {
+            if (isMobile()) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle("show");
+            }
+        });
+
+        function handleDropdownClick(e) {
+            if (isTabletOrMobile()) {
+                e.preventDefault();
+                const dropdownMenu = document.querySelector(".dropdown-menu");
+                dropdownMenu.classList.toggle("show");
+            }
+        }
+
+        const dropdownBtn = document.getElementById("servicos-btn");
+        if (dropdownBtn) {
+            dropdownBtn.addEventListener("click", handleDropdownClick);
+        }
+
+        // Caso queira, pode adicionar listener de resize para outras funcionalidades futuras
+        window.addEventListener("resize", () => {
+            // Por exemplo, pode remover classes ou ajustar comportamento
+            if (!isMobile()) {
+                // Se não for mais mobile, fecha menus abertos
+                navMenu.classList.remove("show");
+                navMenu.classList.remove("mobile");
+                dropdownMenu.classList.remove("show");
+            }
+        });
+
+        /* Código da API e busca (sem alterações) */
+
+        const API_URL = "http://dados.recife.pe.gov.br/api/3/action/datastore_search";
         const RESOURCE_ID = "54232db8-ed15-4f1f-90b0-2b5a20eef4cf";
         let todasUbs = [];
 
         async function carregarDados() {
-            try {
-                console.log("Carregando dados...");
-                const response = await fetch(`${API_URL}?resource_id=${RESOURCE_ID}&limit=500`);
-                const data = await response.json();
-                todasUbs = data.result.records;
-                console.log("Dados carregados:", todasUbs.length);
+            const response = await fetch(`${API_URL}?resource_id=${RESOURCE_ID}&limit=500`);
+            const data = await response.json();
+            todasUbs = data.result.records;
 
-                preencherEspecialidades(todasUbs);
-            } catch (error) {
-                console.error("Erro ao carregar dados:", error);
-            }
+            preencherEspecialidades(todasUbs);
         }
 
         function preencherEspecialidades(lista) {
             const select = document.getElementById("especialidades");
-            select.innerHTML = `<option value="">Todas as especialidades</option>`;
             const especialidades = new Set();
 
             lista.forEach(item => {
@@ -106,7 +153,8 @@
                 }
             });
 
-            console.log("Especialidades encontradas:", especialidades.size);
+            // Limpa opções anteriores para não duplicar
+            select.innerHTML = `<option value="">Todas as especialidades</option>`;
 
             Array.from(especialidades).sort().forEach(esp => {
                 const option = document.createElement("option");
@@ -139,10 +187,14 @@
             }
 
             lista.forEach(ubs => {
+                console.log(ubs); // debug
+
+                const nomeUnidade = ubs.nome && ubs.nome.trim() !== "" ? ubs.nome : 'Nome não informado';
+
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-            <div class="card-title">${ubs.nome || 'Nome não informado'}</div>
+            <div class="card-title">${nomeUnidade}</div>
             <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
             <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
             <div class="card-bottom">
@@ -158,7 +210,6 @@
 
         // Carrega os dados na inicialização
         carregarDados();
-
 
 
     </script>
