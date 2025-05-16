@@ -5,7 +5,7 @@ body {
     color: #333;
 }
 
-.container-main {
+.container-main{
     padding: 2rem;
 }
 
@@ -147,32 +147,6 @@ body {
     margin-top: 20px;
 }
 
-.filtro-select {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    flex: 1 1 200px;
-    min-width: 150px;
-    transition: border-color 0.3s;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon fill="%23333" points="0,0 12,0 6,12"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    touch-action: manipulation;
-    /* Melhora a interação tátil */
-    -webkit-user-select: none;
-    /* Evita seleção de texto acidental */
-    user-select: none;
-    min-height: 44px;
-    /* Altura mínima para acessibilidade em dispositivos móveis */
-    box-sizing: border-box;
-    cursor: pointer;
-    /* Indica que é clicável */
-}
-
 /* Responsividade */
 
 /* Tablets e telas médias */
@@ -211,12 +185,6 @@ body {
 @media (max-width: 600px) {
     body {
         padding: 1rem;
-    }
-
-    .filtro-select {
-        width: 100%;
-        font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
-        padding: 12px; /* Aumenta a área de toque */
     }
 
     .filtro-container {
