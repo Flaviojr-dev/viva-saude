@@ -5,7 +5,7 @@ body {
     color: #333;
 }
 
-.container-main{
+.container-main {
     padding: 2rem;
 }
 
@@ -183,6 +183,50 @@ body {
 
 /* Mobile - telas pequenas */
 @media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    .filtro-container {
+        flex-direction: column;
+    }
+
+    .filtro-select,
+    .filtro-input,
+    .botao-buscar {
+        flex: 1 1 100%;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .botao-buscar {
+        margin-bottom: 1rem;
+    }
+
+    .card-title, .nome-unidade {
+        font-size: 1.1rem;
+    }
+
+    .card-service, .especialidades {
+        font-size: 0.9rem;
+    }
+
+    .card-hours, .horario {
+        font-size: 0.8rem;
+    }
+
+    .card-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .card-link, .detalhes {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 425px) {
     body {
         padding: 1rem;
     }
