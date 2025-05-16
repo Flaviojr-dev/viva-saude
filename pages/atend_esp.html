@@ -53,9 +53,9 @@
             </select>
             <input type="text" class="filtro-input" id="filtro-bairro" placeholder="Filtrar por região ou bairro">
         </div>
-    
+
         <button class="botao-buscar" id="buscarBtn">Buscar Unidades</button>
-    
+
         <!-- Um único container para os cards -->
         <div id="resultado-container">
             <!-- Exemplo de card de unidade -->
@@ -65,7 +65,7 @@
                 <p class="horario">SEGUNDA A SEXTA 08:00 às 17:00</p>
                 <a href="#" class="detalhes">Ver detalhes</a>
             </div>
-    
+
             <div class="card-unidade">
                 <span class="nome-unidade">BEBERIBE</span>
                 <p class="especialidades"><strong>ODONTOLOGIA, CLÍNICA GERAL</strong></p>
@@ -74,7 +74,7 @@
             </div>
         </div>
     </main>
-    
+
 
     <script>
         const hamburgerBtn = document.getElementById("hamburger-btn");
@@ -119,16 +119,12 @@
 
         // Caso queira, pode adicionar listener de resize para outras funcionalidades futuras
         window.addEventListener("resize", () => {
-            // Por exemplo, pode remover classes ou ajustar comportamento
             if (!isMobile()) {
-                // Se não for mais mobile, fecha menus abertos
                 navMenu.classList.remove("show");
                 navMenu.classList.remove("mobile");
                 dropdownMenu.classList.remove("show");
             }
         });
-
-        /* Código da API e busca (sem alterações) */
 
         const API_URL = "http://dados.recife.pe.gov.br/api/3/action/datastore_search";
         const RESOURCE_ID = "54232db8-ed15-4f1f-90b0-2b5a20eef4cf";
@@ -153,7 +149,6 @@
                 }
             });
 
-            // Limpa opções anteriores para não duplicar
             select.innerHTML = `<option value="">Todas as especialidades</option>`;
 
             Array.from(especialidades).sort().forEach(esp => {
@@ -186,32 +181,31 @@
                 return;
             }
 
-            lista.forEach(ubs => {
-                console.log(ubs); // debug
+            console.log("Exemplo de UBS:", lista[0]); // 👈 Aqui está a linha que você pediu
 
-                const nomeUnidade = ubs.nome && ubs.nome.trim() !== "" ? ubs.nome : 'Nome não informado';
+            lista.forEach(ubs => {
+                const nomeUnidade =
+                    (ubs.nome_oficial && ubs.nome_oficial.trim()) ||
+                    "Nome não disponível";
 
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-            <div class="card-title">${nomeUnidade}</div>
-            <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
-            <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
-            <div class="card-bottom">
-                <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
-                <a href="#" class="card-link">Ver detalhes</a>
-            </div>
-        `;
+        <div class="card-title">${nomeUnidade}</div>
+        <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
+        <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
+        <div class="card-bottom">
+            <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
+            <a href="#" class="card-link">Ver detalhes</a>
+        </div>
+    `;
                 container.appendChild(card);
             });
         }
 
         document.getElementById("buscarBtn").addEventListener("click", filtrarUbs);
 
-        // Carrega os dados na inicialização
         carregarDados();
-
-
     </script>
 
 </body>
