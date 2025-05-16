@@ -1,87 +1,4 @@
-AOS.init();
-const hamburgerBtn = document.getElementById("hamburger-btn");
-const navMenu = document.getElementById("nav-menu");
-const dropdownToggle = document.querySelector(".dropdown-toggle");
-const dropdownMenu = document.querySelector(".dropdown-menu");
 
-function isMobile() {
-    return window.innerWidth <= 768;
-}
-
-// Toggle do menu hamburguer
-hamburgerBtn.addEventListener("click", () => {
-    navMenu.classList.toggle("show");
-    navMenu.classList.add("mobile");
-});
-
-// Toggle do submenu "Serviços" no mobile
-dropdownToggle.addEventListener("click", (e) => {
-    if (isMobile()) {
-        e.preventDefault();
-        dropdownMenu.classList.toggle("show");
-    }
-});
-
-function handleDropdownClick() {
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-  dropdownMenu.classList.toggle("show");
-}
-
-// Aplica o clique até 1024px (tablet)
-if (window.innerWidth <= 1024) {
-  const dropdownBtn = document.getElementById("servicos-btn");
-  dropdownBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      handleDropdownClick();
-  });
-}
-
-const hamburgerBtn = document.getElementById("hamburger-btn");
-const navMenu = document.getElementById("nav-menu");
-const dropdownToggle = document.querySelector(".dropdown-toggle");
-const dropdownMenu = document.querySelector(".dropdown-menu");
-
-function isMobile() {
-    return window.innerWidth <= 768;
-}
-
-function isTabletOrMobile() {
-    return window.innerWidth <= 1024;
-}
-
-// Toggle do menu hamburguer
-hamburgerBtn.addEventListener("click", () => {
-    navMenu.classList.toggle("show");
-    navMenu.classList.add("mobile");
-});
-
-dropdownToggle.addEventListener("click", (e) => {
-    if (isMobile()) {
-        e.preventDefault();
-        dropdownMenu.classList.toggle("show");
-    }
-});
-
-function handleDropdownClick(e) {
-    if (isTabletOrMobile()) {
-        e.preventDefault();
-        const dropdownMenu = document.querySelector(".dropdown-menu");
-        dropdownMenu.classList.toggle("show");
-    }
-}
-
-const dropdownBtn = document.getElementById("servicos-btn");
-if (dropdownBtn) {
-    dropdownBtn.addEventListener("click", handleDropdownClick);
-}
-
-window.addEventListener("resize", () => {
-    if (!isMobile()) {
-        navMenu.classList.remove("show");
-        navMenu.classList.remove("mobile");
-        dropdownMenu.classList.remove("show");
-    }
-});
 
 const API_URL = "http://dados.recife.pe.gov.br/api/3/action/datastore_search";
 const RESOURCE_ID = "54232db8-ed15-4f1f-90b0-2b5a20eef4cf";
@@ -166,3 +83,41 @@ selectEspecialidades.addEventListener("blur", filtrarUbs);
 selectEspecialidades.addEventListener("input", filtrarUbs);
 
 carregarDados();
+
+AOS.init();
+const hamburgerBtn = document.getElementById("hamburger-btn");
+const navMenu = document.getElementById("nav-menu");
+const dropdownToggle = document.querySelector(".dropdown-toggle");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// Toggle do menu hamburguer
+hamburgerBtn.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+    navMenu.classList.add("mobile");
+});
+
+// Toggle do submenu "Serviços" no mobile
+dropdownToggle.addEventListener("click", (e) => {
+    if (isMobile()) {
+        e.preventDefault();
+        dropdownMenu.classList.toggle("show");
+    }
+});
+
+function handleDropdownClick() {
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+  dropdownMenu.classList.toggle("show");
+}
+
+// Aplica o clique até 1024px (tablet)
+if (window.innerWidth <= 1024) {
+  const dropdownBtn = document.getElementById("servicos-btn");
+  dropdownBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      handleDropdownClick();
+  });
+}
