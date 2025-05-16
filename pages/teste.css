@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9fb;
+    color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+h1 span {
+    color: #000;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    flex: 1 1 48%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.input-group input.full {
+    flex: 1 1 100%;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #3451ec;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.card h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.card a {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 0.85rem;
+    color: #3451ec;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.footer-note {
+    font-size: 0.75rem;
+    color: #888;
+    text-align: center;
+    margin-top: 2rem;
+}
