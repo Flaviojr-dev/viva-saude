@@ -127,11 +127,27 @@
         let todasUbs = [];
 
         async function carregarDados() {
-            const response = await fetch(`${API_URL}?resource_id=${RESOURCE_ID}&limit=500`);
-            const data = await response.json();
-            todasUbs = data.result.records;
+            try {
+                const select = document.getElementById("especialidades");
+                select.disabled = true; // Desativa o select enquanto carrega
+                select.innerHTML = `<option value="">Carregando especialidades...</option>`; // Feedback visual
 
-            preencherEspecialidades(todasUbs);
+                const response = await fetch(`${API_URL}?resource_id=${RESOURCE_ID}&limit=500`);
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status}`);
+                }
+                const data = await response.json();
+                todasUbs = data.result.records;
+
+                console.log("Dados carregados:", todasUbs); // Log para depuração
+                preencherEspecialidades(todasUbs);
+                select.disabled = false; // Reativa o select
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+                const select = document.getElementById("especialidades");
+                select.innerHTML = `<option value="">Erro ao carregar especialidades</option>`;
+                select.disabled = true;
+            }
         }
 
         function preencherEspecialidades(lista) {
@@ -147,6 +163,12 @@
 
             select.innerHTML = `<option value="">Todas as especialidades</option>`;
 
+            if (especialidades.size === 0) {
+                select.innerHTML = `<option value="">Nenhuma especialidade encontrada</option>`;
+                console.warn("Nenhuma especialidade encontrada nos dados");
+                return;
+            }
+
             Array.from(especialidades).sort().forEach(esp => {
                 const option = document.createElement("option");
                 option.value = esp;
@@ -155,6 +177,7 @@
             });
 
             select.value = ""; // Garante que "Todas as especialidades" esteja selecionado
+            console.log("Especialidades preenchidas:", Array.from(especialidades)); // Log para depuração
         }
 
         function filtrarUbs() {
@@ -188,7 +211,7 @@
                 card.className = "card";
                 card.innerHTML = `
             <div class="card-title">${nomeUnidade}</div>
-            <div class="card-address">${ubs.endereo || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
+            <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
             <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
             <div class="card-bottom">
                 <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
@@ -208,7 +231,11 @@
 
         // Adiciona evento touchend para dispositivos móveis
         if ("ontouchstart" in window) {
-            selectEspecialidades.addEventListener("touchend", filtrarUbs);
+            selectEspecialidades.addEventListener("touchend", (e) => {
+                // Força a abertura do menu nativo em dispositivos móveis
+                selectEspecialidades.focus();
+                filtrarUbs();
+            });
         }
 
         carregarDados();
