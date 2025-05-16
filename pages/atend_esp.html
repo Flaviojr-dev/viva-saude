@@ -153,11 +153,15 @@
                 option.textContent = esp;
                 select.appendChild(option);
             });
+
+            select.value = ""; // Garante que "Todas as especialidades" esteja selecionado
         }
 
         function filtrarUbs() {
             const especialidadeSelecionada = document.getElementById("especialidades").value.toLowerCase();
             const filtroBairro = document.getElementById("filtro-bairro").value.toLowerCase();
+
+            console.log("Especialidade selecionada:", especialidadeSelecionada); // Log para depuração
 
             const resultado = todasUbs.filter(ubs => {
                 const espOk = especialidadeSelecionada === "" || (ubs.especialidade || "").toLowerCase().includes(especialidadeSelecionada);
@@ -183,14 +187,14 @@
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-                    <div class="card-title">${nomeUnidade}</div>
-                    <div class="card-address">${ubs.endereco || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
-                    <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
-                    <div class="card-bottom">
-                        <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
-                        <a href="#" class="card-link">Ver detalhes</a>
-                    </div>
-                `;
+            <div class="card-title">${nomeUnidade}</div>
+            <div class="card-address">${ubs.endereo || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
+            <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
+            <div class="card-bottom">
+                <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
+                <a href="#" class="card-link">Ver detalhes</a>
+            </div>
+        `;
                 container.appendChild(card);
             });
         }
@@ -199,10 +203,13 @@
 
         const selectEspecialidades = document.getElementById("especialidades");
 
-        // Aqui incluímos os eventos extra
+        // Adiciona apenas o evento change
         selectEspecialidades.addEventListener("change", filtrarUbs);
-        selectEspecialidades.addEventListener("blur", filtrarUbs);
-        selectEspecialidades.addEventListener("input", filtrarUbs);
+
+        // Adiciona evento touchend para dispositivos móveis
+        if ("ontouchstart" in window) {
+            selectEspecialidades.addEventListener("touchend", filtrarUbs);
+        }
 
         carregarDados();
     </script>

@@ -5,7 +5,7 @@ body {
     color: #333;
 }
 
-.container-main{
+.container-main {
     padding: 2rem;
 }
 
@@ -145,6 +145,26 @@ body {
     color: #999;
     text-align: center;
     margin-top: 20px;
+}
+
+.filtro-select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    flex: 1 1 200px;
+    min-width: 150px;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+    /* Remove aparência nativa em navegadores WebKit */
+    -moz-appearance: none;
+    /* Remove aparência nativa em navegadores Firefox */
+    appearance: none;
+    /* Remove aparência nativa */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon fill="%23333" points="0,0 12,0 6,12"/></svg>');
+    /* Adiciona uma seta personalizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
 }
 
 /* Responsividade */
