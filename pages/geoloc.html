@@ -1,153 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Postos de Saúde - Recife</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .info {
-            text-align: center;
-            color: #666;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-        .search-container {
-            display: flex;
-            margin: 20px 0;
-            gap: 10px;
-        }
-        #bairro {
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        button {
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        button:hover {
-            background: #2980b9;
-        }
-        #map {
-            height: 500px;
-            margin: 20px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .posto-card {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border-left: 4px solid #3498db;
-        }
-        .posto-nome {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-        .posto-endereco {
-            color: #555;
-        }
-        .posto-bairro {
-            font-weight: bold;
-            color: #333;
-        }
-        .posto-horario {
-            color: #3498db;
-            font-weight: bold;
-        }
-        .posto-servicos {
-            margin-top: 8px;
-            font-size: 0.9em;
-            color: #666;
-        }
-        #resultados {
-            margin-top: 20px;
-        }
-        .no-results {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" href="../style/nav_bar/style.css">
+    <link rel="stylesheet" href="geoloc.css">
 </head>
+
 <body>
-    <h1>Postos de Saúde do Recife</h1>
-    <p class="info">Dados locais - Atualizado em 2023</p>
-    
-    <div class="search-container">
-        <input type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
-        <button onclick="buscarPostos()">Buscar</button>
-    </div>
-    
-    <div id="map"></div>
-    
-    <div id="resultados"></div>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
+            </div>
+
+
+            <button class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul id="nav-menu">
+                <li><a href="../index.html">Início</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Serviços</a>
+                    <ul class="dropdown-menu hidden">
+                        <li><a href="./atend_esp.html">Atendimento especializado</a></li>
+                        <li><a href="#">Funcionamento</a></li>
+                        <li><a href="./postos.html">Postos de Saúde</a></li>
+                        <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="#">Geolocalização</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Sobre nós</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <h1>Postos de Saúde do Recife</h1>
+        <p class="info">Dados locais - Atualizado em 2023</p>
+
+        <div class="search-container">
+            <input type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
+            <button onclick="buscarPostos()">Buscar</button>
+        </div>
+
+        <div id="map"></div>
+        <div id="resultados"></div>
+    </main>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Configurações do mapa
         const RECIFE_CENTER = [-8.0522, -34.8828];
         const RECIFE_ZOOM = 13;
-        
+
         // Dados mockados em formato JSON
         const dadosPostos = {
             "fields": [
-                {"type":"int","id":"_id"},{"type":"text","id":"nome_oficial"},
-                {"type":"numeric","id":"rpa"},{"type":"numeric","id":"distrito_sanitario"},
-                {"type":"numeric","id":"microregiao"},{"type":"numeric","id":"cnes"},
-                {"type":"text","id":"cod_nat"},{"type":"text","id":"tipo_servico"},
-                {"type":"text","id":"endereço"},{"type":"text","id":"bairro"},
-                {"type":"text","id":"fone"},{"type":"text","id":"servico"},
-                {"type":"text","id":"especialidade"},{"type":"text","id":"como_usar"},
-                {"type":"text","id":"horario"},{"type":"text","id":"ordem"},
-                {"type":"numeric","id":"latitude"},{"type":"numeric","id":"longitude"}
+                { "type": "int", "id": "_id" }, { "type": "text", "id": "nome_oficial" },
+                { "type": "numeric", "id": "rpa" }, { "type": "numeric", "id": "distrito_sanitario" },
+                { "type": "numeric", "id": "microregiao" }, { "type": "numeric", "id": "cnes" },
+                { "type": "text", "id": "cod_nat" }, { "type": "text", "id": "tipo_servico" },
+                { "type": "text", "id": "endereço" }, { "type": "text", "id": "bairro" },
+                { "type": "text", "id": "fone" }, { "type": "text", "id": "servico" },
+                { "type": "text", "id": "especialidade" }, { "type": "text", "id": "como_usar" },
+                { "type": "text", "id": "horario" }, { "type": "text", "id": "ordem" },
+                { "type": "numeric", "id": "latitude" }, { "type": "numeric", "id": "longitude" }
             ],
             "records": [
-                [1,"US 123 CS Prof César Montezuma",1,1,1.1,2143,"PROPRIO","UNIDADE BASICA DE SAUDE","AV CAIS DO APOLO, 925 -  BAIRRO DO RECIFE","BAIRRO DO RECIFE","3355-4420","UBS","CLÍNICA GERAL, ODONTOLOGIA CLÍNICA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.001",-8.05433824479,-34.8721674263],
-                [2,"US 155 CS Prof Monteiro de Morais",2,2,2.3,825,"PROPRIO","UNIDADE BASICA DE SAUDE","AV BEBERIBE, 4510 - BEBERIBE","BEBERIBE","3355-6848","UBS","GINECOLOGIA, PEDIATRIA, CLINICA MEDICA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.002",-8.00393487891,-34.8966966079],
-                [3,"US 103 CS Prof Mário Ramos",3,3,3.2,1759,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA OSCAR DE BARROS, S/Nº - CASA AMARELA","CASA AMARELA","3355-4434","UBS","GINECOLOGISTA, PEDIATRIA, CLINICA MEDICA, ODONTOLOGIA, MEDICO DO TRABALHO, PSICOLOGIA, FISIOTERAPIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.003",-8.02287521252,-34.9161884653],
-                [4,"US 109 CS Francisco Pignatari",3,3,3.2,1163,"PROPRIO","UNIDADE BASICA DE SAUDE","ESTRADA DO ARRAIAL, S/N1 - CASA AMARELA","CASA AMARELA","3355-4400","UBS","CLÍNICA MÉDICA, GINECOLOGIA, ODONTOLOGIA, DERMATOLOGIA, NUTRIÇÃO","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.004",-8.02755901116,-34.9186940689],
-                [5,"US 120 CS Mário Monteiro Melo",3,7,7.2,1317,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA NOVA DESCOBERTA, 99  - NOVA DESCOBERTA","NOVA DESCOBERTA","3355-4385","UBS","CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.005",-8.01897516671,-34.9263286638],
-                [6,"US 121 CS Prof Bruno Maia",3,7,7.2,1058,"PROPRIO","UNIDADE BASICA DE SAUDE","ALTO DO REFUGIO, S/N - NOVA DESCOBERTA","NOVA DESCOBERTA","3355-4416","UBS","PEDIATRIA, GINECOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.006",-8.00130829104,-34.9247265631],
-                [7,"US 152 CS Iná Rosa Borges",3,7,7.1,1236,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA SENADOR MILTON CAMPOS, S/N  - VASCO DA GAMA","VASCO DA GAMA","3355-4408","UBS","CLÍNICA MÉDICA,  GINECOLOGIA, ODONTOLOGIA, DERMATOLOGIA, PEDIATRIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.007",-8.01629782987,-34.9210997659],
-                [8,"US 171 CS Joaquim Costa Carvalho",3,3,3.2,2011,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA SIRIGI, S/N - ALTO DO MANDU","ALTO DO MANDU","3355-4412","UBS","CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.008",-8.02434824565,-34.9284859357],
-                [9,"US 106 CS Prof Joaquim Cavalcante",4,4,4.2,639,"PROPRIO","UNIDADE BASICA DE SAUDE","AV DO FORTE, 1350 - TORROES","TORROES","3355-4425","UBS","CLINICA MEDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.009",-8.05888388976,-34.9319138572],
-                [10,"US 112 CS Dr José Dustan Carvalho Soares",4,4,4.1,1813,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA MAURICIO DE NASSAU S/N CAIARA  - IPUTINGA","IPUTINGA","33554388","UBS","CLINICA MEDICA, ODONTOLOGIA, PEDIATRIA, DERMATOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.010",-8.03856413665,-34.9310490866],
-                [11,"US 149 CS Olinto Oliveira",4,4,4.3,817,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA SÃO FRANCISCO DE PAULA, 47- CAXANGÁ","CAXANGA","3355-6442/6443","UBS","CLÍNICO GERAL, ENFERMAGEM,  GINECOLOGIA, DERMATOLOGIA  E ODONTOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.011",-8.03069297999,-34.9557636317],
-                [12,"US 117 CS Gaspar Regueira Costa",5,5,5.3,1414,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA PADRE DIOGO RODRIGUES, 144 - BARRO","BARRO","3355-4404","UBS","CLÍNICA MÉDICA, PEDIATRIA,  GINECOLOGIA, ODONTOLOGIA COM ODONTOPEDIATRA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.012",-8.08983612925,-34.9422091091],
-                [13,"US 142 CS Bidu Krause",5,5,5.3,868,"PROPRIO","UNIDADE BASICA DE SAUDE","AV ONZE DE AGOSTO, S/N - TOTO","TOTO","3355-0301","UBS","CLINICA MÉDICA,  PEDIATRIA, GINECOLOGIA, ODONTOLOGIA, FISIOTERAPIA, DERMATOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.013",-8.07937775047,-34.9703681618],
-                [14,"US 150 CS Professor Fernandes Figueiras",5,5,5.3,841,"PROPRIO","UNIDADE BASICA DE SAUDE","AV SÃO PAULO, 605  - JARDIM SÃO PAULO","JARDIM SAO PAULO","3355-4396","UBS","CLÍNICA MÉDICA, GINECOLOGIA, NUTRIÇÃO","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.014",-8.08120706352,-34.9403475908],
-                [15,"US 158 Pam Ceasa",5,5,5.3,1368,"PROPRIO","UNIDADE BASICA DE SAUDE","BR 101 GIRADOR DO CURADO - CURADO","CURADO","3355-0090","UBS","CLINICA MEDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.015",-8.07289705871,-34.9434788213],
-                [16,"US 161 CS Prof Romero Marques",5,5,5.1,760,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA CARLOS GOMES, 932 - PRADO","PRADO","33554440","UBS","CLINICA MEDICA, GINECOLOGIA, ODONTOLOGIA COM ODONTOPEDIATRA, PEDIATRIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.016",-8.0638141226,-34.9137048089],
-                [17,"US 104 CS Sebastião Ivo Rabelo",6,8,8.3,1082,"PROPRIO","UNIDADE BASICA DE SAUDE","AV CAMPINA GRANDE, S/N, UR 1- COHAB","COHAB","33555445","UBS","CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA, REUMATOLOGIA, DERMATOLOGIA, PSICOLOGIA, PSIQUIATRIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.017",-8.11972179209,-34.9481235001],
-                [18,"US 113 CS Dr Aristarco Azevedo",6,8,8.2,1198,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA BAHIA, 29  - JORDAO","JORDAO","3355-4380","UBS","PEDIATRIA, GINECOLOGIA, CLÍNICA MÉDICA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.018",-8.13157772571,-34.9370099337],
-                [19,"US 119 CS Prof José Carneiro Leão",6,6,6.1,752,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA NOGUEIRA DE SOUZA, 334  - PINA","PINA","3355-4428","UBS","CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA COM ODONTOPEDIATRIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.019",-8.08741278665,-34.8897945879],
-                [20,"US 126 CS Ver Romildo Gomes",6,6,6.2,1090,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA JALISCO, S/N  - IMBIRIBEIRA","IMBIRIBEIRA","3355-4448","UBS","CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA COM CEO, ACUPUNTURA, PSICOLOGIA, GASTROENTEROLOGIA, CARDIOLOGIA, DERMATOLOGIA, PSIQUIATRIA, PNEUMOLOGIA, GERIATRIA, ENDOCRINOLOGIA.","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.020",-8.11682838797,-34.9109908443],
-                [21,"US 137 CS Prof Djair Brindeiro",6,6,6.3,833,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA COSMORAMA, S/N  - BOA VIAGEM","BOA VIAGEM","3355-0119","UBS","CLÍNICA MÉDICA, GINECOLOGIA","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.021",-8.14823767649,-34.9137397316],
-                [22,"US 148 CS Dom Miguel de Lima Valverde",6,6,6.3,1392,"PROPRIO","UNIDADE BASICA DE SAUDE","RUA FELICIANO JOSE DE FARIAS, 195  - BOA VIAGEM","BOA VIAGEM","33550061","UBS","CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, DERMATOLOGIA, ENDOCRINOLOGIA, NUTRIÇÃO, ODONTOLOGIA, PSICOLOGIA, GERIATRIA, COLPOSCOPIA.","Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.","SEGUNDA A SEXTA 08:00 às 17:00","8.02.0.0.0.00.022",-8.13342108939,-34.904659968]
+                [1, "US 123 CS Prof César Montezuma", 1, 1, 1.1, 2143, "PROPRIO", "UNIDADE BASICA DE SAUDE", "AV CAIS DO APOLO, 925 -  BAIRRO DO RECIFE", "BAIRRO DO RECIFE", "3355-4420", "UBS", "CLÍNICA GERAL, ODONTOLOGIA CLÍNICA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.001", -8.05433824479, -34.8721674263],
+                [2, "US 155 CS Prof Monteiro de Morais", 2, 2, 2.3, 825, "PROPRIO", "UNIDADE BASICA DE SAUDE", "AV BEBERIBE, 4510 - BEBERIBE", "BEBERIBE", "3355-6848", "UBS", "GINECOLOGIA, PEDIATRIA, CLINICA MEDICA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.002", -8.00393487891, -34.8966966079],
+                [3, "US 103 CS Prof Mário Ramos", 3, 3, 3.2, 1759, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA OSCAR DE BARROS, S/Nº - CASA AMARELA", "CASA AMARELA", "3355-4434", "UBS", "GINECOLOGISTA, PEDIATRIA, CLINICA MEDICA, ODONTOLOGIA, MEDICO DO TRABALHO, PSICOLOGIA, FISIOTERAPIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.003", -8.02287521252, -34.9161884653],
+                [4, "US 109 CS Francisco Pignatari", 3, 3, 3.2, 1163, "PROPRIO", "UNIDADE BASICA DE SAUDE", "ESTRADA DO ARRAIAL, S/N1 - CASA AMARELA", "CASA AMARELA", "3355-4400", "UBS", "CLÍNICA MÉDICA, GINECOLOGIA, ODONTOLOGIA, DERMATOLOGIA, NUTRIÇÃO", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.004", -8.02755901116, -34.9186940689],
+                [5, "US 120 CS Mário Monteiro Melo", 3, 7, 7.2, 1317, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA NOVA DESCOBERTA, 99  - NOVA DESCOBERTA", "NOVA DESCOBERTA", "3355-4385", "UBS", "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.005", -8.01897516671, -34.9263286638],
+                [6, "US 121 CS Prof Bruno Maia", 3, 7, 7.2, 1058, "PROPRIO", "UNIDADE BASICA DE SAUDE", "ALTO DO REFUGIO, S/N - NOVA DESCOBERTA", "NOVA DESCOBERTA", "3355-4416", "UBS", "PEDIATRIA, GINECOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.006", -8.00130829104, -34.9247265631],
+                [7, "US 152 CS Iná Rosa Borges", 3, 7, 7.1, 1236, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA SENADOR MILTON CAMPOS, S/N  - VASCO DA GAMA", "VASCO DA GAMA", "3355-4408", "UBS", "CLÍNICA MÉDICA,  GINECOLOGIA, ODONTOLOGIA, DERMATOLOGIA, PEDIATRIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.007", -8.01629782987, -34.9210997659],
+                [8, "US 171 CS Joaquim Costa Carvalho", 3, 3, 3.2, 2011, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA SIRIGI, S/N - ALTO DO MANDU", "ALTO DO MANDU", "3355-4412", "UBS", "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.008", -8.02434824565, -34.9284859357],
+                [9, "US 106 CS Prof Joaquim Cavalcante", 4, 4, 4.2, 639, "PROPRIO", "UNIDADE BASICA DE SAUDE", "AV DO FORTE, 1350 - TORROES", "TORROES", "3355-4425", "UBS", "CLINICA MEDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.009", -8.05888388976, -34.9319138572],
+                [10, "US 112 CS Dr José Dustan Carvalho Soares", 4, 4, 4.1, 1813, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA MAURICIO DE NASSAU S/N CAIARA  - IPUTINGA", "IPUTINGA", "33554388", "UBS", "CLINICA MEDICA, ODONTOLOGIA, PEDIATRIA, DERMATOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.010", -8.03856413665, -34.9310490866],
+                [11, "US 149 CS Olinto Oliveira", 4, 4, 4.3, 817, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA SÃO FRANCISCO DE PAULA, 47- CAXANGÁ", "CAXANGA", "3355-6442/6443", "UBS", "CLÍNICO GERAL, ENFERMAGEM,  GINECOLOGIA, DERMATOLOGIA  E ODONTOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.011", -8.03069297999, -34.9557636317],
+                [12, "US 117 CS Gaspar Regueira Costa", 5, 5, 5.3, 1414, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA PADRE DIOGO RODRIGUES, 144 - BARRO", "BARRO", "3355-4404", "UBS", "CLÍNICA MÉDICA, PEDIATRIA,  GINECOLOGIA, ODONTOLOGIA COM ODONTOPEDIATRA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.012", -8.08983612925, -34.9422091091],
+                [13, "US 142 CS Bidu Krause", 5, 5, 5.3, 868, "PROPRIO", "UNIDADE BASICA DE SAUDE", "AV ONZE DE AGOSTO, S/N - TOTO", "TOTO", "3355-0301", "UBS", "CLINICA MÉDICA,  PEDIATRIA, GINECOLOGIA, ODONTOLOGIA, FISIOTERAPIA, DERMATOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.013", -8.07937775047, -34.9703681618],
+                [14, "US 150 CS Professor Fernandes Figueiras", 5, 5, 5.3, 841, "PROPRIO", "UNIDADE BASICA DE SAUDE", "AV SÃO PAULO, 605  - JARDIM SÃO PAULO", "JARDIM SAO PAULO", "3355-4396", "UBS", "CLÍNICA MÉDICA, GINECOLOGIA, NUTRIÇÃO", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.014", -8.08120706352, -34.9403475908],
+                [15, "US 158 Pam Ceasa", 5, 5, 5.3, 1368, "PROPRIO", "UNIDADE BASICA DE SAUDE", "BR 101 GIRADOR DO CURADO - CURADO", "CURADO", "3355-0090", "UBS", "CLINICA MEDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.015", -8.07289705871, -34.9434788213],
+                [16, "US 161 CS Prof Romero Marques", 5, 5, 5.1, 760, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA CARLOS GOMES, 932 - PRADO", "PRADO", "33554440", "UBS", "CLINICA MEDICA, GINECOLOGIA, ODONTOLOGIA COM ODONTOPEDIATRA, PEDIATRIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.016", -8.0638141226, -34.9137048089],
+                [17, "US 104 CS Sebastião Ivo Rabelo", 6, 8, 8.3, 1082, "PROPRIO", "UNIDADE BASICA DE SAUDE", "AV CAMPINA GRANDE, S/N, UR 1- COHAB", "COHAB", "33555445", "UBS", "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA, REUMATOLOGIA, DERMATOLOGIA, PSICOLOGIA, PSIQUIATRIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.017", -8.11972179209, -34.9481235001],
+                [18, "US 113 CS Dr Aristarco Azevedo", 6, 8, 8.2, 1198, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA BAHIA, 29  - JORDAO", "JORDAO", "3355-4380", "UBS", "PEDIATRIA, GINECOLOGIA, CLÍNICA MÉDICA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.018", -8.13157772571, -34.9370099337],
+                [19, "US 119 CS Prof José Carneiro Leão", 6, 6, 6.1, 752, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA NOGUEIRA DE SOUZA, 334  - PINA", "PINA", "3355-4428", "UBS", "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA COM ODONTOPEDIATRIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.019", -8.08741278665, -34.8897945879],
+                [20, "US 126 CS Ver Romildo Gomes", 6, 6, 6.2, 1090, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA JALISCO, S/N  - IMBIRIBEIRA", "IMBIRIBEIRA", "3355-4448", "UBS", "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA COM CEO, ACUPUNTURA, PSICOLOGIA, GASTROENTEROLOGIA, CARDIOLOGIA, DERMATOLOGIA, PSIQUIATRIA, PNEUMOLOGIA, GERIATRIA, ENDOCRINOLOGIA.", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.020", -8.11682838797, -34.9109908443],
+                [21, "US 137 CS Prof Djair Brindeiro", 6, 6, 6.3, 833, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA COSMORAMA, S/N  - BOA VIAGEM", "BOA VIAGEM", "3355-0119", "UBS", "CLÍNICA MÉDICA, GINECOLOGIA", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.021", -8.14823767649, -34.9137397316],
+                [22, "US 148 CS Dom Miguel de Lima Valverde", 6, 6, 6.3, 1392, "PROPRIO", "UNIDADE BASICA DE SAUDE", "RUA FELICIANO JOSE DE FARIAS, 195  - BOA VIAGEM", "BOA VIAGEM", "33550061", "UBS", "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, DERMATOLOGIA, ENDOCRINOLOGIA, NUTRIÇÃO, ODONTOLOGIA, PSICOLOGIA, GERIATRIA, COLPOSCOPIA.", "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade.", "SEGUNDA A SEXTA 08:00 às 17:00", "8.02.0.0.0.00.022", -8.13342108939, -34.904659968]
             ]
         };
 
@@ -158,11 +108,11 @@
         // Inicializa o mapa
         function initMap() {
             map = L.map('map').setView(RECIFE_CENTER, RECIFE_ZOOM);
-            
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
             // Processa os dados do JSON
             processarDados();
         }
@@ -177,7 +127,7 @@
                 });
                 return posto;
             }).filter(posto => posto.latitude && posto.longitude);
-            
+
             // Exibe todos os postos inicialmente
             buscarPostos();
         }
@@ -200,29 +150,29 @@
         function buscarPostos() {
             const termoBusca = normalizarTexto(document.getElementById('bairro').value);
             const resultadosDiv = document.getElementById('resultados');
-            
+
             resultadosDiv.innerHTML = '';
             limparMarcadores();
-            
+
             // Filtra postos pelo bairro
-            const postosFiltrados = termoBusca 
-                ? allPostos.filter(posto => 
+            const postosFiltrados = termoBusca
+                ? allPostos.filter(posto =>
                     normalizarTexto(posto.bairro).includes(termoBusca) ||
                     normalizarTexto(posto.nome_oficial).includes(termoBusca))
                 : allPostos;
-            
+
             exibirPostos(postosFiltrados);
         }
 
         // Exibe os postos no mapa e na lista
         function exibirPostos(postos) {
             const resultadosDiv = document.getElementById('resultados');
-            
+
             if (postos.length === 0) {
                 resultadosDiv.innerHTML = '<div class="no-results">Nenhum posto encontrado para este critério de busca.</div>';
                 return;
             }
-            
+
             // Adiciona marcadores no mapa
             postos.forEach(posto => {
                 const marker = L.marker([posto.latitude, posto.longitude])
@@ -234,7 +184,7 @@
                         📞 ${posto.fone || 'Telefone não disponível'}
                     `);
                 markers.push(marker);
-                
+
                 // Adiciona à lista de resultados
                 resultadosDiv.innerHTML += `
                     <div class="posto-card">
@@ -247,7 +197,7 @@
                     </div>
                 `;
             });
-            
+
             // Ajusta o zoom do mapa para mostrar todos os marcadores
             if (postos.length > 0) {
                 const group = new L.featureGroup(markers);
@@ -256,11 +206,11 @@
         }
 
         // Inicializa quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initMap();
-            
+
             // Adiciona evento de tecla Enter no campo de busca
-            document.getElementById('bairro').addEventListener('keypress', function(e) {
+            document.getElementById('bairro').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     buscarPostos();
                 }
@@ -268,4 +218,5 @@
         });
     </script>
 </body>
+
 </html>
