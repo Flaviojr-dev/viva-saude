@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva Saúde - Encontre medicamentos gratuitos ou com desconto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        header {
+            background-color: #2d6cdf;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .hero {
+            background-color: #f0f8ff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .search-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        input, button, select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #2d6cdf;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        
+        button:hover {
+            background-color: #2d6cdf;
+        }
+        
+        .results {
+            margin-top: 30px;
+        }
+        
+        .pharmacy-card, .medicine-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .pharmacy-card h3, .medicine-card h3 {
+            margin-top: 0;
+            color: #2d6cdf;
+        }
+        
+        .map-link {
+            color: #2d6cdf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #2d6cdf;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background-color: #f0f8ff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Viva Saúde</h1>
+        <nav>
+            <ul>
+                <li><a href="#">QUEM SOMOS</a></li>
+                <li><a href="#">SERVIÇOS</a></li>
+                <li><a href="#">IMPORTE</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h2>Encontre medicamentos gratuitos ou com desconto</h2>
+        <p>Acesse as farmácias populares mais próximas da sua casa e veja onde encontrar os medicamentos de que precisa.</p>
+    </section>
+    
+    <div class="search-container">
+        <div class="tab-container">
+            <div class="tab active" data-tab="pharmacies">Buscar Farmácias</div>
+            <div class="tab" data-tab="medicines">Buscar Medicamentos</div>
+        </div>
+        
+        <div class="tab-content active" id="pharmacies-tab">
+            <div class="search-box">
+                <div>
+                    <label for="address">Endereço</label>
+                    <input type="text" id="address" placeholder="Digite seu endereço">
+                </div>
+                
+                <div>
+                    <label for="pharmacy-name">Buscar por nome da farmácia (opcional)</label>
+                    <input type="text" id="pharmacy-name" placeholder="Ex: Farmácia Esperança">
+                </div>
+                
+                <button id="search-pharmacies">Buscar Farmácias</button>
+            </div>
+            
+            <div class="results" id="pharmacy-results">
+                <!-- Os resultados de farmácias serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+        
+        <div class="tab-content" id="medicines-tab">
+            <div class="search-box">
+                <div>
+                    <label for="medicine-name">Nome do Medicamento</label>
+                    <input type="text" id="medicine-name" placeholder="Ex: Dipirona, Losartana...">
+                </div>
+                
+                <div>
+                    <label for="medicine-type">Tipo de Medicamento</label>
+                    <select id="medicine-type">
+                        <option value="">Todos</option>
+                        <option value="genérico">Genérico</option>
+                        <option value="referência">Referência</option>
+                        <option value="similar">Similar</option>
+                    </select>
+                </div>
+                
+                <button id="search-medicines">Buscar Medicamentos</button>
+            </div>
+            
+            <div class="results" id="medicine-results">
+                <!-- Os resultados de medicamentos serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Os dados de disponibilidade de medicamentos são atualizados periodicamente. Verifique sempre antes de se deslocar até a unidade.</p>
+    </footer>
+    
+    <script>
+        $(document).ready(function() {
+            // Controle das abas
+            $('.tab').click(function() {
+                $('.tab').removeClass('active');
+                $(this).addClass('active');
+                
+                const tabId = $(this).data('tab') + '-tab';
+                $('.tab-content').removeClass('active');
+                $('#' + tabId).addClass('active');
+            });
+            
+            // Busca de farmácias
+            $('#search-pharmacies').click(function() {
+                const address = $('#address').val();
+                const pharmacyName = $('#pharmacy-name').val();
+                
+                // Limpa resultados anteriores
+                $('#pharmacy-results').empty().html('<div class="loading">Buscando farmácias...</div>');
+                
+                // Array de recursos de APIs para farmácias
+                const pharmacyResources = [
+                    'e976dc6a-3e64-4386-b4c0-850852e7a21e', // Farmácias básicas
+                    'a7a966de-fa73-47ed-a87e-a53d336038d0', // Nova API 1
+                    'eaa007ad-faed-477a-a085-c84bddb47224'  // Nova API 2
+                ];
+                
+                let completedRequests = 0;
+                let allResults = [];
+                
+                pharmacyResources.forEach(resourceId => {
+                    var data = {
+                        resource_id: resourceId,
+                        limit: 10,
+                        q: pharmacyName || 'farmácia'
+                    };
+                    
+                    $.ajax({
+                        url: 'https://dados.recife.pe.gov.br/api/3/action/datastore_search',
+                        data: data,
+                        dataType: 'jsonp',
+                        success: function(response) {
+                            completedRequests++;
+                            
+                            if (response.result && response.result.records) {
+                                allResults = allResults.concat(response.result.records);
+                            }
+                            
+                            // Quando todas as requisições terminarem
+                            if (completedRequests === pharmacyResources.length) {
+                                displayPharmacyResults(allResults);
+                            }
+                        },
+                        error: function() {
+                            completedRequests++;
+                            // Se todas falharem, mostra fallback
+                            if (completedRequests === pharmacyResources.length && allResults.length === 0) {
+                                showPharmacyFallback();
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Busca de medicamentos
+            $('#search-medicines').click(function() {
+                const medicineName = $('#medicine-name').val();
+                const medicineType = $('#medicine-type').val();
+                
+                $('#medicine-results').empty().html('<div class="loading">Buscando medicamentos...</div>');
+                
+                // API específica para medicamentos
+                var data = {
+                    resource_id: '05e529b2-3b1c-4b7f-a0f0-31abc9602a68',
+                    limit: 20,
+                    q: medicineName
+                };
+                
+                $.ajax({
+                    url: 'https://dados.recife.pe.gov.br/api/3/action/datastore_search',
+                    data: data,
+                    dataType: 'jsonp',
+                    success: function(response) {
+                        $('#medicine-results').empty();
+                        
+                        if (response.result && response.result.records && response.result.records.length > 0) {
+                            let filteredMedicines = response.result.records;
+                            
+                            // Filtra por tipo se selecionado
+                            if (medicineType) {
+                                filteredMedicines = filteredMedicines.filter(med => 
+                                    med.tipo && med.tipo.toLowerCase().includes(medicineType)
+                                );
+                            }
+                            
+                            if (filteredMedicines.length > 0) {
+                                filteredMedicines.forEach(function(medicine) {
+                                    const medicineCard = `
+                                        <div class="medicine-card">
+                                            <h3>${medicine.nome || 'Medicamento'}</h3>
+                                            <p><strong>Tipo:</strong> ${medicine.tipo || 'Não informado'}</p>
+                                            <p><strong>Princípio Ativo:</strong> ${medicine.principio_ativo || 'Não informado'}</p>
+                                            <p><strong>Laboratório:</strong> ${medicine.laboratorio || 'Não informado'}</p>
+                                            <p><strong>Preço:</strong> ${medicine.preco ? 'R$ ' + medicine.preco : 'Não informado'}</p>
+                                        </div>
+                                    `;
+                                    
+                                    $('#medicine-results').append(medicineCard);
+                                });
+                            } else {
+                                $('#medicine-results').html('<p>Nenhum medicamento encontrado com os critérios selecionados.</p>');
+                            }
+                        } else {
+                            $('#medicine-results').html('<p>Nenhum medicamento encontrado. Tente ajustar sua busca.</p>');
+                        }
+                    },
+                    error: function() {
+                        $('#medicine-results').html('<p>Ocorreu um erro ao buscar medicamentos. Tente novamente mais tarde.</p>');
+                    }
+                });
+            });
+            
+            // Função para exibir resultados de farmácias
+            function displayPharmacyResults(pharmacies) {
+                $('#pharmacy-results').empty();
+                
+                if (pharmacies.length > 0) {
+                    // Remove duplicados (caso a mesma farmácia esteja em múltiplas APIs)
+                    const uniquePharmacies = pharmacies.filter((pharmacy, index, self) =>
+                        index === self.findIndex(p => 
+                            (p.nome === pharmacy.nome && p.endereco === pharmacy.endereco)
+                        )
+                    );
+                    
+                    uniquePharmacies.forEach(function(pharmacy) {
+                        const pharmacyCard = `
+                            <div class="pharmacy-card">
+                                <h3>${pharmacy.nome || 'Farmácia Popular'}</h3>
+                                <p>${pharmacy.endereco || 'Endereço não disponível'}</p>
+                                <p>${pharmacy.telefone || 'Telefone não disponível'}</p>
+                                <p>Horário: ${pharmacy.horario_funcionamento || 'Não informado'}</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.endereco || 'Recife')}" class="map-link" target="_blank">Ver no mapa</a>
+                            </div>
+                        `;
+                        
+                        $('#pharmacy-results').append(pharmacyCard);
+                    });
+                } else {
+                    showPharmacyFallback();
+                }
+            }
+            
+            // Fallback para farmácias
+            function showPharmacyFallback() {
+                $('#pharmacy-results').html('<p>Não foi possível conectar ao serviço no momento. Exibindo informações locais...</p>');
+                
+                const fallbackData = [
+                    {
+                        nome: "Farmácia Esperança",
+                        endereco: "Rua São João, 123 – Bairro Centro",
+                        telefone: "(81) 2222-3344",
+                        horario_funcionamento: "Seg. a Sex.: 08h – 18h | Sáb.: 08h – 12h"
+                    },
+                    {
+                        nome: "Farmácia Popular do Bairro",
+                        endereco: "Av. Conde da Boa Vista, 456 – Boa Vista",
+                        telefone: "(81) 3333-4455",
+                        horario_funcionamento: "Seg. a Sex.: 07h – 19h | Sáb.: 07h – 13h"
+                    }
+                ];
+                
+                fallbackData.forEach(function(pharmacy) {
+                    const pharmacyCard = `
+                        <div class="pharmacy-card">
+                            <h3>${pharmacy.nome}</h3>
+                            <p>${pharmacy.endereco}</p>
+                            <p>${pharmacy.telefone}</p>
+                            <p>Horário: ${pharmacy.horario_funcionamento}</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.endereco)}" class="map-link" target="_blank">Ver no mapa</a>
+                        </div>
+                    `;
+                    
+                    $('#pharmacy-results').append(pharmacyCard);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
