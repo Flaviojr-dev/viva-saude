@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Viva Saúde - Postos de Saúde</title>
-        <link rel="stylesheet" href="../style/nav_bar/style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../style/postos/postos.css">
-        <link rel="stylesheet" href="../style/servicos_disponiveis/section_servhistoria.css">
-    </head>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Informações</title>
+    <link rel="stylesheet" href="../style/nav_bar/style.css">
+    <link rel="stylesheet" href="../style/informacoes/inf.css">
+</head>
+
 <body>
     <header>
         <nav>
@@ -24,13 +24,13 @@
             </button>
 
             <ul id="nav-menu">
-                <li><a href="../index.html">Início</a></li>
+                <li><a href="index.html">Início</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">Serviços</a>
                     <ul class="dropdown-menu hidden">
                         <li><a href="./atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
-                        <li><a href="./pages/geoloc.html">Geolocalização</a></li>
+                        <li><a href="./geoloc.html">Geolocalização</a></li>
                         <li><a href="./farm.html">Medicamentos</a></li>
                         <li><a href="./pag_de_inf.html">Página de Informações</a></li>
                     </ul>
@@ -43,22 +43,39 @@
     </header>
 
     <main>
-        <div class="content">
-            <div class="image-section">
-                <img src="../assets/images/Nursing home-amico.png" alt="Imagem de idosos">
+        <section class="intro">
+            <h1>Cuide da sua saúde com<br>informação de qualidade</h1>
+            <p>Acesse conteúdos confiáveis e atualizados sobre prevenção, cuidados diários e boas práticas para viver
+                com mais saúde.</p>
+        </section>
+        <section class="categories">
+            <div class="category">
+                <h2>Saúde do Idoso</h2>
+                <p>Cuidados com a terceira idade, prevenção de quedas, controle de doenças crônicas e bem-estar
+                    emocional.</p>
             </div>
-            <div class="text-section">
-                <h1>Encontre o posto de saúde mais próximo de você!</h1>
-                <p>Veja os postos de saúde próximos e saiba onde pode ser atendido rapidamente.</p>
-                <div class="search-container">
-                    <input type="text" class="filtro-input" placeholder="Vacinação">
-                    <button class="search-button">Pesquisar</button>
-                </div>  
+            <div class="category">
+                <h2>Crianças</h2>
+                <p>Vacinação infantil, alimentação saudável, higiene e desenvolvimento.</p>
             </div>
-        </div>
-        
+            <div class="category">
+                <h2>Doenças Comuns</h2>
+                <p>Informações sobre gripe, dengue, viroses e como se prevenir.</p>
+            </div>
+            <div class="category">
+                <h2>Alimentação Saudável</h2>
+                <p>Dicas de nutrição para todas as idades, receitas práticas e orientações do dia a dia.</p>
+            </div>
+            <div class="category">
+                <h2>Higiene e Prevenção</h2>
+                <p>Como cuidar da higiene pessoal, do lar e evitar a transmissão de doenças.</p>
+            </div>
+            <div class="category">
+                <h2>Vacinação</h2>
+                <p>Calendário vacinal, dúvidas frequentes e orientações sobre imunização.</p>
+            </div>
+        </section>
     </main>
-
     <script>
         const hamburgerBtn = document.getElementById("hamburger-btn");
         const navMenu = document.getElementById("nav-menu");
@@ -98,4 +115,5 @@
         }
     </script>
 </body>
+
 </html>
