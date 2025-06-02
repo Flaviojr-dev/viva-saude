@@ -99,41 +99,75 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 
 
-##DIAGRAMA DE ATIVIDADES
+## DIAGRAMA DE ATIVIDADES
 
-```mermaid
 flowchart TD
     A[Início: Página Principal] --> B{Escolha do Usuário}
-   
-    B --> C1[Buscar por Especialidade]
-    B --> C2[Consultar Guia de Serviços]
-    B --> C3[Encontrar Posto Mais Próximo]
-   
-    %% Fluxo Buscar por Especialidade
-    C1 --> D1[Exibir campo de busca por especialidade]
-    D1 --> E1[Permitir filtros de bairro/região]
-    E1 --> F1[Consultar banco de dados]
-    F1 --> G1[Exibir lista de postos: nome, endereço, horários]
-    G1 --> H1{Ordenar resultados?}
-    H1 -- Sim --> I1[Ordenar por distância ou horário]
-    H1 -- Não --> J1[Fim da busca por especialidade]
-
-    %% Fluxo Consultar Guia de Serviços
-    C2 --> D2[Exibir categorias de serviços]
-    D2 --> E2[Campo de busca por palavra-chave]
-    E2 --> F2[Exibir informações acessíveis]
-    F2 --> G2[Área administrativa para atualização de dados]
-    G2 --> J2[Fim da consulta ao guia]
-
-    %% Fluxo Encontrar Posto Mais Próximo
-    C3 --> D3{Usar localização atual?}
-    D3 -- Sim --> E3[Solicitar permissão de GPS]
-    E3 --> F3[Detectar posição]
-    D3 -- Não --> G3[Campo para digitar endereço]
-    F3 --> H3[Buscar postos mais próximos]
-    G3 --> H3[Buscar postos mais próximos]
-    H3 --> I3[Exibir lista de postos + mapa]
-    I3 --> J3{Postos encontrados?}
-    J3 -- Sim --> K3[Fim da busca por localização]
-    J3 -- Não --> L3[Exibir mensagem: 'Nenhum posto encontrado']
-    L3 --> K3
+    
+    B --> C1[Buscar Unidade por Endereço/Geolocalização]
+    B --> C2[Consultar Especialidades]
+    B --> C3[Visualizar Mapa de Postos]
+    B --> C4[Acessar Guia de Procedimentos]
+    B --> C5[Verificar Disponibilidade em Tempo Real]
+    B --> C6[Consultar Dicas de Saúde]
+    B --> C7[Localizar Farmácias Populares]
+    
+    %% Fluxo Buscar Unidade por Endereço/Geolocalização (Cartão 1)
+    C1 --> D1{Usar localização atual?}
+    D1 -- Sim --> E1[Solicitar permissão de GPS]
+    E1 --> F1[Detectar posição]
+    D1 -- Não --> G1[Campo para digitar endereço]
+    F1 --> H1[Buscar postos próximos]
+    G1 --> H1[Buscar postos próximos]
+    H1 --> I1{Postos encontrados?}
+    I1 -- Sim --> J1[Exibir lista + mapa com horários e requisitos]
+    I1 -- Não --> K1[Exibir mensagem: "Nenhum posto próximo encontrado"]
+    J1 --> L1[Fim: Selecionar unidade]
+    
+    %% Fluxo Consultar Especialidades (Cartões 2 e 4)
+    C2 --> D2[Selecionar especialidade (ex: Pediatria)]
+    D2 --> E2[Filtrar por região/bairro (opcional)]
+    E2 --> F2[Consultar banco de dados]
+    F2 --> G2[Exibir postos com: horários, documentos necessários]
+    G2 --> H2{Ordenar resultados?}
+    H2 -- Sim --> I2[Por distância/disponibilidade]
+    H2 -- Não --> J2[Fim: Selecionar unidade]
+    
+    %% Fluxo Visualizar Mapa de Postos (Cartão 5)
+    C3 --> D3[Carregar mapa interativo]
+    D3 --> E3[Exibir marcadores por região/bairro]
+    E3 --> F3[Clique no marcador para detalhes]
+    F3 --> G3[Exibir: endereço, telefone, especialidades]
+    G3 --> H3[Fim: Navegação ou seleção]
+    
+    %% Fluxo Guia de Procedimentos (Cartão 6)
+    C4 --> D4[Exibir categorias (ex: "Exames", "Vacinas")]
+    D4 --> E4[Campo de busca por palavra-chave]
+    E4 --> F4[Exibir passo a passo com requisitos]
+    F4 --> G4[Link para agendamento (se aplicável)]
+    G4 --> H4[Fim: Orientação concluída]
+    
+    %% Fluxo Verificar Disponibilidade (Cartão 7)
+    C5 --> D5[Selecionar serviço (ex: "Vacina infantil")]
+    D5 --> E5[Filtrar por data/região]
+    E5 --> F5[Exibir unidades com estoque/disponibilidade]
+    F5 --> G5[Atualização em tempo real]
+    G5 --> H5[Fim: Confirmar local]
+    
+    %% Fluxo Dicas de Saúde (Cartão 8)
+    C6 --> D6[Exibir temas (ex: "Prevenção de doenças")]
+    D6 --> E6[Conteúdo multimídia (infográficos/vídeos)]
+    E6 --> F6[Fim: Consulta concluída]
+    
+    %% Fluxo Farmácias Populares (Cartão 9)
+    C7 --> D7{Usar localização?}
+    D7 -- Sim --> E7[Buscar farmácias próximas]
+    D7 -- Não --> F7[Digitar endereço manual]
+    E7 --> G7[Exibir lista + mapa com horários]
+    F7 --> G7
+    G7 --> H7[Filtro por medicamento (opcional)]
+    H7 --> I7[Fim: Selecionar farmácia]
+    
+    %% Conexões entre fluxos (exemplo)
+    J2 --> C3[Link para visualizar no mapa]
+    G2 --> C5[Link para verificar disponibilidade]
