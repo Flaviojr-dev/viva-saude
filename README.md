@@ -101,73 +101,58 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 
 ## DIAGRAMA DE ATIVIDADES
 
+# Diagrama de Atividades - Viva Saúde
+
+```mermaid
 flowchart TD
-    A[Início: Página Principal] --> B{Escolha do Usuário}
+    A[Início] --> B{Selecione a opção}
     
-    B --> C1[Buscar Unidade por Endereço/Geolocalização]
-    B --> C2[Consultar Especialidades]
-    B --> C3[Visualizar Mapa de Postos]
-    B --> C4[Acessar Guia de Procedimentos]
-    B --> C5[Verificar Disponibilidade em Tempo Real]
-    B --> C6[Consultar Dicas de Saúde]
-    B --> C7[Localizar Farmácias Populares]
+    %% Cartão 1 - Buscar Unidade por Localização
+    B --> C1["🔍 Buscar Unidade (Cartão 1)"]
+    C1 --> D1{Usar localização?}
+    D1 -->|Sim| E1[📍 Ativar GPS]
+    D1 -->|Não| F1[🏠 Digitar endereço]
+    E1 --> G1[🔎 Buscar postos próximos]
+    F1 --> G1
+    G1 --> H1{Encontrou?}
+    H1 -->|Sim| I1[📋 Mostrar lista + mapa]
+    H1 -->|Não| J1["❌ 'Nenhum posto próximo'"]
     
-    %% Fluxo Buscar Unidade por Endereço/Geolocalização (Cartão 1)
-    C1 --> D1{Usar localização atual?}
-    D1 -- Sim --> E1[Solicitar permissão de GPS]
-    E1 --> F1[Detectar posição]
-    D1 -- Não --> G1[Campo para digitar endereço]
-    F1 --> H1[Buscar postos próximos]
-    G1 --> H1[Buscar postos próximos]
-    H1 --> I1{Postos encontrados?}
-    I1 -- Sim --> J1[Exibir lista + mapa com horários e requisitos]
-    I1 -- Não --> K1[Exibir mensagem: "Nenhum posto próximo encontrado"]
-    J1 --> L1[Fim: Selecionar unidade]
+    %% Cartão 2/4 - Especialidades Médicas
+    B --> C2["🏥 Consultar Especialidades (Cartão 2/4)"]
+    C2 --> D2[🩺 Selecionar especialidade]
+    D2 --> E2[🗺️ Filtrar por região]
+    E2 --> F2[🕒 Mostrar unidades com horários]
     
-    %% Fluxo Consultar Especialidades (Cartões 2 e 4)
-    C2 --> D2[Selecionar especialidade (ex: Pediatria)]
-    D2 --> E2[Filtrar por região/bairro (opcional)]
-    E2 --> F2[Consultar banco de dados]
-    F2 --> G2[Exibir postos com: horários, documentos necessários]
-    G2 --> H2{Ordenar resultados?}
-    H2 -- Sim --> I2[Por distância/disponibilidade]
-    H2 -- Não --> J2[Fim: Selecionar unidade]
+    %% Cartão 5 - Mapa Interativo
+    B --> C3["🗺️ Mapa de Postos (Cartão 5)"]
+    C3 --> D3[🌍 Carregar mapa]
+    D3 --> E3[🖱️ Clique nos marcadores]
+    E3 --> F3[ℹ️ Exibir detalhes da unidade]
     
-    %% Fluxo Visualizar Mapa de Postos (Cartão 5)
-    C3 --> D3[Carregar mapa interativo]
-    D3 --> E3[Exibir marcadores por região/bairro]
-    E3 --> F3[Clique no marcador para detalhes]
-    F3 --> G3[Exibir: endereço, telefone, especialidades]
-    G3 --> H3[Fim: Navegação ou seleção]
+    %% Cartão 6 - Guia de Procedimentos
+    B --> C4["📚 Guia de Procedimentos (Cartão 6)"]
+    C4 --> D4[🔎 Buscar por palavra-chave]
+    D4 --> E4[📝 Exibir requisitos do serviço]
     
-    %% Fluxo Guia de Procedimentos (Cartão 6)
-    C4 --> D4[Exibir categorias (ex: "Exames", "Vacinas")]
-    D4 --> E4[Campo de busca por palavra-chave]
-    E4 --> F4[Exibir passo a passo com requisitos]
-    F4 --> G4[Link para agendamento (se aplicável)]
-    G4 --> H4[Fim: Orientação concluída]
+    %% Cartão 7 - Disponibilidade em Tempo Real
+    B --> C5["🔄 Disponibilidade em Tempo Real (Cartão 7)"]
+    C5 --> D5[💉 Selecionar serviço]
+    D5 --> E5[✅ Verificar estoque/horário]
     
-    %% Fluxo Verificar Disponibilidade (Cartão 7)
-    C5 --> D5[Selecionar serviço (ex: "Vacina infantil")]
-    D5 --> E5[Filtrar por data/região]
-    E5 --> F5[Exibir unidades com estoque/disponibilidade]
-    F5 --> G5[Atualização em tempo real]
-    G5 --> H5[Fim: Confirmar local]
+    %% Cartão 9 - Farmácias Populares
+    B --> C6["💊 Farmácias Populares (Cartão 9)"]
+    C6 --> D6[🔍 Buscar por medicamento]
+    D6 --> E6[🏥 Mostrar farmácias próximas]
     
-    %% Fluxo Dicas de Saúde (Cartão 8)
-    C6 --> D6[Exibir temas (ex: "Prevenção de doenças")]
-    D6 --> E6[Conteúdo multimídia (infográficos/vídeos)]
-    E6 --> F6[Fim: Consulta concluída]
+    %% Conexões entre fluxos
+    I1 --> C3
+    F2 --> C5
+    F2 --> C3
+    E4 --> C5
     
-    %% Fluxo Farmácias Populares (Cartão 9)
-    C7 --> D7{Usar localização?}
-    D7 -- Sim --> E7[Buscar farmácias próximas]
-    D7 -- Não --> F7[Digitar endereço manual]
-    E7 --> G7[Exibir lista + mapa com horários]
-    F7 --> G7
-    G7 --> H7[Filtro por medicamento (opcional)]
-    H7 --> I7[Fim: Selecionar farmácia]
-    
-    %% Conexões entre fluxos (exemplo)
-    J2 --> C3[Link para visualizar no mapa]
-    G2 --> C5[Link para verificar disponibilidade]
+    classDef cartao fill:#f9f9f9,stroke:#333,stroke-width2px;
+    class C1,C2,C3,C4,C5,C6 cartao;
+```
+**Legenda:**  
+🔍 Busca | 📍 GPS | 🏠 Endereço | 🏥 Saúde | 🕒 Horários | 💉 Vacinas | 💊 Medicamentos  
