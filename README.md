@@ -153,3 +153,8 @@ flowchart TD
 ```
 **Legenda:**  
 🔍 Busca | 📍 GPS | 🏠 Endereço | 🏥 Saúde | 🕒 Horários | 💉 Vacinas | 💊 Medicamentos  
+
+## Screencat Lo-fi
+ https://www.youtube.com/watch?v=fpyQyK9IHP8
+
+## Screencast deployment funcional
