@@ -226,3 +226,130 @@ h1 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     font-family: 'Poppins', sans-serif;
 }
+
+/* Estilos para geolocalização */
+.user-location {
+    color: #ff4444;
+    font-size: 24px;
+    text-align: center;
+}
+
+#distancia-info {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#distancia-info p {
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.posto-card p:last-child {
+    color: #0066cc;
+    margin-top: 5px;
+}
+
+#cep {
+    margin-right: 10px;
+}
+
+/* Estilos para mensagens de feedback */
+.feedback {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    font-size: 14px;
+    display: none;
+    animation: fadeInOut 0.5s ease-in-out;
+}
+
+.feedback.info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #1565c0;
+}
+
+.feedback.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+}
+
+.feedback.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #c62828;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para a lista de unidades de saúde */
+#lista-unidades {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#lista-unidades h3 {
+    color: #1565c0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.unidade-item {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.unidade-item:last-child {
+    border-bottom: none;
+}
+
+.unidade-item:hover {
+    background-color: #f5f5f5;
+}
+
+.unidade-item h4 {
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.unidade-item p {
+    color: #666;
+    margin: 3px 0;
+    font-size: 0.9em;
+}
+
+.search-button {
+    background-color: #1565c0;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-button:hover {
+    background-color: #0d47a1;
+}
+
+.search-button:disabled {
+    background-color: #90caf9;
+    cursor: not-allowed;
+}

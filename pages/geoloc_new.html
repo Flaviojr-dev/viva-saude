@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +13,6 @@
             <div class="logo">
                 <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
             </div>
-
 
             <button class="hamburger" id="hamburger-btn">
                 <span></span>
@@ -38,14 +36,15 @@
                 <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
-
     </header>
 
     <main>
         <h1>Postos de Saúde do Recife</h1>
-        <p class="info">Dados locais - Atualizado em 2023</p>        <div class="search-container">            <input class="btn2" type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
+        <p class="info">Dados locais - Atualizado em 2023</p>
+        <div class="search-container">
+            <input class="btn2" type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
             <input class="btn2" type="text" id="cep" placeholder="Digite seu CEP" maxlength="9">
-            <button class="btn1" onclick="buscarPostos()">Buscar</button>
+            <button class="btn1" onclick="buscarPostos()">Buscar por Bairro</button>
             <button onclick="buscarPorCEP()" class="search-button">Buscar por CEP</button>
             <div id="feedback" class="feedback"></div>
         </div>
@@ -53,7 +52,6 @@
         <div id="distancia-info"></div>
         <div id="map"></div>
         <div id="resultados"></div>
-        <div id="feedback" class="feedback"></div>
 
         <div id="lista-unidades">
             <h3>Unidades mais próximas</h3>
@@ -63,45 +61,6 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-
-        const hamburgerBtn = document.getElementById("hamburger-btn");
-        const navMenu = document.getElementById("nav-menu");
-        const dropdownToggle = document.querySelector(".dropdown-toggle");
-        const dropdownMenu = document.querySelector(".dropdown-menu");
-
-        function isMobile() {
-            return window.innerWidth <= 768;
-        }
-
-        // Toggle do menu hamburguer
-        hamburgerBtn.addEventListener("click", () => {
-            navMenu.classList.toggle("show");
-            navMenu.classList.add("mobile");
-        });
-
-        // Toggle do submenu "Serviços" no mobile
-        dropdownToggle.addEventListener("click", (e) => {
-            if (isMobile()) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle("show");
-            }
-        });
-
-        function handleDropdownClick() {
-            const dropdownMenu = document.querySelector(".dropdown-menu");
-            dropdownMenu.classList.toggle("show");
-        }
-
-        // Aplica o clique até 1024px (tablet)
-        if (window.innerWidth <= 1024) {
-            const dropdownBtn = document.getElementById("servicos-btn");
-            dropdownBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                handleDropdownClick();
-            });
-        }
-
-
         // Configurações do mapa
         const RECIFE_CENTER = [-8.0522, -34.8828];
         const RECIFE_ZOOM = 13;
@@ -111,7 +70,7 @@
 
         // Função para formatar CEP
         function formatarCEP(cep) {
-            cep = cep.replace(/\D/g, ''); // Remove tudo que não é número
+            cep = cep.replace(/\D/g, '');
             if (cep.length > 8) cep = cep.slice(0, 8);
             if (cep.length > 5) {
                 return cep.slice(0, 5) + '-' + cep.slice(5);
@@ -133,7 +92,6 @@
             }
 
             try {
-                // Busca no ViaCEP
                 const responseCEP = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
                 const dataCEP = await responseCEP.json();
                 
@@ -141,7 +99,6 @@
                     throw new Error('CEP não encontrado');
                 }
 
-                // Busca coordenadas no Nominatim
                 const query = `${dataCEP.logradouro}, ${dataCEP.bairro}, Recife, PE, Brasil`;
                 const responseNominatim = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`);
                 const dataNominatim = await responseNominatim.json();
@@ -170,19 +127,14 @@
             }, 5000);
         }
 
-        // Adiciona formatação ao campo CEP
-        document.getElementById('cep').addEventListener('input', function(e) {
-            let cep = e.target.value;
-            e.target.value = formatarCEP(cep);
-        });
-
         // Inicializa o mapa
         async function initMap() {
             map = L.map('map').setView(RECIFE_CENTER, RECIFE_ZOOM);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);            // Carrega e processa os dados do GeoJSON do arquivo
+            }).addTo(map);
+
             try {
                 const response = await fetch('../data/unidades_saude.json');
                 if (!response.ok) {
@@ -192,13 +144,13 @@
                 processarDados(geoJsonData);
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
-                document.getElementById('resultados').innerHTML = 
-                    '<div class="error">Erro ao carregar os dados dos postos de saúde. Por favor, tente novamente mais tarde.</div>';
+                mostrarFeedback('Erro ao carregar dados dos postos de saúde', 'error');
             }
-        }        // Processa os dados do GeoJSON
+        }
+
+        // Processa os dados do GeoJSON
         function processarDados(geoJsonData) {
             allPostos = geoJsonData.features.map(feature => {
-                // Calcula o centroide do polígono para posicionar o marcador
                 const coords = feature.geometry.coordinates[0];
                 const lat = coords.reduce((sum, point) => sum + point[1], 0) / coords.length;
                 const lng = coords.reduce((sum, point) => sum + point[0], 0) / coords.length;
@@ -212,151 +164,28 @@
                 };
             });
 
-            console.log('Postos processados:', allPostos); // Para debug
-            buscarPostos();
+            console.log('Postos processados:', allPostos);
         }
 
-        // Normaliza texto para busca
-        function normalizarTexto(texto) {
-            if (!texto) return '';
-            return texto
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase()
-                .trim();
-        }
-
-        // Limpa marcadores
-        function limparMarcadores() {
-            markers.forEach(marker => map.removeLayer(marker));
-            markers = [];
-        }
-
-        // Busca postos        // Função para calcular a distância entre dois pontos usando a fórmula de Haversine
+        // Calcula distância usando Haversine
         function calcularDistancia(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Raio da Terra em km
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
                     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
                     Math.sin(dLon/2) * Math.sin(dLon/2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            return R * c; // Distância em km
+            return R * c;
         }
 
-        async function buscarPostos() {
-            const termoBusca = normalizarTexto(document.getElementById('bairro').value);
-            const cep = document.getElementById('cep').value.replace(/\D/g, '');
-            const resultadosDiv = document.getElementById('resultados');
-            const distanciaInfoDiv = document.getElementById('distancia-info');
-
-            resultadosDiv.innerHTML = '';
-            distanciaInfoDiv.innerHTML = '';
-            limparMarcadores();
-
-            let postosFiltrados = termoBusca
-                ? allPostos.filter(posto =>
-                    normalizarTexto(posto.endereco).includes(termoBusca) ||
-                    normalizarTexto(posto.nome).includes(termoBusca))
-                : allPostos;
-
-            // Se um CEP foi fornecido, ordena por distância
-            if (cep && cep.length === 8) {
-                const coordenadas = await buscarCoordenadas(cep);
-                if (coordenadas) {
-                    // Adiciona um marcador para a localização do usuário
-                    const userMarker = L.marker([coordenadas.latitude, coordenadas.longitude], {
-                        icon: L.divIcon({
-                            className: 'user-location',
-                            html: '📍',
-                            iconSize: [25, 25],
-                            iconAnchor: [12, 24]
-                        })
-                    }).addTo(map)
-                    .bindPopup('Sua localização');
-                    markers.push(userMarker);
-
-                    // Calcula a distância para cada posto e ordena
-                    postosFiltrados = postosFiltrados.map(posto => ({
-                        ...posto,
-                        distancia: calcularDistancia(
-                            coordenadas.latitude, coordenadas.longitude,
-                            posto.latitude, posto.longitude
-                        )
-                    })).sort((a, b) => a.distancia - b.distancia);
-
-                    distanciaInfoDiv.innerHTML = '<p>Unidades ordenadas por proximidade do seu CEP</p>';
-                }
-            }
-
-            exibirPostos(postosFiltrados);
+        // Limpa marcadores do mapa
+        function limparMarcadores() {
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
         }
 
-        // Exibe os postos
-        function exibirPostos(postos) {
-            const resultadosDiv = document.getElementById('resultados');
-
-            if (postos.length === 0) {
-                resultadosDiv.innerHTML = 
-                    '<div class="no-results">Nenhum posto encontrado para este critério de busca.</div>';
-                return;
-            }
-
-            postos.forEach(posto => {
-                const marker = L.marker([posto.latitude, posto.longitude])
-                    .addTo(map)
-                    .bindPopup(`
-                        <strong>${posto.nome}</strong><br>
-                        ${posto.endereco}<br>
-                        <em>Tipo: ${posto.tipo}</em>
-                    `);
-                markers.push(marker);                resultadosDiv.innerHTML += `
-                    <div class="posto-card">
-                        <h3>${posto.nome}</h3>
-                        <p><strong>Endereço:</strong> ${posto.endereco}</p>
-                        <p><strong>Tipo:</strong> ${posto.tipo}</p>
-                        ${posto.distancia ? `<p><strong>Distância:</strong> ${posto.distancia.toFixed(1)} km</p>` : ''}
-                    </div>
-                `;
-            });
-
-            if (postos.length > 0) {
-                const group = new L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.1));
-            }
-        }        // Formata o CEP enquanto o usuário digita
-        function formatarCEP(cep) {
-            cep = cep.replace(/\D/g, ''); // Remove tudo que não é número
-            if (cep.length > 5) {
-                cep = cep.substring(0, 5) + '-' + cep.substring(5);
-            }
-            return cep;
-        }
-
-        // Inicializa quando a página carrega
-        document.addEventListener('DOMContentLoaded', function () {
-            initMap();
-
-            // Formata o CEP automaticamente
-            const cepInput = document.getElementById('cep');
-            cepInput.addEventListener('input', function (e) {
-                let cep = e.target.value;
-                e.target.value = formatarCEP(cep);
-            });
-
-            // Adiciona evento de tecla Enter nos campos de busca
-            document.getElementById('bairro').addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    buscarPostos();
-                }
-            });
-            
-            document.getElementById('cep').addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    buscarPostos();
-                }
-            });
-        });        // Função para mostrar lista de unidades próximas
+        // Mostra lista de unidades próximas
         function mostrarUnidadesProximas(unidades) {
             const container = document.getElementById('unidades-proximas');
             container.innerHTML = '';
@@ -384,7 +213,7 @@
             });
         }
 
-        // Função de busca por CEP
+        // Busca por CEP
         async function buscarPorCEP() {
             const cepInput = document.getElementById('cep');
             const cep = cepInput.value;
@@ -398,10 +227,9 @@
                 mostrarFeedback('Buscando localização...', 'info');
                 const coords = await buscarCoordenadas(cep);
                 
-                // Limpa marcadores anteriores
                 limparMarcadores();
 
-                // Adiciona marcador da localização do usuário
+                // Adiciona marcador do usuário
                 const userMarker = L.marker([coords.lat, coords.lon], {
                     icon: L.icon({
                         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -411,14 +239,14 @@
                 }).addTo(map);
                 markers.push(userMarker);
 
-                // Calcula e ordena unidades por distância
+                // Calcula distâncias e ordena
                 const unidadesOrdenadas = allPostos.map(posto => {
                     const dist = calcularDistancia(coords.lat, coords.lon, 
                         posto.latitude, posto.longitude);
                     return { ...posto, distancia: dist };
                 }).sort((a, b) => a.distancia - b.distancia);
 
-                // Mostra as 5 unidades mais próximas
+                // Mostra as 5 mais próximas
                 const unidadesProximas = unidadesOrdenadas.slice(0, 5);
                 unidadesProximas.forEach(posto => {
                     const marker = L.marker([posto.latitude, posto.longitude])
@@ -431,10 +259,8 @@
                     markers.push(marker);
                 });
 
-                // Atualiza a lista de unidades próximas
+                // Atualiza a lista e centraliza o mapa
                 mostrarUnidadesProximas(unidadesProximas);
-
-                // Centraliza o mapa
                 map.setView([coords.lat, coords.lon], 14);
                 mostrarFeedback('Unidades encontradas!', 'success');
 
@@ -443,7 +269,60 @@
                 console.error('Erro:', error);
             }
         }
+
+        // Busca por bairro
+        async function buscarPostos() {
+            const termoBusca = document.getElementById('bairro').value.toLowerCase();
+            const resultadosDiv = document.getElementById('resultados');
+            
+            resultadosDiv.innerHTML = '';
+            limparMarcadores();
+
+            const postosFiltrados = termoBusca
+                ? allPostos.filter(posto =>
+                    posto.endereco.toLowerCase().includes(termoBusca) ||
+                    posto.nome.toLowerCase().includes(termoBusca))
+                : allPostos;
+
+            if (postosFiltrados.length === 0) {
+                mostrarFeedback('Nenhum posto encontrado', 'error');
+                return;
+            }
+
+            postosFiltrados.forEach(posto => {
+                const marker = L.marker([posto.latitude, posto.longitude])
+                    .addTo(map)
+                    .bindPopup(`
+                        <strong>${posto.nome}</strong><br>
+                        ${posto.endereco}<br>
+                        <em>Tipo: ${posto.tipo}</em>
+                    `);
+                markers.push(marker);
+            });
+
+            const group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds().pad(0.1));
+            mostrarFeedback(`${postosFiltrados.length} unidades encontradas`, 'success');
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function () {
+            initMap();
+
+            const cepInput = document.getElementById('cep');
+            cepInput.addEventListener('input', function (e) {
+                e.target.value = formatarCEP(e.target.value);
+            });
+
+            // Eventos de tecla Enter
+            document.getElementById('bairro').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') buscarPostos();
+            });
+            
+            cepInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') buscarPorCEP();
+            });
+        });
     </script>
 </body>
-
 </html>
