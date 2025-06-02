@@ -1,193 +1,320 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Saúde - Encontre medicamentos gratuitos ou com desconto</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        @import url("../style/nav_bar/style.css");
+
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            color: #333;
         }
-        
-        header {
-            background-color: #2d6cdf;
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.6;
+            padding: 16px;
         }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        
+
+        /* Header */
+
+
+        /* Hero Section */
         .hero {
-            background-color: #f0f8ff;
-            padding: 40px 20px;
             text-align: center;
+            margin-bottom: 32px;
+            padding: 0 10px;
         }
-        
+
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        /* Search Container */
         .search-container {
             max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
         }
-        
+
+        /* Tabs */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border-radius: 9999px;
+            background: #e5e7eb;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .tab.active {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        /* Search box */
         .search-box {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
         }
-        
-        input, button, select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        button {
-            background-color: #2d6cdf;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-        
-        button:hover {
-            background-color: #2d6cdf;
-        }
-        
-        .results {
-            margin-top: 30px;
-        }
-        
-        .pharmacy-card, .medicine-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .pharmacy-card h3, .medicine-card h3 {
-            margin-top: 0;
-            color: #2d6cdf;
-        }
-        
-        .map-link {
-            color: #2d6cdf;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .tab-container {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-bottom: none;
-            border-radius: 5px 5px 0 0;
-            margin-right: 5px;
-        }
-        
-        .tab.active {
-            background-color: #2d6cdf;
-            color: white;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        footer {
-            background-color: #f0f8ff;
-            padding: 20px;
-            text-align: center;
-            margin-top: 30px;
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid #d1d5db;
+            background: #f9fafb;
             font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            outline: none;
+        }
+
+        button {
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: none;
+            background-color: #2563eb;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+
+        /* Result Cards */
+        .results {
+            margin-top: 32px;
+        }
+
+        .pharmacy-card,
+        .medicine-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pharmacy-card:hover,
+        .medicine-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .pharmacy-card h3,
+        .medicine-card h3 {
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Map link */
+        .map-link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .map-link:hover {
+            color: #1e40af;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Loading */
         .loading {
             text-align: center;
-            padding: 20px;
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        /* RESPONSIVIDADE */
+
+        /* Telas menores que 768px */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+
+            .search-container {
+                padding: 24px;
+            }
+
+            .tab {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px 18px;
+            }
+        }
+
+        /* Telas menores que 480px */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .tab {
+                padding: 8px 16px;
+            }
+
+            input,
+            select {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+
+            .search-container {
+                padding: 20px;
+            }
+
+            .pharmacy-card,
+            .medicine-card {
+                padding: 16px;
+            }
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Viva Saúde</h1>
         <nav>
-            <ul>
-                <li><a href="#">QUEM SOMOS</a></li>
-                <li><a href="#">SERVIÇOS</a></li>
-                <li><a href="#">IMPORTE</a></li>
+            <div class="logo">
+                <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
+            </div>
+
+
+            <button class="hamburger" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul id="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Serviços</a>
+                    <ul class="dropdown-menu hidden">
+                        <li><a href="/pages/atend_esp.html">Atendimento especializado</a></li>
+                        <li><a href="#">Funcionamento</a></li>
+                        <li><a href="/pages/postos.html">Postos de Saúde</a></li>
+                        <li><a href="/pages/servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="/pages/geoloc.html">Geolocalização</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
+
     </header>
-    
+
     <section class="hero">
         <h2>Encontre medicamentos gratuitos ou com desconto</h2>
-        <p>Acesse as farmácias populares mais próximas da sua casa e veja onde encontrar os medicamentos de que precisa.</p>
+        <p>Acesse as farmácias populares mais próximas da sua casa e veja onde encontrar os medicamentos de que precisa.
+        </p>
     </section>
-    
+
     <div class="search-container">
         <div class="tab-container">
             <div class="tab active" data-tab="pharmacies">Buscar Farmácias</div>
             <div class="tab" data-tab="medicines">Buscar Medicamentos</div>
         </div>
-        
+
         <div class="tab-content active" id="pharmacies-tab">
             <div class="search-box">
                 <div>
                     <label for="address">Endereço</label>
                     <input type="text" id="address" placeholder="Digite seu endereço">
                 </div>
-                
+
                 <div>
                     <label for="pharmacy-name">Buscar por nome da farmácia (opcional)</label>
                     <input type="text" id="pharmacy-name" placeholder="Ex: Farmácia Esperança">
                 </div>
-                
+
                 <button id="search-pharmacies">Buscar Farmácias</button>
             </div>
-            
+
             <div class="results" id="pharmacy-results">
                 <!-- Os resultados de farmácias serão inseridos aqui via JavaScript -->
             </div>
         </div>
-        
+
         <div class="tab-content" id="medicines-tab">
             <div class="search-box">
                 <div>
                     <label for="medicine-name">Nome do Medicamento</label>
                     <input type="text" id="medicine-name" placeholder="Ex: Dipirona, Losartana...">
                 </div>
-                
+
                 <div>
                     <label for="medicine-type">Tipo de Medicamento</label>
                     <select id="medicine-type">
@@ -197,74 +324,75 @@
                         <option value="similar">Similar</option>
                     </select>
                 </div>
-                
+
                 <button id="search-medicines">Buscar Medicamentos</button>
             </div>
-            
+
             <div class="results" id="medicine-results">
                 <!-- Os resultados de medicamentos serão inseridos aqui via JavaScript -->
             </div>
         </div>
     </div>
-    
+
     <footer>
-        <p>Os dados de disponibilidade de medicamentos são atualizados periodicamente. Verifique sempre antes de se deslocar até a unidade.</p>
+        <p>Os dados de disponibilidade de medicamentos são atualizados periodicamente. Verifique sempre antes de se
+            deslocar até a unidade.</p>
     </footer>
-    
+
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Controle das abas
-            $('.tab').click(function() {
+            $('.tab').click(function () {
                 $('.tab').removeClass('active');
                 $(this).addClass('active');
-                
+
                 const tabId = $(this).data('tab') + '-tab';
                 $('.tab-content').removeClass('active');
                 $('#' + tabId).addClass('active');
             });
-            
+
             // Busca de farmácias
-            $('#search-pharmacies').click(function() {
+            $('#search-pharmacies').click(function () {
                 const address = $('#address').val();
                 const pharmacyName = $('#pharmacy-name').val();
-                
+
                 // Limpa resultados anteriores
                 $('#pharmacy-results').empty().html('<div class="loading">Buscando farmácias...</div>');
-                
+
                 // Array de recursos de APIs para farmácias
                 const pharmacyResources = [
                     'e976dc6a-3e64-4386-b4c0-850852e7a21e', // Farmácias básicas
                     'a7a966de-fa73-47ed-a87e-a53d336038d0', // Nova API 1
                     'eaa007ad-faed-477a-a085-c84bddb47224'  // Nova API 2
                 ];
-                
+
                 let completedRequests = 0;
                 let allResults = [];
-                
+
                 pharmacyResources.forEach(resourceId => {
                     var data = {
                         resource_id: resourceId,
                         limit: 10,
                         q: pharmacyName || 'farmácia'
                     };
-                    
+
                     $.ajax({
                         url: 'https://dados.recife.pe.gov.br/api/3/action/datastore_search',
                         data: data,
                         dataType: 'jsonp',
-                        success: function(response) {
+                        success: function (response) {
                             completedRequests++;
-                            
+
                             if (response.result && response.result.records) {
                                 allResults = allResults.concat(response.result.records);
                             }
-                            
+
                             // Quando todas as requisições terminarem
                             if (completedRequests === pharmacyResources.length) {
                                 displayPharmacyResults(allResults);
                             }
                         },
-                        error: function() {
+                        error: function () {
                             completedRequests++;
                             // Se todas falharem, mostra fallback
                             if (completedRequests === pharmacyResources.length && allResults.length === 0) {
@@ -274,40 +402,40 @@
                     });
                 });
             });
-            
+
             // Busca de medicamentos
-            $('#search-medicines').click(function() {
+            $('#search-medicines').click(function () {
                 const medicineName = $('#medicine-name').val();
                 const medicineType = $('#medicine-type').val();
-                
+
                 $('#medicine-results').empty().html('<div class="loading">Buscando medicamentos...</div>');
-                
+
                 // API específica para medicamentos
                 var data = {
                     resource_id: '05e529b2-3b1c-4b7f-a0f0-31abc9602a68',
                     limit: 20,
                     q: medicineName
                 };
-                
+
                 $.ajax({
                     url: 'https://dados.recife.pe.gov.br/api/3/action/datastore_search',
                     data: data,
                     dataType: 'jsonp',
-                    success: function(response) {
+                    success: function (response) {
                         $('#medicine-results').empty();
-                        
+
                         if (response.result && response.result.records && response.result.records.length > 0) {
                             let filteredMedicines = response.result.records;
-                            
+
                             // Filtra por tipo se selecionado
                             if (medicineType) {
-                                filteredMedicines = filteredMedicines.filter(med => 
+                                filteredMedicines = filteredMedicines.filter(med =>
                                     med.tipo && med.tipo.toLowerCase().includes(medicineType)
                                 );
                             }
-                            
+
                             if (filteredMedicines.length > 0) {
-                                filteredMedicines.forEach(function(medicine) {
+                                filteredMedicines.forEach(function (medicine) {
                                     const medicineCard = `
                                         <div class="medicine-card">
                                             <h3>${medicine.nome || 'Medicamento'}</h3>
@@ -317,7 +445,7 @@
                                             <p><strong>Preço:</strong> ${medicine.preco ? 'R$ ' + medicine.preco : 'Não informado'}</p>
                                         </div>
                                     `;
-                                    
+
                                     $('#medicine-results').append(medicineCard);
                                 });
                             } else {
@@ -327,25 +455,25 @@
                             $('#medicine-results').html('<p>Nenhum medicamento encontrado. Tente ajustar sua busca.</p>');
                         }
                     },
-                    error: function() {
+                    error: function () {
                         $('#medicine-results').html('<p>Ocorreu um erro ao buscar medicamentos. Tente novamente mais tarde.</p>');
                     }
                 });
             });
-            
+
             // Função para exibir resultados de farmácias
             function displayPharmacyResults(pharmacies) {
                 $('#pharmacy-results').empty();
-                
+
                 if (pharmacies.length > 0) {
                     // Remove duplicados (caso a mesma farmácia esteja em múltiplas APIs)
                     const uniquePharmacies = pharmacies.filter((pharmacy, index, self) =>
-                        index === self.findIndex(p => 
+                        index === self.findIndex(p =>
                             (p.nome === pharmacy.nome && p.endereco === pharmacy.endereco)
                         )
                     );
-                    
-                    uniquePharmacies.forEach(function(pharmacy) {
+
+                    uniquePharmacies.forEach(function (pharmacy) {
                         const pharmacyCard = `
                             <div class="pharmacy-card">
                                 <h3>${pharmacy.nome || 'Farmácia Popular'}</h3>
@@ -355,18 +483,18 @@
                                 <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.endereco || 'Recife')}" class="map-link" target="_blank">Ver no mapa</a>
                             </div>
                         `;
-                        
+
                         $('#pharmacy-results').append(pharmacyCard);
                     });
                 } else {
                     showPharmacyFallback();
                 }
             }
-            
+
             // Fallback para farmácias
             function showPharmacyFallback() {
                 $('#pharmacy-results').html('<p>Não foi possível conectar ao serviço no momento. Exibindo informações locais...</p>');
-                
+
                 const fallbackData = [
                     {
                         nome: "Farmácia Esperança",
@@ -381,8 +509,8 @@
                         horario_funcionamento: "Seg. a Sex.: 07h – 19h | Sáb.: 07h – 13h"
                     }
                 ];
-                
-                fallbackData.forEach(function(pharmacy) {
+
+                fallbackData.forEach(function (pharmacy) {
                     const pharmacyCard = `
                         <div class="pharmacy-card">
                             <h3>${pharmacy.nome}</h3>
@@ -392,11 +520,49 @@
                             <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.endereco)}" class="map-link" target="_blank">Ver no mapa</a>
                         </div>
                     `;
-                    
+
                     $('#pharmacy-results').append(pharmacyCard);
                 });
             }
         });
+
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Toggle do menu hamburguer
+        hamburgerBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+            navMenu.classList.add("mobile");
+        });
+
+        // Toggle do submenu "Serviços" no mobile
+        dropdownToggle.addEventListener("click", (e) => {
+            if (isMobile()) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle("show");
+            }
+        });
+
+        function handleDropdownClick() {
+            const dropdownMenu = document.querySelector(".dropdown-menu");
+            dropdownMenu.classList.toggle("show");
+        }
+
+        // Aplica o clique até 1024px (tablet)
+        if (window.innerWidth <= 1024) {
+            const dropdownBtn = document.getElementById("servicos-btn");
+            dropdownBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                handleDropdownClick();
+            });
+        }
     </script>
 </body>
+
 </html>

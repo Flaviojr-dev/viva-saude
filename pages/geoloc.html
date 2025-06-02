@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Postos de Saúde - Recife</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="../style/nav_bar/style.css">
     <link rel="stylesheet" href="geoloc.css">
 </head>
-
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="../index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
+                <a href="index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
             </div>
 
 
@@ -25,15 +23,15 @@
             </button>
 
             <ul id="nav-menu">
-                <li><a href="../index.html">Início</a></li>
+                <li><a href="index.html">Início</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">Serviços</a>
                     <ul class="dropdown-menu hidden">
-                        <li><a href="./atend_esp.html">Atendimento especializado</a></li>
+                        <li><a href="pages/atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="#">Funcionamento</a></li>
-                        <li><a href="./postos.html">Postos de Saúde</a></li>
-                        <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
-                        <li><a href="#">Geolocalização</a></li>
+                        <li><a href="pages/postos.html">Postos de Saúde</a></li>
+                        <li><a href="pages/servicos_disponiveis.html">Serviços disponíveis</a></li>
+                        <li><a href="./geoloc.html">Geolocalização</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Contato</a></li>
@@ -48,8 +46,8 @@
         <p class="info">Dados locais - Atualizado em 2023</p>
 
         <div class="search-container">
-            <input type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
-            <button onclick="buscarPostos()">Buscar</button>
+            <input class="btn2" type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
+            <button class="btn1" onclick="buscarPostos()">Buscar</button>
         </div>
 
         <div id="map"></div>
@@ -58,6 +56,45 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
+
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Toggle do menu hamburguer
+        hamburgerBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+            navMenu.classList.add("mobile");
+        });
+
+        // Toggle do submenu "Serviços" no mobile
+        dropdownToggle.addEventListener("click", (e) => {
+            if (isMobile()) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle("show");
+            }
+        });
+
+        function handleDropdownClick() {
+            const dropdownMenu = document.querySelector(".dropdown-menu");
+            dropdownMenu.classList.toggle("show");
+        }
+
+        // Aplica o clique até 1024px (tablet)
+        if (window.innerWidth <= 1024) {
+            const dropdownBtn = document.getElementById("servicos-btn");
+            dropdownBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                handleDropdownClick();
+            });
+        }
+
+
         // Configurações do mapa
         const RECIFE_CENTER = [-8.0522, -34.8828];
         const RECIFE_ZOOM = 13;
