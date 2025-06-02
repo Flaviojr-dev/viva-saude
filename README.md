@@ -156,3 +156,5 @@ flowchart TD
 
 ## Screencat Lo-fi
  https://www.youtube.com/watch?v=fpyQyK9IHP8
+
+## Screencast deployment funcional
