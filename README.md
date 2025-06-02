@@ -11,8 +11,7 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ### 2. Consulta de Especialidades
  Permite que o usuário busque postos de saúde com base em uma especialidade específica, como pediatria.
 
-### 3. Informações Sobre Funcionamento
- Permite que o usuário consulte os horários de funcionamento das unidades de saúde para se programar melhor.
+### 3. 
 
 ### 4. Notificações de Lembretes
  Notificações sobre agendamentos.
@@ -77,7 +76,12 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
  ![Issue  bug tracker](https://github.com/user-attachments/assets/431d97a9-699e-4a62-8dab-34e16d82e82f)
 
 ## Programação em par
- Durante o desenvolvimento do projeto, nossa equipe optou por não utilizar a prática de Programação em Par. A equipe de desenvolvimento avaliou que, para garantir uma maior agilidade no andamento das tarefas, seria mais eficiente dividir as atividades individualmente. Cada membro ficou responsável pela implementação de seu respectivo storyboard, o que permitiu um avanço mais rápido e organizado das entregas. Essa decisão foi tomada de forma consciente visando o melhor aproveitamento de tempo dos componentes da equipe. Além disso, foi dividido no início do projeto que 3 dos 7 integrantes estariam responsáveis pelo front-end, logo, não foi preciso fazer a programação em par, pois era mais prático para o grupo que cada um fizesse uma tela (O entregável 1 requeria apenas 3 telas).
+ Durante parte do nosso projeto, deixamos de lado a ideia de usar programação em par, mas depois percebemos que seria um desperdício de conhecimento e talento se descartássemos essa técnica de desenvolvimento. Nossa equipe não ficou separada em duplas específicas, mas   sim por quem tinha mais disponibilidade para se juntar, tanto pessoalmente quanto online.
+
+ No início, nos reuníamos antes das aulas para nos ajudarmos uns aos outros, sanar dúvidas sobre o código e corrigir erros. Depois, começamos a nos juntar no Discord quase todos os dias para "codar" usando a técnica de programação em par. Todos os integrantes da equipe  participaram dessa troca de conhecimento e talento, fortalecendo nossa equipe não só individualmente, mas também coletivamente.
+ ![programacao em par evidencia](https://github.com/user-attachments/assets/e65669d7-fd35-41a1-a79c-23a7a135773b)
+
+
 
 ## Equipe
  ![Equipe 1](https://github.com/user-attachments/assets/f7ca8fe4-2773-44de-9bae-b334ccfbc5f9)
