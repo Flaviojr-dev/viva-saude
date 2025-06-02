@@ -95,7 +95,8 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
  Acesse por esse link : https://viva-saude-nine.vercel.app/
 
 ## Quadro Trello Viva Saúde
- ![Quadro](https://github.com/user-attachments/assets/b091e426-a5c5-4d40-8ed3-a195f39c69a0)
+ ![Captura de tela 2025-06-02 153137](https://github.com/user-attachments/assets/f81f5157-480f-4c4e-9c72-7905d95600de)
+
 
 
 ##DIAGRAMA DE ATIVIDADES
