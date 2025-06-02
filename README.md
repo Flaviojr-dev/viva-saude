@@ -11,10 +11,11 @@ O Viva Saúde é uma solução desenvolvida para otimizar o acesso da populaçã
 ### 2. Consulta de Especialidades
  Permite que o usuário busque postos de saúde com base em uma especialidade específica, como pediatria.
 
-### 3. 
+### 3. Especialidades médicas disponíveis
+ Permite que o usuário veja de uma maneira mais ampla as funcionalidades presentes nas UPAs
 
-### 4. Notificações de Lembretes
- Notificações sobre agendamentos.
+### 4. Encontre o serviço de saúde ideal
+ Ter botões ou outras funcionalidades chamativas que levem o usuário a sanar suas dúvidas.
 
 ### 5. Localização de Postos por Região
  Permite que o usuário visualize os postos de saúde em um mapa, filtrando por regiões ou bairros.
