@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Saúde - Encontre medicamentos gratuitos ou com desconto</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="farm.js"></script>
     <style>
         @import url("../style/nav_bar/style.css");
 
@@ -144,11 +145,26 @@
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
         }
 
-        .pharmacy-card h3,
-        .medicine-card h3 {
+        .pharmacy-card h3,        .medicine-card h3 {
             color: #2563eb;
             margin-bottom: 10px;
             font-weight: 600;
+        }
+
+        .medicine-card .quantidade {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .medicine-card .disponivel {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .medicine-card .indisponivel {
+            background-color: #fee2e2;
+            color: #991b1b;
         }
 
         /* Map link */
@@ -246,6 +262,55 @@
                 padding: 16px;
             }
         }
+
+        .medicine-list {
+            margin-top: 15px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 15px;
+        }
+
+        .medicine-item {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .medicine-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .medicine-item p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .medicine-item strong {
+            color: #2563eb;
+        }
+
+        .search-summary {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .search-summary p {
+            margin: 0;
+        }
+
+        @media (max-width: 480px) {
+            .medicine-item {
+                padding: 10px;
+            }
+
+            .medicine-item p {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 
@@ -290,7 +355,7 @@
 
     <div class="search-container">
         <div class="tab-container">
-            <div class="tab active" data-tab="pharmacies">Buscar Farmácias</div>
+            <div class="tab active" data-tab="pharmacies">Buscar Unidade de Saúde</div>
             <div class="tab" data-tab="medicines">Buscar Medicamentos</div>
         </div>
 
@@ -301,11 +366,11 @@
                 </div>
 
                 <div>
-                    <label for="pharmacy-name">Buscar por nome da farmácia (opcional)</label>
-                    <input type="text" id="pharmacy-name" placeholder="Ex: Farmácia Esperança">
+                    <label for="pharmacy-name">Buscar por nome da unidade (opcional)</label>
+                    <input type="text" id="pharmacy-name" placeholder="Ex: US 442 USF MAIS SANTA LUZIA">
                 </div>
 
-                <button id="search-pharmacies">Buscar Farmácias</button>
+                <button id="search-pharmacies">Buscar Unidade de Saúde</button>
             </div>
 
             <div class="results" id="pharmacy-results">
@@ -321,12 +386,17 @@
                 </div>
 
                 <div>
+                    <label for="medicine-district">Bairro/Distrito</label>
+                    <input type="text" id="medicine-district" placeholder="Digite o bairro ou distrito">
+                </div>
+
+                <div>
                     <label for="medicine-type">Tipo de Medicamento</label>
                     <select id="medicine-type">
-                        <option value="">Todos</option>
-                        <option value="genérico">Genérico</option>
-                        <option value="referência">Referência</option>
-                        <option value="similar">Similar</option>
+                        <option value="">Todos os tipos</option>
+                        <option value="medicamentos">Medicamentos</option>
+                        <option value="material">Material</option>
+                        <option value="equipamento">Equipamento</option>
                     </select>
                 </div>
 
@@ -342,10 +412,15 @@
     <footer>
         <p>Os dados de disponibilidade de medicamentos são atualizados periodicamente. Verifique sempre antes de se
             deslocar até a unidade.</p>
-    </footer>
+    </footer>    <script>
+        // Menu de navegação
+        $(document).ready(function () {
+            // Inicialização - garantir que a primeira tab está ativa
+            $('.tab[data-tab="pharmacies"]').addClass('active');
+            $('#pharmacies-tab').addClass('active').show();
+            $('#medicines-tab').hide();
 
-    <script>
-        $(document).ready(function () {            // Controle das abas
+            // Controle das abas
             $('.tab').click(function () {
                 $('.tab').removeClass('active');
                 $(this).addClass('active');
@@ -354,22 +429,23 @@
                 $('.search-container .search-box, .search-container .results').hide();
 
                 // Mostra apenas o conteúdo da tab selecionada
-                const tab = $(this).data('tab');
-                if (tab === 'pharmacies') {
+                const tab = $(this).data('tab');                if (tab === 'pharmacies') {
                     $('#pharmacies-tab .search-box, #pharmacies-tab .results').show();
                     $('#medicines-tab .search-box, #medicines-tab .results').hide();
-                    $('.hero h2').text('Encontre farmácias próximas a você');
-                    $('.hero p').text('Localize farmácias populares no seu bairro.');
+                    $('.hero h2').text('Encontre unidades de saúde próximas a você');
+                    $('.hero p').text('Localize unidades de saúde no seu bairro.');
                 } else {
                     $('#medicines-tab .search-box, #medicines-tab .results').show();
                     $('#pharmacies-tab .search-box, #pharmacies-tab .results').hide();
                     $('.hero h2').text('Encontre medicamentos gratuitos ou com desconto');
                     $('.hero p').text('Veja onde encontrar os medicamentos de que precisa.');
                 }
-            });            // Busca de farmácias
+            });
+
+            // Busca de unidades de saúde
             $('#search-pharmacies').click(function () {
                 const bairro = $('#neighborhood').val().toLowerCase();
-                const pharmacyName = $('#pharmacy-name').val();
+                const pharmacyName = $('#pharmacy-name').val().toLowerCase();
 
                 if (!bairro) {
                     $('#pharmacy-results').html('<p>Por favor, digite o nome do bairro para buscar.</p>');
@@ -377,230 +453,206 @@
                 }
 
                 // Limpa resultados anteriores
-                $('#pharmacy-results').empty().html('<div class="loading">Buscando farmácias...</div>');
+                $('#pharmacy-results').empty().html('<div class="loading">Buscando unidades de saúde...</div>');                // Buscar dados do arquivo medicamentos.json
+                $.getJSON('../data/medicamentos.json', function(data) {
+                    if (data && data.records) {
+                        // Agrupa os registros por unidade de saúde
+                        const unidades = data.records.reduce((acc, record) => {
+                            const unidadeNome = record[2].trim();
+                            const distrito = record[1];
+                            
+                            // Verifica se corresponde aos critérios de busca
+                            if (unidadeNome.toLowerCase().includes(bairro) &&
+                                (!pharmacyName || unidadeNome.toLowerCase().includes(pharmacyName))) {
+                                
+                                if (!acc[unidadeNome]) {
+                                    acc[unidadeNome] = {
+                                        nome: unidadeNome,
+                                        distrito: distrito,
+                                        medicamentos: []
+                                    };
+                                }
+                                // Adiciona o medicamento à unidade
+                                if (record[9] > 0) { // Só adiciona se tiver estoque
+                                    acc[unidadeNome].medicamentos.push({
+                                        nome: record[7],
+                                        quantidade: record[9],
+                                        tipo: record[5],
+                                        apresentacao: record[4]
+                                    });
+                                }
+                            }
+                            return acc;
+                        }, {});
 
-                // Lista de farmácias por bairro (dados locais como exemplo)
-                const fallbackData = [
-                    {
-                        nome: "Farmácia Esperança",
-                        bairro: "boa vista",
-                        endereco: "Av. Conde da Boa Vista, 456 – Boa Vista",
-                        telefone: "(81) 3333-4455",
-                        horario_funcionamento: "Seg. a Sex.: 07h – 19h | Sáb.: 07h – 13h"
-                    },
-                    {
-                        nome: "Farmácia Popular Central",
-                        bairro: "centro",
-                        endereco: "Rua Nova, 234 - Centro",
-                        telefone: "(81) 3222-5566",
-                        horario_funcionamento: "Seg. a Sex.: 08h – 18h | Sáb.: 08h – 12h"
-                    },
-                    {
-                        nome: "Drogaria São José",
-                        bairro: "centro",
-                        endereco: "Rua da Palma, 567 - Centro",
-                        telefone: "(81) 3231-7788",
-                        horario_funcionamento: "Seg. a Sex.: 07h – 20h | Sáb.: 08h – 17h"
+                        const results = Object.values(unidades);
+                        displayPharmacyResults(results);
+                    } else {
+                        $('#pharmacy-results').html('<p>Erro ao carregar os dados das unidades de saúde.</p>');
                     }
-                ];
-
-                // Filtra as farmácias pelo bairro e nome (se fornecido)
-                const results = fallbackData.filter(farmacia => {
-                    const bairroMatch = farmacia.bairro.toLowerCase().includes(bairro);
-                    const nomeMatch = !pharmacyName || 
-                                    farmacia.nome.toLowerCase().includes(pharmacyName.toLowerCase());
-                    return bairroMatch && nomeMatch;
+                }).fail(function() {
+                    $('#pharmacy-results').html('<p>Erro ao carregar o arquivo de dados.</p>');
                 });
-
-                displayPharmacyResults(results);
-
-                pharmacyResources.forEach(resourceId => {
-                    var data = {
-                        resource_id: resourceId,
-                        limit: 10,
-                        q: pharmacyName || 'farmácia'
-                    };
-
-                    $.ajax({
-                        url: 'https://dados.recife.pe.gov.br/api/3/action/datastore_search',
-                        data: data,
-                        dataType: 'jsonp',
-                        success: function (response) {
-                            completedRequests++;
-
-                            if (response.result && response.result.records) {
-                                allResults = allResults.concat(response.result.records);
-                            }
-
-                            // Quando todas as requisições terminarem
-                            if (completedRequests === pharmacyResources.length) {
-                                displayPharmacyResults(allResults);
-                            }
-                        },
-                        error: function () {
-                            completedRequests++;
-                            // Se todas falharem, mostra fallback
-                            if (completedRequests === pharmacyResources.length && allResults.length === 0) {
-                                showPharmacyFallback();
-                            }
-                        }
-                    });
-                });
-            });
-
-            // Busca de medicamentos usando o arquivo JSON local
+            });            // Busca de medicamentos usando a API do Recife
             $('#search-medicines').click(function () {
                 const medicineName = $('#medicine-name').val().toLowerCase();
+                const medicineDistrict = $('#medicine-district').val().toLowerCase();
                 const medicineType = $('#medicine-type').val().toLowerCase();
 
-                $('#medicine-results').empty().html('<div class="loading">Buscando medicamentos...</div>');                // Carrega o arquivo JSON localmente
-                $.getJSON('../data/medicamentos.json', function (data) {
-                    // O arquivo tem os medicamentos em data.records
-                    // Os campos são: [id, distrito, unidade, classe, apresentacao, tipo_produto, codigo_produto, produto, cadum, quantidade]
-                    let results = data.records
-                        .map(function (rec) {
-                            return {
-                                unidade: rec[2],
-                                classe: rec[3],
-                                apresentacao: rec[4],
-                                tipo: rec[5],
-                                produto: rec[7],
-                                quantidade: rec[9]
-                            };
-                        })
-                        .filter(function (med) {
-                            // Filtra pelo nome do medicamento
-                            const nomeMatch = medicineName === "" || med.produto.toLowerCase().includes(medicineName);
-                            // Filtra pelo tipo, se selecionado
-                            const tipoMatch = !medicineType || (med.tipo && med.tipo.toLowerCase().includes(medicineType));
-                            return nomeMatch && tipoMatch;
-                        });
+                $('#medicine-results').empty().html('<div class="loading">Buscando medicamentos...</div>');
 
-                    $('#medicine-results').empty();
+                $.getJSON('../data/medicamentos.json', function(data) {
+                    if (data && data.records) {
+                        let results = data.records
+                            .filter(function(med) {
+                                // Filtra pelo nome do medicamento
+                                const nomeMatch = !medicineName || 
+                                    med[7].toLowerCase().includes(medicineName);
+                                // Filtra pelo distrito/bairro, se informado
+                                const distritoMatch = !medicineDistrict || 
+                                    med[2].toLowerCase().includes(medicineDistrict);
+                                // Filtra pelo tipo, se selecionado
+                                const tipoMatch = !medicineType || 
+                                    med[5].toLowerCase().includes(medicineType);
+                                // Filtra apenas medicamentos com estoque maior que 0
+                                const temEstoque = Number(med[9]) > 0;
+                                return nomeMatch && distritoMatch && tipoMatch && temEstoque;
+                            });
 
-                    if (results.length > 0) {
-                        results.forEach(function (medicine) {
-                            const medicineCard = `
-                                <div class="medicine-card">
-                                    <h3>${medicine.produto}</h3>
-                                    <p><strong>Unidade:</strong> ${medicine.unidade}</p>
-                                    <p><strong>Classe:</strong> ${medicine.classe}</p>
-                                    <p><strong>Apresentação:</strong> ${medicine.apresentacao}</p>
-                                    <p><strong>Tipo:</strong> ${medicine.tipo}</p>
-                                    <p><strong>Quantidade disponível:</strong> ${medicine.quantidade}</p>
-                                </div>
-                            `;
-                            $('#medicine-results').append(medicineCard);
-                        });
+                        $('#medicine-results').empty();
+
+                        if (results.length > 0) {
+                            // Agrupa resultados por unidade de saúde
+                            const porUnidade = results.reduce((acc, med) => {
+                                if (!acc[med[2]]) {
+                                    acc[med[2]] = [];
+                                }
+                                acc[med[2]].push(med);
+                                return acc;
+                            }, {});
+
+                            // Ordena unidades por quantidade de medicamentos disponíveis
+                            const unidadesOrdenadas = Object.entries(porUnidade)
+                                .sort((a, b) => b[1].length - a[1].length);
+
+                            // Adiciona resumo da busca
+                            const resumo = $('<div class="search-summary"></div>');
+                            resumo.append(`<p>Encontrados ${results.length} medicamentos em ${Object.keys(porUnidade).length} unidades de saúde</p>`);
+                            $('#medicine-results').append(resumo);
+
+                            unidadesOrdenadas.forEach(([unidade, medicamentos]) => {
+                                const unidadeCard = $('<div class="pharmacy-card"></div>');
+                                unidadeCard.append(`<h3>${unidade.trim()}</h3>`);
+                                unidadeCard.append(`<p><strong>Distrito:</strong> ${medicamentos[0][1]}</p>`);
+                                unidadeCard.append(`<p><strong>Medicamentos disponíveis:</strong> ${medicamentos.length}</p>`);
+                                
+                                const medList = $('<div class="medicine-list"></div>');
+                                medicamentos.forEach(med => {
+                                    medList.append(`
+                                        <div class="medicine-item">
+                                            <p><strong>${med[7]}</strong></p>
+                                            <p>Quantidade: ${med[9]} unidades</p>
+                                            <p>Apresentação: ${med[4]}</p>
+                                            <p>Classe: ${med[3]}</p>
+                                        </div>
+                                    `);
+                                });
+                                
+                                unidadeCard.append(medList);
+                                $('#medicine-results').append(unidadeCard);
+                            });
+                        } else {
+                            $('#medicine-results').html('<p>Nenhum medicamento encontrado com estoque disponível nos critérios selecionados.</p>');
+                        }
                     } else {
-                        $('#medicine-results').html('<p>Nenhum medicamento encontrado com os critérios selecionados.</p>');
+                        $('#medicine-results').html('<p>Erro ao carregar os dados de medicamentos.</p>');
                     }
-                }).fail(function () {
-                    $('#medicine-results').html('<p>Não foi possível carregar os dados locais de medicamentos.</p>');
+                }).fail(function() {
+                    $('#medicine-results').html('<p>Erro ao carregar o arquivo de medicamentos.</p>');
                 });
             });
 
-            // Função para exibir resultados de farmácias
-            function displayPharmacyResults(pharmacies) {
+            // Função para exibir resultados de farmácias            function displayPharmacyResults(unidades) {
                 $('#pharmacy-results').empty();
 
-                if (pharmacies.length > 0) {
-                    // Remove duplicados (caso a mesma farmácia esteja em múltiplas APIs)
-                    const uniquePharmacies = pharmacies.filter((pharmacy, index, self) =>
-                        index === self.findIndex(p =>
-                            (p.nome === pharmacy.nome && p.endereco === pharmacy.endereco)
-                        )
-                    );
+                if (unidades.length > 0) {
+                    // Adiciona resumo da busca
+                    const resumo = $('<div class="search-summary"></div>');
+                    resumo.append(`<p>Encontradas ${unidades.length} unidades de saúde</p>`);
+                    $('#pharmacy-results').append(resumo);
 
-                    uniquePharmacies.forEach(function (pharmacy) {
+                    // Ordena unidades por quantidade de medicamentos disponíveis
+                    unidades.sort((a, b) => b.medicamentos.length - a.medicamentos.length);
+
+                    unidades.forEach(function (unidade) {
                         const pharmacyCard = `
                             <div class="pharmacy-card">
-                                <h3>${pharmacy.nome || 'Farmácia Popular'}</h3>
-                                <p>${pharmacy.endereco || 'Endereço não disponível'}</p>
-                                <p>${pharmacy.telefone || 'Telefone não disponível'}</p>
-                                <p>Horário: ${pharmacy.horario_funcionamento || 'Não informado'}</p>
-                                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.endereco || 'Recife')}" class="map-link" target="_blank">Ver no mapa</a>
+                                <h3>${unidade.nome}</h3>
+                                <p><strong>Distrito:</strong> ${unidade.distrito}</p>
+                                <p><strong>Medicamentos disponíveis:</strong> ${unidade.medicamentos.length}</p>
+                                <div class="medicine-list">
+                                    ${unidade.medicamentos.slice(0, 5).map(med => `
+                                        <div class="medicine-item">
+                                            <p><strong>${med.nome}</strong></p>
+                                            <p>Quantidade: ${med.quantidade} unidades</p>
+                                            <p>Apresentação: ${med.apresentacao}</p>
+                                            <p>Tipo: ${med.tipo}</p>
+                                        </div>
+                                    `).join('')}
+                                    ${unidade.medicamentos.length > 5 ? 
+                                        `<p>E mais ${unidade.medicamentos.length - 5} medicamentos...</p>` : ''}
+                                </div>
                             </div>
                         `;
 
                         $('#pharmacy-results').append(pharmacyCard);
                     });
                 } else {
-                    showPharmacyFallback();
+                    $('#pharmacy-results').html('<p>Nenhuma unidade de saúde encontrada com os critérios informados.</p>');
                 }
+            }            // Função removida pois não usamos mais dados mockados
+        );        $(document).ready(function() {
+            const hamburgerBtn = document.getElementById("hamburger-btn");
+            const navMenu = document.getElementById("nav-menu");
+            const dropdownToggle = document.querySelector(".dropdown-toggle");
+            const dropdownMenu = document.querySelector(".dropdown-menu");
+
+            function isMobile() {
+                return window.innerWidth <= 768;
             }
 
-            // Fallback para farmácias
-            function showPharmacyFallback() {
-                $('#pharmacy-results').html('<p>Não foi possível conectar ao serviço no momento. Exibindo informações locais...</p>');
+            // Toggle do menu hamburguer
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    navMenu.classList.add("mobile");
+                });
+            }
 
-                const fallbackData = [
-                    {
-                        nome: "Farmácia Esperança",
-                        endereco: "Rua São João, 123 – Bairro Centro",
-                        telefone: "(81) 2222-3344",
-                        horario_funcionamento: "Seg. a Sex.: 08h – 18h | Sáb.: 08h – 12h"
-                    },
-                    {
-                        nome: "Farmácia Popular do Bairro",
-                        endereco: "Av. Conde da Boa Vista, 456 – Boa Vista",
-                        telefone: "(81) 3333-4455",
-                        horario_funcionamento: "Seg. a Sex.: 07h – 19h | Sáb.: 07h – 13h"
+            // Toggle do submenu "Serviços" no mobile
+            if (dropdownToggle) {
+                dropdownToggle.addEventListener("click", (e) => {
+                    if (isMobile()) {
+                        e.preventDefault();
+                        dropdownMenu?.classList.toggle("show");
                     }
-                ];
+                });
+            }
 
-                fallbackData.forEach(function (pharmacy) {
-                    const pharmacyCard = `
-                        <div class="pharmacy-card">
-                            <h3>${pharmacy.nome}</h3>
-                            <p>${pharmacy.endereco}</p>
-                            <p>${pharmacy.telefone}</p>
-                            <p>Horário: ${pharmacy.horario_funcionamento}</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacy.endereco)}" class="map-link" target="_blank">Ver no mapa</a>
-                        </div>
-                    `;
+            function handleDropdownClick() {
+                const menu = document.querySelector(".dropdown-menu");
+                menu?.classList.toggle("show");
+            }
 
-                    $('#pharmacy-results').append(pharmacyCard);
+            // Aplica o clique até 1024px (tablet)
+            if (window.innerWidth <= 1024) {
+                const dropdownBtn = document.getElementById("servicos-btn");
+                dropdownBtn?.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    handleDropdownClick();
                 });
             }
         });
-
-        const hamburgerBtn = document.getElementById("hamburger-btn");
-        const navMenu = document.getElementById("nav-menu");
-        const dropdownToggle = document.querySelector(".dropdown-toggle");
-        const dropdownMenu = document.querySelector(".dropdown-menu");
-
-        function isMobile() {
-            return window.innerWidth <= 768;
-        }
-
-        // Toggle do menu hamburguer
-        hamburgerBtn.addEventListener("click", () => {
-            navMenu.classList.toggle("show");
-            navMenu.classList.add("mobile");
-        });
-
-        // Toggle do submenu "Serviços" no mobile
-        dropdownToggle.addEventListener("click", (e) => {
-            if (isMobile()) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle("show");
-            }
-        });
-
-        function handleDropdownClick() {
-            const dropdownMenu = document.querySelector(".dropdown-menu");
-            dropdownMenu.classList.toggle("show");
-        }
-
-        // Aplica o clique até 1024px (tablet)
-        if (window.innerWidth <= 1024) {
-            const dropdownBtn = document.getElementById("servicos-btn");
-            dropdownBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                handleDropdownClick();
-            });
-        }
     </script>
 </body>
 
