@@ -110,20 +110,34 @@
                 e.preventDefault();
                 handleDropdownClick();
             });
-        }
-
-        // =============================
+        }        // =============================
         // Filtro de unidades de saúde
         // =============================
 
-        const API_URL = "http://dados.recife.pe.gov.br/api/3/action/datastore_search";
-        const RESOURCE_ID = "54232db8-ed15-4f1f-90b0-2b5a20eef4cf"; // Você pode trocar esse ID se necessário
-        let todasUbs = [];
-
-        async function carregarDados() {
-            const response = await fetch(`${API_URL}?resource_id=${RESOURCE_ID}&limit=500`);
-            const data = await response.json();
-            todasUbs = data.result.records;
+        let todasUbs = [];        async function carregarDados() {
+            try {
+                const response = await fetch('../data/unidades_saude.json');
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar dados: ${response.status}`);
+                }
+                const data = await response.json();
+                // Transformar os dados do GeoJSON para o formato que precisamos
+                todasUbs = data.features.map(feature => ({
+                    nome_oficial: feature.properties.NMUNIDAD,
+                    endereo: feature.properties.NMENDUNID,
+                    bairro: feature.properties.NMENDUNID ? feature.properties.NMENDUNID.split(',').pop().trim() : '',
+                    tipo: feature.properties.CDTIPO,
+                    especialidade: feature.properties.CDTIPO, // Como não temos especialidades específicas, usamos o tipo
+                    horario: "SEGUNDA A SEXTA 08:00 às 17:00" // Horário padrão já que não temos essa informação
+                }));
+                
+                console.log('Dados carregados:', todasUbs);
+                preencherEspecialidades(todasUbs);
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                document.getElementById("resultado-container").innerHTML = 
+                    `<p class="no-results">Erro ao carregar os dados. Por favor, tente novamente mais tarde.</p>`;
+            }
 
             preencherEspecialidades(todasUbs);
         }
@@ -173,21 +187,17 @@
             if (lista.length === 0) {
                 container.innerHTML = `<p class="no-results">Nenhuma unidade com a especialidade selecionada foi encontrada nesta região.</p>`;
                 return;
-            }
-
-            lista.forEach(ubs => {
+            }            lista.forEach(ubs => {
                 const nomeUnidade = (ubs.nome_oficial && ubs.nome_oficial.trim()) || "Nome não disponível";
 
                 const card = document.createElement("div");
-                card.className = "card";
+                card.className = "card-unidade";
                 card.innerHTML = `
-                    <div class="card-title">${nomeUnidade}</div>
-                    <div class="card-address">${ubs.endereo || ''}${ubs.bairro ? `<br>${ubs.bairro}` : ''}</div>
-                    <p class="card-service"><strong>${ubs.especialidade || 'Especialidade não informada'}</strong></p>
-                    <div class="card-bottom">
-                        <p class="card-hours">${ubs.horario || 'Horário não informado'}</p>
-                        <a href="#" class="card-link">Ver detalhes</a>
-                    </div>
+                    <span class="nome-unidade">${nomeUnidade}</span>
+                    <p class="especialidades"><strong>${ubs.tipo || 'Tipo não informado'}</strong></p>
+                    <p class="endereco">${ubs.endereo || 'Endereço não informado'}</p>
+                    <p class="horario">${ubs.horario}</p>
+                    <a href="#" class="detalhes">Ver detalhes</a>
                 `;
                 container.appendChild(card);
             });
