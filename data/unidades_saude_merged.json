@@ -2715,7 +2715,7 @@
             ]
           ]
         ]
-           }
+      }
     },
     {
       "type": "Feature",
@@ -5435,7 +5435,7 @@
             ],
             [
               -34.950138570590006,
-              -8.034678472474779
+                           -8.034678472474779
             ],
             [
               -34.95018064191102,
@@ -6922,6 +6922,414 @@
       "geometry": {
         "type": "Polygon",
         "coordinates": [[[-34.9410991217, -8.07063930706]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 119,
+      "properties": {
+        "name": "US 123 CS Prof César Montezuma",
+        "address": "AV CAIS DO APOLO, 925 -  BAIRRO DO RECIFE",
+        "type": "UBS",
+        "rpa": 1,
+        "distrito_sanitario": 1,
+        "microregiao": 1.1,
+        "cnes": "0002143",
+        "cod_nat": "proprio",
+        "tipo_servico": "UNIDADE BASICA DE SAUDE",
+        "bairro": "BAIRRO DO RECIFE",
+        "fone": "3355-4420",
+        "especialidade": "CLÍNICA GERAL, ODONTOLOGIA CLÍNICA",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.8721674263, -8.05433824479]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 120,
+      "properties": {
+        "name": "US 155 CS Prof Monteiro de Morais",
+        "address": "AV BEBERIBE, 4510 - BEBERIBE",
+        "type": "UBS",
+        "rpa": 2,
+        "distrito_sanitario": 2,
+        "microregiao": 2.3,
+        "cnes": "0000825",
+        "cod_nat": "proprio",
+        "tipo_servico": "UNIDADE BASICA DE SAUDE",
+        "bairro": "BEBERIBE",
+        "fone": "3355-6848",
+        "especialidade": "GINECOLOGIA, PEDIATRIA, CLINICA MEDICA",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.8966966079, -8.00393487891]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 121,
+      "properties": {
+        "name": "US 103 CS Prof Mário Ramos",
+        "address": "RUA OSCAR DE BARROS, S/Nº - CASA AMARELA",
+        "type": "UBS",
+        "rpa": 3,
+        "distrito_sanitario": 3,
+        "microregiao": 3.2,
+        "cnes": "0001759",
+        "cod_nat": "proprio",
+        "tipo_servico": "UNIDADE BASICA DE SAUDE",
+        "bairro": "CASA AMARELA",
+        "fone": "3355-4434",
+        "especialidade": "GINECOLOGISTA, PEDIATRIA, CLINICA MEDICA, ODONTOLOGIA, MEDICO DO TRABALHO, PSICOLOGIA, FISIOTERAPIA",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9161884653, -8.02287521252]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 122,
+      "properties": {
+        "name": "US 148 CS Dom Miguel de Lima Valverde",
+        "address": "RUA FELICIANO JOSE DE FARIAS, 195  - BOA VIAGEM",
+        "type": "UBS",
+        "rpa": 6,
+        "distrito_sanitario": 6,
+        "microregiao": 6.3,
+        "cnes": "0001392",
+        "cod_nat": "proprio",
+        "tipo_servico": "UNIDADE BASICA DE SAUDE",
+        "bairro": "BOA VIAGEM",
+        "fone": "33550061",
+        "especialidade": "CLÍNICA MÉDICA, PEDIATRIA, GINECOLOGIA, DERMATOLOGIA, ENDOCRINOLOGIA, NUTRIÇÃO, ODONTOLOGIA, PSICOLOGIA, GERIATRIA, COLPOSCOPIA.",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.904659968, -8.13342108939]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 141,
+      "properties": {
+        "name": "US 106 CS Prof Joaquim Cavalcante",
+        "address": "AV DO FORTE, 1350 - TORROES",
+        "type": "UBS",
+        "rpa": 4,
+        "distrito_sanitario": 4,
+        "microregiao": 4.2,
+        "cnes": "0000639",
+        "cod_nat": "proprio",
+        "tipo_servico": "UNIDADE BASICA DE SAUDE",
+        "bairro": "TORROES",
+        "fone": "3355-4425",
+        "especialidade": "CLINICA MEDICA, PEDIATRIA, GINECOLOGIA, ODONTOLOGIA",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9319138572, -8.05888388976]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 142,
+      "properties": {
+        "name": "US 112 CS Dr José Dustan Carvalho Soares",
+        "address": "RUA MAURICIO DE NASSAU S/N CAIARA  - IPUTINGA",
+        "type": "UBS",
+        "rpa": 4,
+        "distrito_sanitario": 4,
+        "microregiao": 4.1,
+        "cnes": "0001813",
+        "cod_nat": "proprio",
+        "tipo_servico": "UNIDADE BASICA DE SAUDE",
+        "bairro": "IPUTINGA",
+        "fone": "33554388",
+        "especialidade": "CLINICA MEDICA, ODONTOLOGIA, PEDIATRIA, DERMATOLOGIA",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "Para ter acesso o usuário deve residir na área de cobertura e realizar cadastro prévio na unidade."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9310490866, -8.03856413665]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 143,
+      "properties": {
+        "name": "F.F. - ALTO DO PÁSCOAL",
+        "address": "AV ANIBAL BENEVOLO, S/N, ALTO DO PASCOAL - LINHA DO TIRO",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 2,
+        "distrito_sanitario": 2,
+        "microregiao": 2.3,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "LINHA DO TIRO",
+        "fone": "3355-4629",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9042230813, -8.01127925018]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 144,
+      "properties": {
+        "name": "F.F. - POLICLÍNICA SALOMÃO KELNER",
+        "address": "ESTRADA VELHA DE AGUA FRIA, S/N - AGUA FRIA",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 2,
+        "distrito_sanitario": 2,
+        "microregiao": 2.2,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "AGUA FRIA",
+        "fone": "3355-9925",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.8955569069, -8.02090621996]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 145,
+      "properties": {
+        "name": "F.F. - PONTO DE PARADA",
+        "address": "AV BEBERIBE, 419 - PONTO DE PARADA",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 2,
+        "distrito_sanitario": 2,
+        "microregiao": 2.1,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "PONTO DE PARADA",
+        "fone": "3355-4560/4561",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.8918665151, -8.03370541303]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 146,
+      "properties": {
+        "name": "F.F. - CENTRO MÉDICO ERMÍRIO DE MORAES",
+        "address": "AV 17 DE AGOSTO, 2388 - CASA FORTE",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 3,
+        "distrito_sanitario": 3,
+        "microregiao": 3.2,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "CASA FORTE",
+        "fone": "3355-2604",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9259354695, -8.02855589398]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 147,
+      "properties": {
+        "name": "F.F. - POLICLÍNICA ALBERT SABIN",
+        "address": "RUA PADRE ROMA, 149  - TAMARINEIRA",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 3,
+        "distrito_sanitario": 3,
+        "microregiao": 3.1,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "TAMARINEIRA",
+        "fone": "3355-2762",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9049922689, -8.03389619498]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 148,
+      "properties": {
+        "name": "F.F. - POLICLÍNICA LESSA DE ANDRADE",
+        "address": "ESTRADA DOS REMEDIOS, 2416 - MADALENA",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 4,
+        "distrito_sanitario": 4,
+        "microregiao": 4.1,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "MADALENA",
+        "fone": "3355-7821",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9070637923, -8.05863309843]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 149,
+      "properties": {
+        "name": "F.F. - US 112 CS DR. JOSÉ DUSTAN CARVALHO SOARES",
+        "address": "RUA MAURICIO DE NASSAU S/N CAIARA  - IPUTINGA",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 4,
+        "distrito_sanitario": 4,
+        "microregiao": 4.1,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "IPUTINGA",
+        "fone": "3355-4139",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9310696308, -8.03877072291]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 150,
+      "properties": {
+        "name": "F.F. - BIDU KRAUSE",
+        "address": "AV ONZE DE AGOSTO, S/N - TOTO",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 5,
+        "distrito_sanitario": 5,
+        "microregiao": 5.3,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "TOTO",
+        "fone": "3355-0301/0300",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9699753035, -8.07952683528]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 151,
+      "properties": {
+        "name": "F.F. - POLICLÍNICA AGAMENON MAGALHÃES",
+        "address": "LARGO DA PAZ, S/N  - AFOGADOS",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 5,
+        "distrito_sanitario": 5,
+        "microregiao": 5.1,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "AFOGADOS",
+        "fone": "3355-2300",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9051726472, -8.08110634631]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 152,
+      "properties": {
+        "name": "F.F. - POLICLÍNICA ARNALDO MARQUES",
+        "address": "AV DOIS RIOS, S/N - COHAB",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 6,
+        "distrito_sanitario": 8,
+        "microregiao": 8.3,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "COHAB",
+        "fone": "3355-1822",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.9445539014, -8.12024724021]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 153,
+      "properties": {
+        "name": "F.F. - POLICLÍNICA DO PINA",
+        "address": "AV REPUBLICA DO LIBANO, 355, BEIRA RIO  - PINA",
+        "type": "FARMACIA DA FAMILIA",
+        "rpa": 6,
+        "distrito_sanitario": 6,
+        "microregiao": 6.1,
+        "cnes": "9999999",
+        "cod_nat": "proprio",
+        "tipo_servico": "FARMÁCIA DA FAMÍLIA",
+        "bairro": "PINA",
+        "fone": "3355-1359",
+        "especialidade": "OFERTA MEDICAMENTOS DE FORMA ADEQUADA COM ORIENTAÇÃO DO FARMACÊUTICO",
+        "horario": "SEGUNDA A SEXTA 08:00 às 17:00",
+        "como_usar": "O usuário deve procurar a unidade de saúde onde realiza suas consultas para ser encaminhado com sua prescrição até a farmácia da família onde terá acesso gratuito às medicações."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-34.8904149569, -8.08587165134]
       }
     }
   ]
