@@ -116,18 +116,21 @@
 
         let todasUbs = [];        async function carregarDados() {
             try {
-                const response = await fetch('../data/unidades_saude.json');
+                const response = await fetch('../data/unidades_saude_merged.json');
                 if (!response.ok) {
                     throw new Error(`Erro ao carregar dados: ${response.status}`);
                 }
                 const data = await response.json();
                 // Transformar os dados do GeoJSON para o formato que precisamos
                 todasUbs = data.features.map(feature => ({
-                    nome_oficial: feature.properties.NMUNIDAD,
-                    endereo: feature.properties.NMENDUNID,
-                    bairro: feature.properties.NMENDUNID ? feature.properties.NMENDUNID.split(',').pop().trim() : '',
-                    tipo: feature.properties.CDTIPO,
-                    especialidade: feature.properties.CDTIPO, // Como não temos especialidades específicas, usamos o tipo
+                    nome_oficial: feature.properties.name || feature.properties.NMUNIDAD,
+                    endereo: feature.properties.address || feature.properties.NMENDUNID,
+                    bairro: feature.properties.bairro || 
+                           (feature.properties.address ? feature.properties.address.split(',').pop().trim() : ''),
+                    tipo: feature.properties.type || feature.properties.CDTIPO,
+                    especialidade: feature.properties.tipo_servico || feature.properties.type || feature.properties.CDTIPO,
+                    distrito_sanitario: feature.properties.distrito_sanitario,
+                    rpa: feature.properties.rpa,
                     horario: "SEGUNDA A SEXTA 08:00 às 17:00" // Horário padrão já que não temos essa informação
                 }));
                 
@@ -194,8 +197,10 @@
                 card.className = "card-unidade";
                 card.innerHTML = `
                     <span class="nome-unidade">${nomeUnidade}</span>
-                    <p class="especialidades"><strong>${ubs.tipo || 'Tipo não informado'}</strong></p>
+                    <p class="especialidades"><strong>${ubs.especialidade || 'Tipo não informado'}</strong></p>
                     <p class="endereco">${ubs.endereo || 'Endereço não informado'}</p>
+                    ${ubs.distrito_sanitario ? `<p class="distrito">Distrito Sanitário: ${ubs.distrito_sanitario}</p>` : ''}
+                    ${ubs.rpa ? `<p class="rpa">RPA: ${ubs.rpa}</p>` : ''}
                     <p class="horario">${ubs.horario}</p>
                     <a href="#" class="detalhes">Ver detalhes</a>
                 `;

@@ -5,10 +5,9 @@
       "type": "Feature",
       "id": 1,
       "properties": {
-        "NMUNIDAD": "UNIDADE DE SAUDE DA FAMILIA SAO JOSE DO COQUE",
-        "NMENDUNID": "AVENIDA CENTRAL S/N",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "UNIDADE DE SAUDE DA FAMILIA SAO JOSE DO COQUE",
+        "address": "AVENIDA CENTRAL S/N",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -78,10 +77,9 @@
       "type": "Feature",
       "id": 2,
       "properties": {
-        "NMUNIDAD": "UNIDADE DE SAUDE DA FAMILIA SAO JOSE DO COQUE",
-        "NMENDUNID": "RUA BUARQUE DE MACEDO, 65, SANTO AMARO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "UNIDADE DE SAUDE DA FAMILIA SAO JOSE DO COQUE",
+        "address": "RUA BUARQUE DE MACEDO, 65, SANTO AMARO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -123,10 +121,9 @@
       "type": "Feature",
       "id": 3,
       "properties": {
-        "NMUNIDAD": "USF SITIO DO CEU SANTO AMARO I",
-        "NMENDUNID": "RUA ANCHIETA, 520 SANTO AMARO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF SITIO DO CEU SANTO AMARO I",
+        "address": "RUA ANCHIETA, 520 SANTO AMARO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -160,10 +157,9 @@
       "type": "Feature",
       "id": 4,
       "properties": {
-        "NMUNIDAD": "USF BERILO PERNAMBUCANO COQUE I",
-        "NMENDUNID": "RUA GUAPIRAMA, 65 COQUE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF BERILO PERNAMBUCANO COQUE I",
+        "address": "RUA GUAPIRAMA, 65 COQUE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -197,10 +193,9 @@
       "type": "Feature",
       "id": 5,
       "properties": {
-        "NMUNIDAD": "USF ILHA SANTA TEREZINHA - SANTO AMARO III",
-        "NMENDUNID": "RUA ARTEMIS, 09 SANTO AMARO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ILHA SANTA TEREZINHA - SANTO AMARO III",
+        "address": "RUA ARTEMIS, 09 SANTO AMARO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -234,10 +229,9 @@
       "type": "Feature",
       "id": 6,
       "properties": {
-        "NMUNIDAD": "USF NOSSA SENHORA DO PILAR",
-        "NMENDUNID": "AV CAIS DO APOLO, 545 BAIRRO DO RECIFE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF NOSSA SENHORA DO PILAR",
+        "address": "AV CAIS DO APOLO, 545 BAIRRO DO RECIFE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -295,10 +289,9 @@
       "type": "Feature",
       "id": 7,
       "properties": {
-        "NMUNIDAD": "USF TASSO BEZERRRA CHIE II",
-        "NMENDUNID": "RUA GUAIANASES, 379 CAMPO GRANDE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF TASSO BEZERRRA CHIE II",
+        "address": "RUA GUAIANASES, 379 CAMPO GRANDE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -332,10 +325,9 @@
       "type": "Feature",
       "id": 8,
       "properties": {
-        "NMUNIDAD": "USF CORREGO DO CURIO",
-        "NMENDUNID": "RUA CORREGO DO CURIO, 73 DOIS UNIDOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF CORREGO DO CURIO",
+        "address": "RUA CORREGO DO CURIO, 73 DOIS UNIDOS",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -377,10 +369,9 @@
       "type": "Feature",
       "id": 9,
       "properties": {
-        "NMUNIDAD": "USF ILHA DO JOANEIRO II",
-        "NMENDUNID": "RUA MARECHAL DEODORO, 688 - CAMPO GRANDE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ILHA DO JOANEIRO II",
+        "address": "RUA MARECHAL DEODORO, 688 - CAMPO GRANDE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -434,10 +425,9 @@
       "type": "Feature",
       "id": 10,
       "properties": {
-        "NMUNIDAD": "USF ALTO DO MARACANA",
-        "NMENDUNID": "SUBIDA DA MEDALHA MILAGROSA, 153 DOIS UNIDOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DO MARACANA",
+        "address": "SUBIDA DA MEDALHA MILAGROSA, 153 DOIS UNIDOS",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -471,10 +461,9 @@
       "type": "Feature",
       "id": 11,
       "properties": {
-        "NMUNIDAD": "USF ALTO DO CAPITAO",
-        "NMENDUNID": "RUA CLARISSE DE OLIVEIRA, S/N ALTO DO CAPITAO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DO CAPITAO",
+        "address": "RUA CLARISSE DE OLIVEIRA, S/N ALTO DO CAPITAO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -508,10 +497,9 @@
       "type": "Feature",
       "id": 12,
       "properties": {
-        "NMUNIDAD": "USF ANTONIO FRANCISCO AREIAS",
-        "NMENDUNID": "AV JARDIM BRASILIA 145 - PEIXINHOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ANTONIO FRANCISCO AREIAS",
+        "address": "AV JARDIM BRASILIA 145 - PEIXINHOS",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -561,10 +549,9 @@
       "type": "Feature",
       "id": 13,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE PROF MONTEIRO DE MORAIS",
-        "NMENDUNID": "AV BEBERIBE, 4510 BEBERIBE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "CENTRO DE SAUDE PROF MONTEIRO DE MORAIS",
+        "address": "AV BEBERIBE, 4510 BEBERIBE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -598,10 +585,9 @@
       "type": "Feature",
       "id": 14,
       "properties": {
-        "NMUNIDAD": "USF ALTO DO PASCOAL",
-        "NMENDUNID": "AV ANIBAL BENEVOLO S/N - ALTO DOM PASCOAL",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DO PASCOAL",
+        "address": "AV ANIBAL BENEVOLO S/N - ALTO DOM PASCOAL",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -635,10 +621,9 @@
       "type": "Feature",
       "id": 16,
       "properties": {
-        "NMUNIDAD": "USF TIA REGINA / AGUA FRIA",
-        "NMENDUNID": "RUA CORREGO DO DEODATO, 315 AGUA FRIA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF TIA REGINA / AGUA FRIA",
+        "address": "RUA CORREGO DO DEODATO, 315 AGUA FRIA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -684,10 +669,9 @@
       "type": "Feature",
       "id": 17,
       "properties": {
-        "NMUNIDAD": "USF ALTO DO CEU / PORTO DA MADEIRA",
-        "NMENDUNID": "RUA CAPITAO SALGUEIRO, 267 PORTO DA MADEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DO CEU / PORTO DA MADEIRA",
+        "address": "RUA CAPITAO SALGUEIRO, 267 PORTO DA MADEIRA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -721,10 +705,9 @@
       "type": "Feature",
       "id": 18,
       "properties": {
-        "NMUNIDAD": "USF JOSE SEVERIANO SILVA (CAPIL",
-        "NMENDUNID": "AV JERONIMO VILELA, 794 CAMPO GRANDE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF JOSE SEVERIANO SILVA (CAPIL",
+        "address": "AV JERONIMO VILELA, 794 CAMPO GRANDE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -758,10 +741,9 @@
       "type": "Feature",
       "id": 19,
       "properties": {
-        "NMUNIDAD": "USF CHIE I",
-        "NMENDUNID": "RUA CONTINENTAL, 270 ILHA DO CHIE CAMPO GRANDE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF CHIE I",
+        "address": "RUA CONTINENTAL, 270 ILHA DO CHIE CAMPO GRANDE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -803,10 +785,9 @@
       "type": "Feature",
       "id": 20,
       "properties": {
-        "NMUNIDAD": "USF CHAO DE ESTRELAS",
-        "NMENDUNID": "RUA DR. ELIAS GOMES, 65 CHAO DE ESTRELAS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF CHAO DE ESTRELAS",
+        "address": "RUA DR. ELIAS GOMES, 65 CHAO DE ESTRELAS",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -844,10 +825,9 @@
       "type": "Feature",
       "id": 21,
       "properties": {
-        "NMUNIDAD": "USF ALTO DO EUCALIPTO",
-        "NMENDUNID": "RUA CAMBORIU, S/N VASCO DA GAMA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DO EUCALIPTO",
+        "address": "RUA CAMBORIU, S/N VASCO DA GAMA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -881,10 +861,9 @@
       "type": "Feature",
       "id": 22,
       "properties": {
-        "NMUNIDAD": "USF PASSARINHO BAIXO",
-        "NMENDUNID": "RUA CANARIO, 220 PASSARINHO BAIXO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF PASSARINHO BAIXO",
+        "address": "RUA CANARIO, 220 PASSARINHO BAIXO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -918,10 +897,9 @@
       "type": "Feature",
       "id": 23,
       "properties": {
-        "NMUNIDAD": "USF CORREGO DA FORTUNA",
-        "NMENDUNID": "AVENIDA PROFESSOR CLAUDIO SILVA, 1030 DOIS IRMAO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF CORREGO DA FORTUNA",
+        "address": "AVENIDA PROFESSOR CLAUDIO SILVA, 1030 DOIS IRMAO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -955,10 +933,9 @@
       "type": "Feature",
       "id": 24,
       "properties": {
-        "NMUNIDAD": "USF ALTO JOSE DO PINHO / IRMA DENIZE",
-        "NMENDUNID": "RUA MARAGOGI, 05 - ALTO JOSE DO PINHOA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO JOSE DO PINHO / IRMA DENIZE",
+        "address": "RUA MARAGOGI, 05 - ALTO JOSE DO PINHOA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -992,10 +969,9 @@
       "type": "Feature",
       "id": 25,
       "properties": {
-        "NMUNIDAD": "USF BURITY / MACAXEIRA",
-        "NMENDUNID": "RUA MARIA CANDIDA, 87 MACAXEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF BURITY / MACAXEIRA",
+        "address": "RUA MARIA CANDIDA, 87 MACAXEIRA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1033,10 +1009,9 @@
       "type": "Feature",
       "id": 26,
       "properties": {
-        "NMUNIDAD": "USF ALTO DA BRASILEIRA-DIOGENES F. C",
-        "NMENDUNID": "RUA ALTO DA BRASILEIRA, 1002 NOVA DESCOBERTA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DA BRASILEIRA-DIOGENES F. C",
+        "address": "RUA ALTO DA BRASILEIRA, 1002 NOVA DESCOBERTA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1070,10 +1045,9 @@
       "type": "Feature",
       "id": 27,
       "properties": {
-        "NMUNIDAD": "USF POCO DA PANELA",
-        "NMENDUNID": "RUA IRMA MARIA  DA PAZ, 108 POCO DA PANELA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF POCO DA PANELA",
+        "address": "RUA IRMA MARIA  DA PAZ, 108 POCO DA PANELA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1107,10 +1081,9 @@
       "type": "Feature",
       "id": 28,
       "properties": {
-        "NMUNIDAD": "USF SANTANA",
-        "NMENDUNID": "RUA OLIGARINHA DA CUNHA, 333 CASA FORTE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF SANTANA",
+        "address": "RUA OLIGARINHA DA CUNHA, 333 CASA FORTE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1144,10 +1117,9 @@
       "type": "Feature",
       "id": 29,
       "properties": {
-        "NMUNIDAD": "USF UR-04 E UR-05",
-        "NMENDUNID": "RUA CAPITAO VICENTE CURADO, 33 UR-04 UR-05 COHAB",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF UR-04 E UR-05",
+        "address": "RUA CAPITAO VICENTE CURADO, 33 UR-04 UR-05 COHAB",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1201,10 +1173,9 @@
       "type": "Feature",
       "id": 30,
       "properties": {
-        "NMUNIDAD": "POLICLINICA WALDEMAR DE OLIVEIRA",
-        "NMENDUNID": "RUA DO POMBAL, 115 - SANTO AMARO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA CEO"
+        "name": "POLICLINICA WALDEMAR DE OLIVEIRA",
+        "address": "RUA DO POMBAL, 115 - SANTO AMARO",
+        "type": "POLICLINICA CEO"
       },
       "geometry": {
         "type": "Polygon",
@@ -1246,10 +1217,9 @@
       "type": "Feature",
       "id": 31,
       "properties": {
-        "NMUNIDAD": "CENTRAL DE ALERGOLOGIA",
-        "NMENDUNID": "AVENIDA JOAO DE BARROS, 800 SANTO AMARO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRAL DE ALERGOLOGIA"
+        "name": "CENTRAL DE ALERGOLOGIA",
+        "address": "AVENIDA JOAO DE BARROS, 800 SANTO AMARO",
+        "type": "CENTRAL DE ALERGOLOGIA"
       },
       "geometry": {
         "type": "Polygon",
@@ -1299,10 +1269,9 @@
       "type": "Feature",
       "id": 32,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE CESAR MONTENUZA",
-        "NMENDUNID": "AV CAIS DO APOLO, 925  BAIRRO DO RECIFE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE CESAR MONTENUZA",
+        "address": "AV CAIS DO APOLO, 925  BAIRRO DO RECIFE",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -1336,10 +1305,9 @@
       "type": "Feature",
       "id": 33,
       "properties": {
-        "NMUNIDAD": "CAPS BOA VISTA",
-        "NMENDUNID": "RUA GENERAL JOSE SEMEAO, 146 BOA VISTA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CAPS BOA VISTA",
+        "address": "RUA GENERAL JOSE SEMEAO, 146 BOA VISTA",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -1377,10 +1345,9 @@
       "type": "Feature",
       "id": 34,
       "properties": {
-        "NMUNIDAD": "PROF. GUILHERME ABATH",
-        "NMENDUNID": "RUA MARECHAL TEODORO, 235 ENCRUZILHADA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "UNID. DE ATENCAO INTEGRAL A SAUDE"
+        "name": "PROF. GUILHERME ABATH",
+        "address": "RUA MARECHAL TEODORO, 235 ENCRUZILHADA",
+        "type": "UNID. DE ATENCAO INTEGRAL A SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -1430,10 +1397,9 @@
       "type": "Feature",
       "id": 35,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA FEMININA",
-        "NMENDUNID": "RUA CORONEL URBANO SENA, 873 CAJUEIRO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA FEMININA",
+        "address": "RUA CORONEL URBANO SENA, 873 CAJUEIRO",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -1471,10 +1437,9 @@
       "type": "Feature",
       "id": 36,
       "properties": {
-        "NMUNIDAD": "CAPS ESTACAO VICENTE ARAUJO",
-        "NMENDUNID": "RUA AUGUSTO RODRIGUES, 165 TORREAO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CAPS ESTACAO VICENTE ARAUJO",
+        "address": "RUA AUGUSTO RODRIGUES, 165 TORREAO",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -1512,10 +1477,9 @@
       "type": "Feature",
       "id": 37,
       "properties": {
-        "NMUNIDAD": "CAPS PROF. ZALDO ROCHA",
-        "NMENDUNID": "RUA CASTRO ALVES, 143 ENCRUZILHADA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CAPS PROF. ZALDO ROCHA",
+        "address": "RUA CASTRO ALVES, 143 ENCRUZILHADA",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -1549,10 +1513,9 @@
       "type": "Feature",
       "id": 38,
       "properties": {
-        "NMUNIDAD": "FARMACIA DA FAMILIA",
-        "NMENDUNID": "AV. BEBERIBE, 419 PONTO DE PARADA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "FARMACIA"
+        "name": "FARMACIA DA FAMILIA",
+        "address": "AV. BEBERIBE, 419 PONTO DE PARADA",
+        "type": "FARMACIA"
       },
       "geometry": {
         "type": "Polygon",
@@ -1586,10 +1549,9 @@
       "type": "Feature",
       "id": 39,
       "properties": {
-        "NMUNIDAD": "POLICLINICA LESSA DE ANDRADE",
-        "NMENDUNID": "ESTRADA DOS REMEDIOS, 2416 MADALENA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA CEO"
+        "name": "POLICLINICA LESSA DE ANDRADE",
+        "address": "ESTRADA DOS REMEDIOS, 2416 MADALENA",
+        "type": "POLICLINICA CEO"
       },
       "geometry": {
         "type": "Polygon",
@@ -1635,10 +1597,9 @@
       "type": "Feature",
       "id": 40,
       "properties": {
-        "NMUNIDAD": "CAPS ESPERANÇA",
-        "NMENDUNID": "RUA JOSE CARVALHEIRA, 415 TAMARINEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CAPS ESPERANÇA",
+        "address": "RUA JOSE CARVALHEIRA, 415 TAMARINEIRA",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -1672,10 +1633,9 @@
       "type": "Feature",
       "id": 41,
       "properties": {
-        "NMUNIDAD": "POLICLINICA E MATERNIDADE BARROS LIMA",
-        "NMENDUNID": "AVENIDA NORTE, 6501 CASA AMARELA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA  E MATERNIDADE"
+        "name": "POLICLINICA E MATERNIDADE BARROS LIMA",
+        "address": "AVENIDA NORTE, 6501 CASA AMARELA",
+        "type": "POLICLINICA  E MATERNIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -1721,10 +1681,9 @@
       "type": "Feature",
       "id": 42,
       "properties": {
-        "NMUNIDAD": "CENTRO MED SEN JOSE ERMIRIO DE MORAES",
-        "NMENDUNID": "AV 17 DE AGOSTO, 2388 CASA FORTE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO MED SEN JOSE ERMIRIO DE MORAES",
+        "address": "AV 17 DE AGOSTO, 2388 CASA FORTE",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -1786,10 +1745,9 @@
       "type": "Feature",
       "id": 44,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA FEMININA",
-        "NMENDUNID": "RUA PEDRO CABRAL DE OLIVEIRA, 53 AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA FEMININA",
+        "address": "RUA PEDRO CABRAL DE OLIVEIRA, 53 AFOGADOS",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -1823,10 +1781,9 @@
       "type": "Feature",
       "id": 45,
       "properties": {
-        "NMUNIDAD": "CAPS GALDINO LORETO",
-        "NMENDUNID": "RUA EMILIA TORREAO, 135 AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CAPS GALDINO LORETO",
+        "address": "RUA EMILIA TORREAO, 135 AFOGADOS",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -1860,10 +1817,9 @@
       "type": "Feature",
       "id": 46,
       "properties": {
-        "NMUNIDAD": "CEMPI",
-        "NMENDUNID": "AVENIDA SAO PAULO, 677 JARDIM SAO PAULO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CEMPI",
+        "address": "AVENIDA SAO PAULO, 677 JARDIM SAO PAULO",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -1897,10 +1853,9 @@
       "type": "Feature",
       "id": 47,
       "properties": {
-        "NMUNIDAD": "USF JARDIM SAO PAULO - GUARULHOS",
-        "NMENDUNID": "AVENIDA SAO PAULO, 605 JARDIM SAO PAULO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF JARDIM SAO PAULO - GUARULHOS",
+        "address": "AVENIDA SAO PAULO, 605 JARDIM SAO PAULO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1934,10 +1889,9 @@
       "type": "Feature",
       "id": 48,
       "properties": {
-        "NMUNIDAD": "USF MANGUEIRA II",
-        "NMENDUNID": "RUA FELICIANO CASTILHO, 64 MANGUEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF MANGUEIRA II",
+        "address": "RUA FELICIANO CASTILHO, 64 MANGUEIRA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -1971,10 +1925,9 @@
       "type": "Feature",
       "id": 49,
       "properties": {
-        "NMUNIDAD": "USF MUSTARDINHA - SEDE PROVISORIA",
-        "NMENDUNID": "RUA MAJOR MARIO PORTELA, 472 MUSTARDINHA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF MUSTARDINHA - SEDE PROVISORIA",
+        "address": "RUA MAJOR MARIO PORTELA, 472 MUSTARDINHA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2008,10 +1961,9 @@
       "type": "Feature",
       "id": 50,
       "properties": {
-        "NMUNIDAD": "USF VILA TAMANDARE / BEIRINHA",
-        "NMENDUNID": "RUA DIAS CARDOSO, 11 VILA TAMANDARE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF VILA TAMANDARE / BEIRINHA",
+        "address": "RUA DIAS CARDOSO, 11 VILA TAMANDARE",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2049,10 +2001,9 @@
       "type": "Feature",
       "id": 51,
       "properties": {
-        "NMUNIDAD": "USF PLANETA DOS MACACOS I",
-        "NMENDUNID": "RUA QUATRO DE SETEMBRO, 42 JARDIM SAO PAULO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF PLANETA DOS MACACOS I",
+        "address": "RUA QUATRO DE SETEMBRO, 42 JARDIM SAO PAULO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2086,10 +2037,9 @@
       "type": "Feature",
       "id": 52,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE PAN CEASA",
-        "NMENDUNID": "BR-101 GIRADOR DO CURADO 11606 JD. SAO PAULO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE PAN CEASA",
+        "address": "BR-101 GIRADOR DO CURADO 11606 JD. SAO PAULO",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2123,10 +2073,9 @@
       "type": "Feature",
       "id": 53,
       "properties": {
-        "NMUNIDAD": "USF CASARAO DO CORDEIRO",
-        "NMENDUNID": "AV MAURICIO DE NASSAU CONJ.HAB DO CORDEIRO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF CASARAO DO CORDEIRO",
+        "address": "AV MAURICIO DE NASSAU CONJ.HAB DO CORDEIRO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2160,10 +2109,9 @@
       "type": "Feature",
       "id": 54,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE BIDU KRAUSE",
-        "NMENDUNID": "AV ONZE DE AGOSTO S/N TOTO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE BIDU KRAUSE",
+        "address": "AV ONZE DE AGOSTO S/N TOTO",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2213,10 +2161,9 @@
       "type": "Feature",
       "id": 55,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE FERNANDES FIGUEIRA",
-        "NMENDUNID": "PRACAS JD SAO PAULO19 JD SAO PAULO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE FERNANDES FIGUEIRA",
+        "address": "PRACAS JD SAO PAULO19 JD SAO PAULO",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2298,10 +2245,9 @@
       "type": "Feature",
       "id": 56,
       "properties": {
-        "NMUNIDAD": "HOSPITAL  MARIA CRAVO GAMA",
-        "NMENDUNID": "RUA DO ROSARIO, S/N AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "HOSPITAL PEDIATRICO"
+        "name": "HOSPITAL  MARIA CRAVO GAMA",
+        "address": "RUA DO ROSARIO, S/N AFOGADOS",
+        "type": "HOSPITAL PEDIÁTRICO"
       },
       "geometry": {
         "type": "Polygon",
@@ -2359,10 +2305,9 @@
       "type": "Feature",
       "id": 57,
       "properties": {
-        "NMUNIDAD": "USF SAN MARTIN/POVO DE DEUS/PSF GERALDO BARRETO CAM",
-        "NMENDUNID": "RUA COMENDADOR FRANCO FERREIRA. 876 SAN MART",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF SAN MARTIN/POVO DE DEUS/PSF GERALDO BARRETO CAM",
+        "address": "RUA COMENDADOR FRANCO FERREIRA. 876 SAN MART",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2400,10 +2345,9 @@
       "type": "Feature",
       "id": 58,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE ROMERO MARQUES - IPIRANGA",
-        "NMENDUNID": "RUA CARLOS GOMES, 932 PRADO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE ROMERO MARQUES - IPIRANGA",
+        "address": "RUA CARLOS GOMES, 932 PRADO",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2445,10 +2389,9 @@
       "type": "Feature",
       "id": 59,
       "properties": {
-        "NMUNIDAD": "POLO PRACA DE SAN MARTIN",
-        "NMENDUNID": "PATIO DE EVENTOS NOEL RODRIGUES (PRAÇA DA FEIRA)",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO PRACA DE SAN MARTIN",
+        "address": "PATIO DE EVENTOS NOEL RODRIGUES (PRAÇA DA FEIRA)",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2482,10 +2425,9 @@
       "type": "Feature",
       "id": 60,
       "properties": {
-        "NMUNIDAD": "POLO PRACA DE JARDIM SAO PAULO",
-        "NMENDUNID": "PRAÇA DE JARDIM SAO PAULO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO PRACA DE JARDIM SAO PAULO",
+        "address": "PRAÇA DE JARDIM SAO PAULO",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2519,10 +2461,9 @@
       "type": "Feature",
       "id": 61,
       "properties": {
-        "NMUNIDAD": "MATERNIDADE BANDEIRA FILHO",
-        "NMENDUNID": "RUA LONDRINA, S/N - AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "MATERNIDADE"
+        "name": "MATERNIDADE BANDEIRA FILHO",
+        "address": "RUA LONDRINA, S/N - AFOGADOS",
+        "type": "MATERNIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2564,10 +2505,9 @@
       "type": "Feature",
       "id": 62,
       "properties": {
-        "NMUNIDAD": "POLICLINICA AGAMENOM MAGALHAES",
-        "NMENDUNID": "RUA MOTOCOLOMBO - AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA CEO SPA"
+        "name": "POLICLINICA AGAMENOM MAGALHAES",
+        "address": "RUA MOTOCOLOMBO - AFOGADOS",
+        "type": "POLICLINICA CEO SPA"
       },
       "geometry": {
         "type": "Polygon",
@@ -2633,10 +2573,9 @@
       "type": "Feature",
       "id": 63,
       "properties": {
-        "NMUNIDAD": "POLICLINICA DO PINA",
-        "NMENDUNID": "AV. REPUBLICA DO LIBANO, 355 BEIRA RIO - PINA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA"
+        "name": "POLICLINICA DO PINA",
+        "address": "AV. REPUBLICA DO LIBANO, 355 BEIRA RIO - PINA",
+        "type": "POLICLINICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -2674,10 +2613,9 @@
       "type": "Feature",
       "id": 64,
       "properties": {
-        "NMUNIDAD": "USF COQUEIRAL",
-        "NMENDUNID": "RUASARGENTO SILVINO DE MACEDO, 129 IMBIRIBEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF COQUEIRAL",
+        "address": "RUASARGENTO SILVINO DE MACEDO, 129 IMBIRIBEIRA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2711,10 +2649,9 @@
       "type": "Feature",
       "id": 65,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTA DO IPSEP",
-        "NMENDUNID": "RUA DOUTOR GONZAGA MARANHAO, 94 IPSEP",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTA DO IPSEP",
+        "address": "RUA DOUTOR GONZAGA MARANHAO, 94 IPSEP",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -2748,10 +2685,9 @@
       "type": "Feature",
       "id": 66,
       "properties": {
-        "NMUNIDAD": "USF BEIRA RIO / BOA VIAGEM",
-        "NMENDUNID": "RUA RIBEIRO BRITO, 1361 BEIRA RIO - BOA VIAGEM",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF BEIRA RIO / BOA VIAGEM",
+        "address": "RUA RIBEIRO BRITO, 1361 BEIRA RIO - BOA VIAGEM",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2779,16 +2715,15 @@
             ]
           ]
         ]
-      }
+           }
     },
     {
       "type": "Feature",
       "id": 67,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE DR ARISTARCO DE AZEVEDO",
-        "NMENDUNID": "RUA BAHIA, 29 JORDAO BAIXO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE DR ARISTARCO DE AZEVEDO",
+        "address": "RUA BAHIA, 29 JORDAO BAIXO",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2822,10 +2757,9 @@
       "type": "Feature",
       "id": 68,
       "properties": {
-        "NMUNIDAD": "CENTRO DE AUDES MIGUEL DE LIMA VALVERDE",
-        "NMENDUNID": "RUA FELICIANO JOSE DE FARIAS, 195, BOA VIAGEM",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE AUDES MIGUEL DE LIMA VALVERDE",
+        "address": "RUA FELICIANO JOSE DE FARIAS, 195, BOA VIAGEM",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -2863,10 +2797,9 @@
       "type": "Feature",
       "id": 69,
       "properties": {
-        "NMUNIDAD": "USF PAZ E AMOR",
-        "NMENDUNID": "RUA SENADOR POMPEU, 120 - IBURA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF PAZ E AMOR",
+        "address": "RUA SENADOR POMPEU, 120 - IBURA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2900,10 +2833,9 @@
       "type": "Feature",
       "id": 70,
       "properties": {
-        "NMUNIDAD": "USF CIDADE OPERARIA",
-        "NMENDUNID": "RUA EMILIO MONTEIRO FONSECA Nº 1688 - IBURA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF CIDADE OPERARIA",
+        "address": "RUA EMILIO MONTEIRO FONSECA Nº 1688 - IBURA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2937,10 +2869,9 @@
       "type": "Feature",
       "id": 71,
       "properties": {
-        "NMUNIDAD": "USF MORRO DA CONCEICAO - JOSE BONIFACIO DOS SANTOS",
-        "NMENDUNID": "RUA DA CONCEICAO, 589- MORRO DA CONCECAO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "PSF"
+        "name": "USF MORRO DA CONCEICAO - JOSE BONIFACIO DOS SANTOS",
+        "address": "RUA DA CONCEICAO, 589- MORRO DA CONCECAO",
+        "type": "PSF"
       },
       "geometry": {
         "type": "Polygon",
@@ -2974,10 +2905,9 @@
       "type": "Feature",
       "id": 72,
       "properties": {
-        "NMUNIDAD": "POLO DO MORRO DA CONCEICAO",
-        "NMENDUNID": "PRACA DO MORRO DA CONCEIÇAO, 589",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO DO MORRO DA CONCEICAO",
+        "address": "PRACA DO MORRO DA CONCEIÇAO, 589",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -3039,10 +2969,9 @@
       "type": "Feature",
       "id": 73,
       "properties": {
-        "NMUNIDAD": "USF ALTO DA JAQUEIRA",
-        "NMENDUNID": "RUA FLORES DO ORIENTE, 56 IBURA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DA JAQUEIRA",
+        "address": "RUA FLORES DO ORIENTE, 56 IBURA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3076,10 +3005,9 @@
       "type": "Feature",
       "id": 74,
       "properties": {
-        "NMUNIDAD": "USF ALTO DA BELA VISTA",
-        "NMENDUNID": "RUA DEMERVAL LOBAO, 672 ALTO DA BELA VISTA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DA BELA VISTA",
+        "address": "RUA DEMERVAL LOBAO, 672 ALTO DA BELA VISTA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3113,10 +3041,9 @@
       "type": "Feature",
       "id": 75,
       "properties": {
-        "NMUNIDAD": "USF JORDAO BAIXO",
-        "NMENDUNID": "RUA JOSE MARTORANO, 100",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF JORDAO BAIXO",
+        "address": "RUA JOSE MARTORANO, 100",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3170,10 +3097,9 @@
       "type": "Feature",
       "id": 76,
       "properties": {
-        "NMUNIDAD": "USF VILA DO SESI",
-        "NMENDUNID": "RUA PROFESSOR  FERNANDO MOTA, 127 VILA DO SESI IBURA DE BA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF VILA DO SESI",
+        "address": "RUA PROFESSOR  FERNANDO MOTA, 127 VILA DO SESI IBURA DE BA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3207,10 +3133,9 @@
       "type": "Feature",
       "id": 77,
       "properties": {
-        "NMUNIDAD": "USF UR-03",
-        "NMENDUNID": "AVENIDA ENGENHO BABILONIA, 168 COHAB",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF UR-03",
+        "address": "AVENIDA ENGENHO BABILONIA, 168 COHAB",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3248,10 +3173,9 @@
       "type": "Feature",
       "id": 78,
       "properties": {
-        "NMUNIDAD": "USF UR-12 UR-05 3 ETAPA",
-        "NMENDUNID": "RUA FRANCISCO MIRANDA, 16 COHAB",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF UR-12 UR-05 3 ETAPA",
+        "address": "RUA FRANCISCO MIRANDA, 16 COHAB",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3285,10 +3209,9 @@
       "type": "Feature",
       "id": 79,
       "properties": {
-        "NMUNIDAD": "USF DANCING DAYS",
-        "NMENDUNID": "USF DANCING DAYS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF DANCING DAYS",
+        "address": "USF DANCING DAYS",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3322,10 +3245,9 @@
       "type": "Feature",
       "id": 80,
       "properties": {
-        "NMUNIDAD": "USF IRAQUE - RUA DO RIO",
-        "NMENDUNID": "RUA MEARIM, 55 ESTANCIA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF IRAQUE - RUA DO RIO",
+        "address": "RUA MEARIM, 55 ESTANCIA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3359,10 +3281,9 @@
       "type": "Feature",
       "id": 81,
       "properties": {
-        "NMUNIDAD": "ESPACO TRAVESSIA RENE RIBEIRO",
-        "NMENDUNID": "RUA JACIRA, 210 AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "ESPACO TRAVESSIA RENE RIBEIRO",
+        "address": "RUA JACIRA, 210 AFOGADOS",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -3408,10 +3329,9 @@
       "type": "Feature",
       "id": 82,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA  II - MISTA",
-        "NMENDUNID": "RUA CINCO DE NOVEMBRO, 229 AFOGADOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA  II - MISTA",
+        "address": "RUA CINCO DE NOVEMBRO, 229 AFOGADOS",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -3445,10 +3365,9 @@
       "type": "Feature",
       "id": 83,
       "properties": {
-        "NMUNIDAD": "USF MANGUEIRA I",
-        "NMENDUNID": "RUA JUPIAÇARA 70 MANGUEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF MANGUEIRA I",
+        "address": "RUA JUPIAÇARA 70 MANGUEIRA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3482,10 +3401,9 @@
       "type": "Feature",
       "id": 84,
       "properties": {
-        "NMUNIDAD": "CAPS ESPACO VIDA",
-        "NMENDUNID": "RUA AMBROSIO MACHADO, 280 IPUTINGA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS"
+        "name": "CAPS ESPACO VIDA",
+        "address": "RUA AMBROSIO MACHADO, 280 IPUTINGA",
+        "type": "CAPS"
       },
       "geometry": {
         "type": "Polygon",
@@ -3519,10 +3437,9 @@
       "type": "Feature",
       "id": 85,
       "properties": {
-        "NMUNIDAD": "CASA MEIO DO CAMINHO CALESTE A",
-        "NMENDUNID": "RUA VISCONDI DE ITABORAI, 619 CORDEIRO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ALBERGUE TERAPEUTICO"
+        "name": "CASA MEIO DO CAMINHO CALESTE A",
+        "address": "RUA VISCONDI DE ITABORAI, 619 CORDEIRO",
+        "type": "ALBERGUE TERAPEUTICO"
       },
       "geometry": {
         "type": "Polygon",
@@ -3568,10 +3485,9 @@
       "type": "Feature",
       "id": 86,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA MASCULINA",
-        "NMENDUNID": "RUA DESEMBARGADOR VIRGILIO DE SA BANDEIRA, 683 CORDEIRO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA MASCULINA",
+        "address": "RUA DESEMBARGADOR VIRGILIO DE SA BANDEIRA, 683 CORDEIRO",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -3605,10 +3521,9 @@
       "type": "Feature",
       "id": 87,
       "properties": {
-        "NMUNIDAD": "CENTRO DE SAUDE PROFESSOR JOAQUIM CAVALCANTI",
-        "NMENDUNID": "ESTRADA DO FORTE DO ARRAIAL NOVO DO BOM JESUS, 1336 TORROES",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO DE SAUDE PROFESSOR JOAQUIM CAVALCANTI",
+        "address": "ESTRADA DO FORTE DO ARRAIAL NOVO DO BOM JESUS, 1336 TORROES",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -3642,10 +3557,9 @@
       "type": "Feature",
       "id": 88,
       "properties": {
-        "NMUNIDAD": "CENTRO SAUDE OLINTO DE OLIVEIRA",
-        "NMENDUNID": "RUA FRANCISCO DE PAULA, 47, CAXANGA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CENTRO DE SAUDE"
+        "name": "CENTRO SAUDE OLINTO DE OLIVEIRA",
+        "address": "RUA FRANCISCO DE PAULA, 47, CAXANGA",
+        "type": "CENTRO DE SAUDE"
       },
       "geometry": {
         "type": "Polygon",
@@ -3679,10 +3593,9 @@
       "type": "Feature",
       "id": 89,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA MASCULINA",
-        "NMENDUNID": "RUA XAVANTE, 101 CASA AMARELA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA MASCULINA",
+        "address": "RUA XAVANTE, 101 CASA AMARELA",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -3720,10 +3633,9 @@
       "type": "Feature",
       "id": 90,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA  FEMININA",
-        "NMENDUNID": "RUA GOMES COUTINHO, 114 TAMARINEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA  FEMININA",
+        "address": "RUA GOMES COUTINHO, 114 TAMARINEIRA",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -3757,10 +3669,9 @@
       "type": "Feature",
       "id": 91,
       "properties": {
-        "NMUNIDAD": "USF MANGABEIRA",
-        "NMENDUNID": "RUA DA MANGABEIRA, 364 MANGABEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF MANGABEIRA",
+        "address": "RUA DA MANGABEIRA, 364 MANGABEIRA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3794,10 +3705,9 @@
       "type": "Feature",
       "id": 92,
       "properties": {
-        "NMUNIDAD": "CPTRA CENTRO DE PREV. E REAB. DE ALCO",
-        "NMENDUNID": "AVENIDA CONSELHEIRO ROSA E SILVA, 2130 JAQUEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CAPS AD"
+        "name": "CPTRA CENTRO DE PREV. E REAB. DE ALCO",
+        "address": "AVENIDA CONSELHEIRO ROSA E SILVA, 2130 JAQUEIRA",
+        "type": "CAPS AD"
       },
       "geometry": {
         "type": "Polygon",
@@ -3831,10 +3741,9 @@
       "type": "Feature",
       "id": 93,
       "properties": {
-        "NMUNIDAD": "POLICLINICA CLEMENTINO FRAGA",
-        "NMENDUNID": "RUA JAPARATUBA, 260 VASCO DA GAMA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA CEO"
+        "name": "POLICLINICA CLEMENTINO FRAGA",
+        "address": "RUA JAPARATUBA, 260 VASCO DA GAMA",
+        "type": "POLICLINICA CEO"
       },
       "geometry": {
         "type": "Polygon",
@@ -3872,10 +3781,9 @@
       "type": "Feature",
       "id": 94,
       "properties": {
-        "NMUNIDAD": "CENTRO DE VIGILANCIA AMBIENTAL",
-        "NMENDUNID": "AVENIDA  CORREIA DE BRITO, 1135 PEIXINHOS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "CVA"
+        "name": "CENTRO DE VIGILANCIA AMBIENTAL",
+        "address": "AVENIDA  CORREIA DE BRITO, 1135 PEIXINHOS",
+        "type": "CVA"
       },
       "geometry": {
         "type": "Polygon",
@@ -3937,10 +3845,9 @@
       "type": "Feature",
       "id": 95,
       "properties": {
-        "NMUNIDAD": "USF ALTO DOS COQUEIROS / CORREGO DA JAQUEIRA",
-        "NMENDUNID": "RUA CORREGO DA JAQUEIRA, 160 LINHA DO TIRO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF ALTO DOS COQUEIROS / CORREGO DA JAQUEIRA",
+        "address": "RUA CORREGO DA JAQUEIRA, 160 LINHA DO TIRO",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -3974,10 +3881,9 @@
       "type": "Feature",
       "id": 96,
       "properties": {
-        "NMUNIDAD": "RESIDENCIA TERAPEUTICA MISTA II",
-        "NMENDUNID": "ESTRADA VELHA DE AGUA FRIA, 1352  AGUA FRIA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "RESIDENCIA TERAPEUTICA"
+        "name": "RESIDENCIA TERAPEUTICA MISTA II",
+        "address": "ESTRADA VELHA DE AGUA FRIA, 1352  AGUA FRIA",
+        "type": "RESIDENCIA TERAPEUTICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -4011,10 +3917,9 @@
       "type": "Feature",
       "id": 97,
       "properties": {
-        "NMUNIDAD": "USF BRASILIA TEIMOSA - BERNARDO VAN LEE",
-        "NMENDUNID": "TRAVESSA DOS JASMINS, S/N - PINA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "USF"
+        "name": "USF BRASILIA TEIMOSA - BERNARDO VAN LEE",
+        "address": "TRAVESSA DOS JASMINS, S/N - PINA",
+        "type": "USF"
       },
       "geometry": {
         "type": "Polygon",
@@ -4072,10 +3977,9 @@
       "type": "Feature",
       "id": 98,
       "properties": {
-        "NMUNIDAD": "POLO BRASILIA TEIMOSA",
-        "NMENDUNID": "AVENIDA BRASÍLIA FORMOSA, S/N-BRASILIA TEIMOSA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO BRASILIA TEIMOSA",
+        "address": "AVENIDA BRASÍLIA FORMOSA, S/N-BRASILIA TEIMOSA",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -4117,10 +4021,9 @@
       "type": "Feature",
       "id": 99,
       "properties": {
-        "NMUNIDAD": "POLO ILHA DO JOANEIRO / TORREAO",
-        "NMENDUNID": "AV AGAMENON MAGALHAES - TORREAO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO ILHA DO JOANEIRO / TORREAO",
+        "address": "AV AGAMENON MAGALHAES - TORREAO",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -4354,10 +4257,9 @@
       "type": "Feature",
       "id": 101,
       "properties": {
-        "NMUNIDAD": "POLO ENGENHO DO MEIO",
-        "NMENDUNID": "PRAÇA DO ENGENHO DO MEIO - ENGENHO DO MEIO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO ENGENHO DO MEIO",
+        "address": "PRAÇA DO ENGENHO DO MEIO - ENGENHO DO MEIO",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -4503,10 +4405,9 @@
       "type": "Feature",
       "id": 102,
       "properties": {
-        "NMUNIDAD": "POLO DO COQUE",
-        "NMENDUNID": "AV MARTINS LUTHER KING, S/N. JOANA BEZERRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO DO COQUE",
+        "address": "AV MARTINS LUTHER KING, S/N. JOANA BEZERRA",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -4784,10 +4685,9 @@
       "type": "Feature",
       "id": 104,
       "properties": {
-        "NMUNIDAD": "POLO CHIE",
-        "NMENDUNID": "AV AGAMENON MAGALHAES, CAMPO GRANDE",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO CHIE",
+        "address": "AV AGAMENON MAGALHAES, CAMPO GRANDE",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -5045,10 +4945,9 @@
       "type": "Feature",
       "id": 105,
       "properties": {
-        "NMUNIDAD": "POLO SANTO AMARO",
-        "NMENDUNID": "AV AGAMENON MAGALHAES, SANTO AMARO",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO SANTO AMARO",
+        "address": "AV AGAMENON MAGALHAES, SANTO AMARO",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -5330,10 +5229,9 @@
       "type": "Feature",
       "id": 106,
       "properties": {
-        "NMUNIDAD": "POLO SIMAO BORBA",
-        "NMENDUNID": "RUA SIMAO BORBA, AREIAS",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO SIMAO BORBA",
+        "address": "RUA SIMAO BORBA, AREIAS",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -5459,10 +5357,9 @@
       "type": "Feature",
       "id": 107,
       "properties": {
-        "NMUNIDAD": "POLO DA VARZEA",
-        "NMENDUNID": "PRAÇA ENGENHO POETA / DO ROTARY - VARZEA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO DA VARZEA",
+        "address": "PRAÇA ENGENHO POETA / DO ROTARY - VARZEA",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -5652,10 +5549,9 @@
       "type": "Feature",
       "id": 108,
       "properties": {
-        "NMUNIDAD": "POLO DO ALTO DO CAPITAO",
-        "NMENDUNID": "RUA TUPIRAÇABA, S/N- DOIS UNIDOS.",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO DO ALTO DO CAPITAO",
+        "address": "RUA TUPIRAÇABA, S/N- DOIS UNIDOS.",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -5817,10 +5713,9 @@
       "type": "Feature",
       "id": 109,
       "properties": {
-        "NMUNIDAD": "POLO PRACA DO BURUTY",
-        "NMENDUNID": "AV NORTE MIGUEL ARRAES DE ALENCAR, MACAXEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO PRACA DO BURUTY",
+        "address": "AV NORTE MIGUEL ARRAES DE ALENCAR, MACAXEIRA",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -5950,10 +5845,9 @@
       "type": "Feature",
       "id": 110,
       "properties": {
-        "NMUNIDAD": "POLO LAGOA DO ARACA",
-        "NMENDUNID": "AV JOSE FERREIRA LINS, LAGOA DO ARACA - IMBIRIBEIRA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO LAGOA DO ARACA",
+        "address": "AV JOSE FERREIRA LINS, LAGOA DO ARACA - IMBIRIBEIRA",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -6683,10 +6577,9 @@
       "type": "Feature",
       "id": 111,
       "properties": {
-        "NMUNIDAD": "POLO DO IPSEP",
-        "NMENDUNID": "PRAÇA SENADOR ROBERTO KENED Y- IPSEP",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "ACADEMIA DA CIDADE"
+        "name": "POLO DO IPSEP",
+        "address": "PRAÇA SENADOR ROBERTO KENED Y- IPSEP",
+        "type": "ACADEMIA DA CIDADE"
       },
       "geometry": {
         "type": "Polygon",
@@ -6848,10 +6741,9 @@
       "type": "Feature",
       "id": 112,
       "properties": {
-        "NMUNIDAD": "POLICLINICA SALOMAO KELNER",
-        "NMENDUNID": "ESTRADA VELHA DE AGUA FRIA, S/N - ARRUDA",
-        "NMPATRIM": "PROPRIO",
-        "CDTIPO": "POLICLINICA"
+        "name": "POLICLINICA SALOMAO KELNER",
+        "address": "ESTRADA VELHA DE AGUA FRIA, S/N - ARRUDA",
+        "type": "POLICLINICA"
       },
       "geometry": {
         "type": "Polygon",
@@ -6887,6 +6779,149 @@
             ]
           ]
         ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 113,
+      "properties": {
+        "name": "FUNDAÇÃO MARTINIANO FERNANDES (IMIP HOSPITALAR)",
+        "address": "RUA DOS COELHOS, 450 - BOA VISTA",
+        "type": "HOSPITAL FILANTROPICO",
+        "rpa": 1,
+        "distrito_sanitario": 1,
+        "microregiao": 1.2,
+        "cnes": 9999999,
+        "cod_nat": "parceria",
+        "tipo_servico": "HOSPITAL FILANTRÓPICO",
+        "bairro": "BOA VISTA",
+        "especialidade": "VARIAS ESPECIALIDADES",
+        "horario": "24h",
+        "como_usar": "Os usuários são encaminhadas pelas unidade de saúde onde realizam suas consulta. Os atendimentos de urgências e emergências por demanda espontânea."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-34.8902403, -8.0676663]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 114,
+      "properties": {
+        "name": "HOSPITAL SANTO AMARO (IRMANDADE DA SANTA CASA DE MISERICÓRDIA DO RECIFE)",
+        "address": "AVENIDA CRUZ CABUGA, 1563 - SANTO AMARO",
+        "type": "HOSPITAL FILANTROPICO",
+        "rpa": 1,
+        "distrito_sanitario": 1,
+        "microregiao": 1.1,
+        "cnes": 9999999,
+        "cod_nat": "proprio",
+        "tipo_servico": "HOSPITAL FILANTRÓPICO",
+        "bairro": "SANTO AMARO",
+        "fone": "3412 3800",
+        "especialidade": "VÁRIAS ESPECIALIDADES",
+        "horario": "24h",
+        "como_usar": "Os usuários são encaminhadas pelas unidade de saúde onde realizam suas consulta. Os atendimentos de urgências e emergências por demanda espontânea."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-34.874358, -8.0422253]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 115,
+      "properties": {
+        "name": "CASA DE SAÚDE MARIA LUCINDA (FUNDAÇÃO MANOEL DA SILVA ALMEIDA)",
+        "address": "AVENIDA PARNAMIRIM, 95 - PARNAMIRIM",
+        "type": "HOSPITAL FILANTROPICO",
+        "rpa": 3,
+        "distrito_sanitario": 3,
+        "microregiao": 3.1,
+        "cnes": 9999999,
+        "cod_nat": "proprio",
+        "tipo_servico": "HOSPITAL FILANTRÓPICO",
+        "bairro": "PARNAMIRIM",
+        "fone": "3267 4201",
+        "especialidade": "VÁRIAS ESPECIALIDADES",
+        "horario": "24h",
+        "como_usar": "Os usuários são encaminhadas pelas unidade de saúde onde realizam suas consulta. Os atendimentos de urgências e emergências por demanda espontânea."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-34.9077888, -8.0356503]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 116,
+      "properties": {
+        "name": "US 163 HOSPITAL DE PEDIATRIA HELENA MOURA",
+        "address": "RUA CONEGO BARATA, S/N  - TAMARINEIRA",
+        "type": "HOSPITAL PEDIATRICO",
+        "rpa": 3,
+        "distrito_sanitario": 3,
+        "microregiao": 3.1,
+        "cnes": "0001015",
+        "cod_nat": "proprio",
+        "tipo_servico": "HOSPITAL PEDIÁTRICO",
+        "bairro": "TAMARINEIRA",
+        "fone": "3355-3297",
+        "especialidade": "SPA INFANTIL, RADIOLOGISTA, PEDIATRIA, PNEUMOLOGISTA INFANTIL, FISIOTERAPIA",
+        "horario": "24h",
+        "como_usar": "Os usuários são encaminhadas pelas unidade de saúde onde realizam suas consulta. Os atendimentos de urgências e emergências por demanda espontânea."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-34.9011284002, -8.03198477055]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 117,
+      "properties": {
+        "name": "HOSPITAL EVANGÉLICO DE PERNAMBUCO",
+        "address": "RUA FREI JABOATAO, 301 - TORRE",
+        "type": "HOSPITAL FILANTRÓPICO",
+        "rpa": 4,
+        "distrito_sanitario": 4,
+        "microregiao": 4.1,
+        "cnes": 9999999,
+        "cod_nat": "proprio",
+        "tipo_servico": "HOSPITAL FILANTRÓPICO",
+        "bairro": "TORRE",
+        "fone": "3228 2010",
+        "especialidade": "VÁRIAS ESPECIALIDADES",
+        "horario": "24h",
+        "como_usar": "Os usuários são encaminhadas pelas unidade de saúde onde realizam suas consulta. Os atendimentos de urgências e emergências por demanda espontânea."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-34.90659, -8.038833]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 118,
+      "properties": {
+        "name": "US 444 HOSPITAL DA MULHER DE RECIFE DRA MERCES PONTES CUNHA",
+        "address": "BR 101 SUL, N/Nº - CURADO",
+        "type": "HOSPITAL DA MULHER",
+        "rpa": 5,
+        "distrito_sanitario": 5,
+        "microregiao": 5.3,
+        "cnes": 7958838,
+        "cod_nat": "proprio",
+        "tipo_servico": "HOSPITAL DA MULHER",
+        "bairro": "CURADO",
+        "fone": "32178125",
+        "especialidade": "OBSTETRICIA, INFECTOLOGIA, ENDOCRINOLOGIA, CARDIOLOGIA, NEUROLOGIA, CLINICA MEDICA, MASTOLOGIA, UROGINECOLOGIA, NEFROLOGIA, HEMATOLOGIA, PSIQUIATRIA, HEPATOLOGIA, CIRURGIA PLASTICA, NEONATOLOGIA, PSICOLOGIA, SEXOLOGIA, GINECOLOGIA. EXAMES DE IMAGEM (TOMOGRAFIA, RESSONÂNCIA MAGNÉTICA, ULTRA-SOM, RAIO X, ENDOSCOPIA).",
+        "horario": "24h",
+        "como_usar": "O atendimento é exclusivo para mulheres residentes no Recife, referenciadas pela Unidade de Saúde da Família (USF) mais próxima da paciente. O acesso das usuárias respeita o fluxo de marcação estabelecido pelo Sistema de Regulação da Prefeitura do Recife."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-34.9410991217, -8.07063930706]]]
       }
     }
   ]
