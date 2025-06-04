@@ -71,10 +71,15 @@
                 <a href="#" class="detalhes">Ver detalhes</a>
             </div>
         </div>
-    </main>
+    </main>    <script>
+        let todasUbs = [];
+        
+        // Carregar dados assim que o documento estiver pronto
+        window.addEventListener('load', () => {
+            console.log('Página carregada, iniciando carregamento de dados...');
+            carregarDados();
+        });
 
-
-    <script>
         const hamburgerBtn = document.getElementById("hamburger-btn");
         const navMenu = document.getElementById("nav-menu");
         const dropdownToggle = document.querySelector(".dropdown-toggle");
@@ -112,37 +117,48 @@
             });
         }        // =============================
         // Filtro de unidades de saúde
-        // =============================
-
-        let todasUbs = [];        async function carregarDados() {
+        // =============================        
+        async function carregarDados() {
+            console.log('Iniciando carregamento de dados...');
             try {
                 const response = await fetch('../data/unidades_saude_merged.json');
                 if (!response.ok) {
                     throw new Error(`Erro ao carregar dados: ${response.status}`);
                 }
                 const data = await response.json();
-                // Transformar os dados do GeoJSON para o formato que precisamos
-                todasUbs = data.features.map(feature => ({
-                    nome_oficial: feature.properties.name || feature.properties.NMUNIDAD,
-                    endereo: feature.properties.address || feature.properties.NMENDUNID,
-                    bairro: feature.properties.bairro || 
-                           (feature.properties.address ? feature.properties.address.split(',').pop().trim() : ''),
-                    tipo: feature.properties.type || feature.properties.CDTIPO,
-                    especialidade: feature.properties.tipo_servico || feature.properties.type || feature.properties.CDTIPO,
-                    distrito_sanitario: feature.properties.distrito_sanitario,
-                    rpa: feature.properties.rpa,
-                    horario: "SEGUNDA A SEXTA 08:00 às 17:00" // Horário padrão já que não temos essa informação
-                }));
+                console.log('Dados JSON brutos:', data);
                 
-                console.log('Dados carregados:', todasUbs);
-                preencherEspecialidades(todasUbs);
+                if (!data || !data.features) {
+                    throw new Error('Formato de dados inválido');
+                }
+
+                todasUbs = data.features.map(feature => {
+                    const props = feature.properties || {};
+                    return {
+                        nome_oficial: props.name || 'Nome não disponível',
+                        endereo: props.address || 'Endereço não disponível',
+                        bairro: props.bairro || '',
+                        tipo: props.type || '',
+                        especialidade: props.type || 'Tipo não informado',
+                        distrito_sanitario: props.distrito_sanitario || '',
+                        rpa: props.rpa || '',
+                        fone: props.fone || 'Fone não disponível',
+                        horario: 'SEGUNDA A SEXTA 08:00 às 17:00'
+                    };
+                });
+                
+                console.log('Dados processados:', todasUbs);
+                if (todasUbs.length > 0) {
+                    preencherEspecialidades(todasUbs);
+                    filtrarUbs();
+                } else {
+                    throw new Error('Nenhuma unidade de saúde encontrada');
+                }
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
-                document.getElementById("resultado-container").innerHTML = 
-                    `<p class="no-results">Erro ao carregar os dados. Por favor, tente novamente mais tarde.</p>`;
+                document.getElementById('resultado-container').innerHTML = 
+                    `<p class="no-results">Erro ao carregar os dados: ${error.message}</p>`;
             }
-
-            preencherEspecialidades(todasUbs);
         }
 
         function preencherEspecialidades(lista) {
@@ -150,20 +166,21 @@
             const especialidades = new Set();
 
             lista.forEach(item => {
-                if (item.especialidade) {
-                    const valores = item.especialidade.split(",").map(e => e.trim());
-                    valores.forEach(e => especialidades.add(e));
+                if (item.tipo) {
+                    especialidades.add(item.tipo);
                 }
             });
 
             select.innerHTML = `<option value="">Todas as especialidades</option>`;
 
-            Array.from(especialidades).sort().forEach(esp => {
-                const option = document.createElement("option");
-                option.value = esp;
-                option.textContent = esp;
-                select.appendChild(option);
-            });
+            Array.from(especialidades)
+                .sort()
+                .forEach(esp => {
+                    const option = document.createElement("option");
+                    option.value = esp;
+                    option.textContent = esp;
+                    select.appendChild(option);
+                });
 
             select.value = "";
         }
@@ -184,21 +201,24 @@
         }
 
         function mostrarResultados(lista) {
+            console.log('Lista de UBS para mostrar:', lista);
             const container = document.getElementById("resultado-container");
             container.innerHTML = "";
 
             if (lista.length === 0) {
                 container.innerHTML = `<p class="no-results">Nenhuma unidade com a especialidade selecionada foi encontrada nesta região.</p>`;
                 return;
-            }            lista.forEach(ubs => {
+            }
+            
+            lista.forEach(ubs => {
                 const nomeUnidade = (ubs.nome_oficial && ubs.nome_oficial.trim()) || "Nome não disponível";
-
                 const card = document.createElement("div");
                 card.className = "card-unidade";
                 card.innerHTML = `
                     <span class="nome-unidade">${nomeUnidade}</span>
                     <p class="especialidades"><strong>${ubs.especialidade || 'Tipo não informado'}</strong></p>
                     <p class="endereco">${ubs.endereo || 'Endereço não informado'}</p>
+                    <p class="telefone"><strong>Telefone:</strong> ${ubs.fone}</p>
                     ${ubs.distrito_sanitario ? `<p class="distrito">Distrito Sanitário: ${ubs.distrito_sanitario}</p>` : ''}
                     ${ubs.rpa ? `<p class="rpa">RPA: ${ubs.rpa}</p>` : ''}
                     <p class="horario">${ubs.horario}</p>
@@ -224,7 +244,12 @@
             selectEspecialidades.addEventListener("touchend", filtrarUbs);
         }
 
-        carregarDados();
+        // Carregar dados imediatamente
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Iniciando carregamento de dados...');
+            carregarDados();
+        });
+
 
 
     </script>

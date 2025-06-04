@@ -93,11 +93,24 @@ body {
 }
 
 /* Endereço */
-.card-address {
+.card-address, .endereco {
     font-size: 0.95rem;
     color: #555;
     margin-bottom: 10px;
     line-height: 1.3;
+}
+
+/* Telefone */
+.telefone {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.3;
+}
+
+.telefone strong {
+    color: #333;
+    margin-right: 5px;
 }
 
 /* Especialidades */
