@@ -228,25 +228,7 @@ h1 {
 }
 
 /* Estilos para geolocalização */
-.user-location {
-    color: #ff4444;
-    font-size: 24px;
-    text-align: center;
-}
 
-#distancia-info {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#distancia-info p {
-    margin: 0;
-    color: #333;
-    font-weight: bold;
-}
 
 .posto-card p:last-child {
     color: #0066cc;
@@ -295,61 +277,99 @@ h1 {
 
 /* Estilos para a lista de unidades de saúde */
 #lista-unidades {
-    margin-top: 20px;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
     background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-#lista-unidades h3 {
-    color: #1565c0;
-    margin-bottom: 15px;
-    font-size: 1.2em;
+.unidades-header {
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #006494;
+}
+
+.unidades-header h3 {
+    color: #006494;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin: 0;
 }
 
 .unidade-item {
-    padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.unidade-item:last-child {
-    border-bottom: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
 }
 
 .unidade-item:hover {
-    background-color: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: #006494;
 }
 
 .unidade-item h4 {
-    color: #333;
-    margin-bottom: 5px;
+    color: #006494;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
 
-.unidade-item p {
-    color: #666;
-    margin: 3px 0;
-    font-size: 0.9em;
+.unidade-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.search-button {
-    background-color: #1565c0;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.unidade-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.search-button:hover {
-    background-color: #0d47a1;
+.unidade-info span {
+    color: #006494;
+    font-weight: 500;
 }
 
-.search-button:disabled {
-    background-color: #90caf9;
-    cursor: not-allowed;
+/* Escondendo elementos desnecessários ao buscar por CEP */
+.busca-cep-ativa #map {
+    height: 300px;
+}
+
+.busca-cep-ativa #resultados {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #lista-unidades {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .unidade-item {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .unidade-item h4 {
+        font-size: 1.1rem;
+    }
+    
+    .unidade-info p {
+        font-size: 0.9rem;
+    }
 }

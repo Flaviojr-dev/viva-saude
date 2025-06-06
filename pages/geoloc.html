@@ -255,73 +255,47 @@
                 ? allPostos.filter(posto =>
                     normalizarTexto(posto.endereco).includes(termoBusca) ||
                     normalizarTexto(posto.nome).includes(termoBusca))
-                : allPostos;
+                : allPostos;            const unidadesContainer = document.getElementById('unidades-proximas');
+            unidadesContainer.innerHTML = '';
 
-            // Se um CEP foi fornecido, ordena por distância
-            if (cep && cep.length === 8) {
-                const coordenadas = await buscarCoordenadas(cep);
-                if (coordenadas) {
-                    // Adiciona um marcador para a localização do usuário
-                    const userMarker = L.marker([coordenadas.latitude, coordenadas.longitude], {
-                        icon: L.divIcon({
-                            className: 'user-location',
-                            html: '📍',
-                            iconSize: [25, 25],
-                            iconAnchor: [12, 24]
-                        })
-                    }).addTo(map)
-                    .bindPopup('Sua localização');
-                    markers.push(userMarker);
-
-                    // Calcula a distância para cada posto e ordena
-                    postosFiltrados = postosFiltrados.map(posto => ({
-                        ...posto,
-                        distancia: calcularDistancia(
-                            coordenadas.latitude, coordenadas.longitude,
-                            posto.latitude, posto.longitude
-                        )
-                    })).sort((a, b) => a.distancia - b.distancia);
-
-                    distanciaInfoDiv.innerHTML = '<p>Unidades ordenadas por proximidade do seu CEP</p>';
-                }
-            }
-
-            exibirPostos(postosFiltrados);
-        }
-
-        // Exibe os postos
-        function exibirPostos(postos) {
-            const resultadosDiv = document.getElementById('resultados');
-
-            if (postos.length === 0) {
-                resultadosDiv.innerHTML = 
-                    '<div class="no-results">Nenhum posto encontrado para este critério de busca.</div>';
+            if (postosFiltrados.length === 0) {
+                unidadesContainer.innerHTML = '<p class="no-results">Nenhum posto encontrado neste bairro.</p>';
                 return;
             }
 
-            postos.forEach(posto => {
-                const marker = L.marker([posto.latitude, posto.longitude])
-                    .addTo(map)
-                    .bindPopup(`
-                        <strong>${posto.nome}</strong><br>
-                        ${posto.endereco}<br>
-                        <em>Tipo: ${posto.tipo}</em>
-                    `);
-                markers.push(marker);                resultadosDiv.innerHTML += `
-                    <div class="posto-card">
-                        <h3>${posto.nome}</h3>
-                        <p><strong>Endereço:</strong> ${posto.endereco}</p>
-                        <p><strong>Tipo:</strong> ${posto.tipo}</p>
-                        ${posto.distancia ? `<p><strong>Distância:</strong> ${posto.distancia.toFixed(1)} km</p>` : ''}
+            // Atualiza a lista de unidades encontradas
+            unidadesContainer.innerHTML = `
+                <div class="unidades-header">
+                    <h3>Unidades encontradas em ${termoBusca.toUpperCase()}</h3>
+                </div>
+                ${postosFiltrados.map((unidade, index) => `
+                    <div class="unidade-item" onclick="focusUnidade(${unidade.latitude}, ${unidade.longitude})">
+                        <h4>${index + 1}. ${unidade.nome}</h4>
+                        <div class="unidade-info">
+                            <p><span>🏥 Endereço:</span> ${unidade.endereco}</p>
+                            <p><span>🏷️ Tipo:</span> ${unidade.tipo}</p>
+                        </div>
                     </div>
-                `;
+                `).join('')}
+            `;
+
+            // Adiciona marcadores no mapa
+            postosFiltrados.forEach(posto => {                const marker = L.marker([posto.latitude, posto.longitude])
+                .addTo(map)
+                .bindPopup(`
+                    <strong>${posto.nome}</strong><br>
+                    ${posto.endereco}<br>
+                    <em>Tipo: ${posto.tipo}</em>
+                `);
+                markers.push(marker);
             });
 
-            if (postos.length > 0) {
-                const group = new L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.1));
+            // Ajusta a visualização do mapa para mostrar todos os marcadores
+            if (postosFiltrados.length > 0) {
+                const bounds = L.latLngBounds(postosFiltrados.map(posto => [posto.latitude, posto.longitude]));
+                map.fitBounds(bounds.pad(0.1));
             }
-        }        // Formata o CEP enquanto o usuário digita
+        }        // Remove função exibirPostos pois não será mais usada// Formata o CEP enquanto o usuário digita
         function formatarCEP(cep) {
             cep = cep.replace(/\D/g, ''); // Remove tudo que não é número
             if (cep.length > 5) {
@@ -384,7 +358,11 @@
         // Função de busca por CEP
         async function buscarPorCEP() {
             const cepInput = document.getElementById('cep');
+            const resultadosDiv = document.getElementById('resultados');
             const cep = cepInput.value;
+
+            // Limpa os resultados anteriores
+            resultadosDiv.innerHTML = '';
 
             if (!validarCEP(cep)) {
                 mostrarFeedback('Digite um CEP válido', 'error');
@@ -392,7 +370,7 @@
             }
 
             try {
-                mostrarFeedback('Buscando localização...', 'info');
+                mostrarFeedback('Buscando unidades próximas...', 'info');
                 const coords = await buscarCoordenadas(cep);
                 
                 // Limpa marcadores anteriores
@@ -400,12 +378,14 @@
 
                 // Adiciona marcador da localização do usuário
                 const userMarker = L.marker([coords.lat, coords.lon], {
-                    icon: L.icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41]
+                    icon: L.divIcon({
+                        className: 'user-location',
+                        html: '📍',
+                        iconSize: [25, 25],
+                        iconAnchor: [12, 24]
                     })
-                }).addTo(map);
+                }).addTo(map)
+                .bindPopup('Sua localização');
                 markers.push(userMarker);
 
                 // Calcula e ordena unidades por distância
@@ -415,30 +395,61 @@
                     return { ...posto, distancia: dist };
                 }).sort((a, b) => a.distancia - b.distancia);
 
-                // Mostra as 5 unidades mais próximas
+                // Pega as 5 unidades mais próximas
                 const unidadesProximas = unidadesOrdenadas.slice(0, 5);
-                unidadesProximas.forEach(posto => {
-                    const marker = L.marker([posto.latitude, posto.longitude])
-                        .addTo(map)
-                        .bindPopup(`
-                            <strong>${posto.nome}</strong><br>
-                            Distância: ${posto.distancia.toFixed(2)} km<br>
-                            ${posto.endereco}
-                        `);
+                
+                // Adiciona marcadores das unidades próximas
+                unidadesProximas.forEach(posto => {                const marker = L.marker([posto.latitude, posto.longitude])
+                .addTo(map)
+                .bindPopup(`
+                        <strong>${posto.nome}</strong><br>
+                        Distância: ${posto.distancia.toFixed(2)} km<br>
+                        ${posto.endereco}
+                    `);
                     markers.push(marker);
                 });
 
-                // Atualiza a lista de unidades próximas
-                mostrarUnidadesProximas(unidadesProximas);
+                // Atualiza a lista de unidades próximas com estilo melhorado
+                const unidadesContainer = document.getElementById('unidades-proximas');
+                unidadesContainer.innerHTML = `
+                    <div class="unidades-header">
+                        <h3>Unidades mais próximas do CEP ${cep}</h3>
+                    </div>
+                    ${unidadesProximas.map((unidade, index) => `
+                        <div class="unidade-item" onclick="focusUnidade(${unidade.latitude}, ${unidade.longitude})">
+                            <h4>${index + 1}. ${unidade.nome}</h4>
+                            <div class="unidade-info">
+                                <p><span>📍 Distância:</span> ${unidade.distancia.toFixed(2)} km</p>
+                                <p><span>🏥 Endereço:</span> ${unidade.endereco}</p>
+                                <p><span>🏷️ Tipo:</span> ${unidade.tipo}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
 
-                // Centraliza o mapa
-                map.setView([coords.lat, coords.lon], 14);
+                // Ajusta visualização do mapa
+                const bounds = L.latLngBounds([coords.lat, coords.lon]);
+                unidadesProximas.forEach(posto => {
+                    bounds.extend([posto.latitude, posto.longitude]);
+                });
+                map.fitBounds(bounds, { padding: [50, 50] });
+
                 mostrarFeedback('Unidades encontradas!', 'success');
 
             } catch (error) {
                 mostrarFeedback(error.message, 'error');
                 console.error('Erro:', error);
             }
+        }
+
+        // Função para focar em uma unidade específica
+        function focusUnidade(lat, lng) {
+            map.setView([lat, lng], 16);
+            markers.forEach(marker => {
+                if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
+                    marker.openPopup();
+                }
+            });
         }
     </script>
 </body>

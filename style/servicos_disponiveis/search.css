@@ -16,18 +16,23 @@
 }
 
 #search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 12px 24px;
+    background-color: #006494;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    min-width: 200px;
 }
 
 #search-button:hover {
-    background-color: #0056b3;
+    background-color: #005280;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .search-results {
@@ -38,18 +43,21 @@
 
 .bairro-section {
     margin-bottom: 30px;
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
 }
 
 .bairro-section h2 {
-    color: #007bff;
+    color: #006494;
     font-size: 24px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #006494;
+    padding-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
 .servicos-list {
@@ -60,21 +68,32 @@
 
 .servico-item {
     background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.servico-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .servico-item h3 {
-    color: #0056b3;
+    color: #006494;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
 .unidade-info {
-    padding: 10px;
-    border-left: 3px solid #007bff;
-    margin: 10px 0;
+    padding: 15px;
+    border-left: 3px solid #006494;
+    margin: 15px 0;
+    background: #f8f9fa;
+    border-radius: 0 8px 8px 0;
 }
 
 .unidade-info p {
@@ -87,6 +106,53 @@
     color: #6c757d;
     font-size: 18px;
     margin: 40px 0;
+}
+
+.especialidades-disponiveis {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.especialidades-disponiveis h4 {
+    color: #006494;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.especialidades-disponiveis ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.especialidades-disponiveis li {
+    background-color: #E7F2F8;
+    color: #006494;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nome-unidade {
+    font-size: 16px !important;
+    color: #006494;
+    margin-bottom: 10px !important;
+}
+
+.endereco, .telefone, .horario {
+    font-size: 14px !important;
+    color: #555;
+    margin: 5px 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 @media (max-width: 768px) {
