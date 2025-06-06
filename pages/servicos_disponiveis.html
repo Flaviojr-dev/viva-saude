@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../style/nav_bar/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/servicos_disponiveis/section_servhistoria.css">
+    <link rel="stylesheet" href="../style/servicos_disponiveis/search.css">
     
 
 </head>
@@ -51,8 +52,15 @@
         <div class="box-atendimentoo">
             <h1>Entenda os serviços disponíveis no posto de saúde!</h1>
             <p>Acesse um guia simples com os principais atendimentos que você pode solicitar no posto mais próximo.</p>
-
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Digite um bairro ou região...">
+                <button id="search-button">Buscar</button>
+            </div>
         </div>
+    </div>
+
+    <div id="search-results" class="search-results">
+        <!-- Os resultados da busca aparecerão aqui -->
     </div>
 
     <div class="especialidades">
@@ -147,5 +155,139 @@
                 handleDropdownClick();
             });
         }
+
+        // Funcionalidade de busca
+        let todasUnidades = [];
+
+        async function carregarDados() {
+            try {
+                console.log('Carregando dados...');
+                const response = await fetch('../data/unidades_saude_merged.json');
+                if (!response.ok) {
+                    throw new Error(`Erro ao carregar dados: ${response.status}`);
+                }
+                const data = await response.json();
+                todasUnidades = data.features
+                    .filter(feature => feature && feature.properties)
+                    .map(feature => {
+                        const props = feature.properties;
+                        return {
+                            nome: props.name || '',
+                            bairro: (props.bairro || '').toUpperCase(),
+                            tipo: props.type || '',
+                            especialidade: props.especialidade || props.tipo_servico || '',
+                            horario: props.horario || 'SEGUNDA A SEXTA 08:00 às 17:00',
+                            endereco: props.address || '',
+                            fone: props.fone || 'Não informado'
+                        };
+                    });
+                console.log('Dados carregados:', todasUnidades.length, 'unidades');
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+            }
+        }
+
+        function buscarServicos(termoBusca) {
+            const searchResults = document.getElementById('search-results');
+            termoBusca = termoBusca.toLowerCase().trim();
+            
+            console.log('Buscando por:', termoBusca);
+
+            if (!termoBusca) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            // Busca mais abrangente
+            const resultados = todasUnidades.filter(unidade => {
+                const bairroMatch = unidade.bairro.toLowerCase().includes(termoBusca);
+                const enderecoMatch = unidade.endereco.toLowerCase().includes(termoBusca);
+                const nomeMatch = unidade.nome.toLowerCase().includes(termoBusca);
+                return bairroMatch || enderecoMatch || nomeMatch;
+            });
+
+            console.log('Resultados encontrados:', resultados.length);
+
+            if (resultados.length === 0) {
+                searchResults.innerHTML = '<p class="no-results">Nenhum serviço encontrado nesta localidade.</p>';
+                return;
+            }
+
+            // Agrupamento por bairro
+            const servicosPorBairro = {};
+            resultados.forEach(unidade => {
+                const bairroKey = unidade.bairro || 'Bairro não especificado';
+                if (!servicosPorBairro[bairroKey]) {
+                    servicosPorBairro[bairroKey] = [];
+                }
+                servicosPorBairro[bairroKey].push(unidade);
+            });
+
+            let html = '';
+            
+            // Gera HTML para cada bairro
+            for (const [bairro, unidades] of Object.entries(servicosPorBairro)) {
+                html += `
+                    <div class="bairro-section">
+                        <h2>${bairro}</h2>
+                        <div class="servicos-list">
+                `;
+
+                // Agrupa unidades por tipo de serviço dentro do bairro
+                const unidadesPorTipo = {};
+                unidades.forEach(unidade => {
+                    const tipo = unidade.tipo || 'Outros Serviços';
+                    if (!unidadesPorTipo[tipo]) {
+                        unidadesPorTipo[tipo] = [];
+                    }
+                    unidadesPorTipo[tipo].push(unidade);
+                });
+
+                // Gera HTML para cada tipo de serviço
+                for (const [tipo, unidadesDoTipo] of Object.entries(unidadesPorTipo)) {
+                    html += `
+                        <div class="servico-item">
+                            <h3>${tipo}</h3>
+                            ${unidadesDoTipo.map(unidade => `
+                                <div class="unidade-info">
+                                    <p><strong>${unidade.nome}</strong></p>
+                                    <p>${unidade.endereco}</p>
+                                    <p>Telefone: ${unidade.fone}</p>
+                                    <p>Horário: ${unidade.horario}</p>
+                                    ${unidade.especialidade ? `<p>Especialidades: ${unidade.especialidade}</p>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            searchResults.innerHTML = html;
+        }
+
+        // Event listeners para a busca
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Inicializando...');
+            carregarDados();
+            
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+
+            searchButton.addEventListener('click', () => {
+                buscarServicos(searchInput.value);
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    buscarServicos(searchInput.value);
+                }
+            });
+        });
     </script>
 </body>
+</html>

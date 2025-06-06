@@ -130,22 +130,22 @@
                 
                 if (!data || !data.features) {
                     throw new Error('Formato de dados inválido');
-                }
-
-                todasUbs = data.features.map(feature => {
-                    const props = feature.properties || {};
-                    return {
-                        nome_oficial: props.name || 'Nome não disponível',
-                        endereo: props.address || 'Endereço não disponível',
-                        bairro: props.bairro || '',
-                        tipo: props.type || '',
-                        especialidade: props.type || 'Tipo não informado',
-                        distrito_sanitario: props.distrito_sanitario || '',
-                        rpa: props.rpa || '',
-                        fone: props.fone || 'Fone não disponível',
-                        horario: 'SEGUNDA A SEXTA 08:00 às 17:00'
-                    };
-                });
+                }                todasUbs = data.features
+                    .filter(feature => feature && feature.properties)
+                    .map(feature => {
+                        const props = feature.properties || {};
+                        return {
+                            nome_oficial: props.name || 'Nome não disponível',
+                            endereo: props.address || 'Endereço não disponível',
+                            bairro: props.bairro || '',
+                            tipo: props.type || '',
+                            especialidade: props.especialidade || props.tipo_servico || props.type || 'Tipo não informado',
+                            distrito_sanitario: props.distrito_sanitario || '',
+                            rpa: props.rpa || '',
+                            fone: props.fone || 'Fone não disponível',
+                            horario: props.horario || 'SEGUNDA A SEXTA 08:00 às 17:00'
+                        };
+                    });
                 
                 console.log('Dados processados:', todasUbs);
                 if (todasUbs.length > 0) {
@@ -163,11 +163,13 @@
 
         function preencherEspecialidades(lista) {
             const select = document.getElementById("especialidades");
-            const especialidades = new Set();
-
-            lista.forEach(item => {
-                if (item.tipo) {
-                    especialidades.add(item.tipo);
+            const especialidades = new Set();            lista.forEach(item => {
+                if (item.especialidade) {
+                    // Separa múltiplas especialidades se existirem
+                    const especialidadesArray = item.especialidade.split(',').map(e => e.trim());
+                    especialidadesArray.forEach(esp => {
+                        if (esp) especialidades.add(esp);
+                    });
                 }
             });
 
@@ -183,17 +185,25 @@
                 });
 
             select.value = "";
-        }
-
-        function filtrarUbs() {
+        }        function filtrarUbs() {
             const especialidadeSelecionada = document.getElementById("especialidades").value.toLowerCase();
             const filtroBairro = document.getElementById("filtro-bairro").value.toLowerCase();
 
             console.log("Especialidade selecionada:", especialidadeSelecionada);
+            console.log("Bairro/Região:", filtroBairro);
 
             const resultado = todasUbs.filter(ubs => {
-                const espOk = especialidadeSelecionada === "" || (ubs.especialidade || "").toLowerCase().includes(especialidadeSelecionada);
-                const bairroOk = filtroBairro === "" || (ubs.bairro || "").toLowerCase().includes(filtroBairro);
+                const especialidades = (ubs.especialidade || "").toLowerCase();
+                const bairro = (ubs.bairro || "").toLowerCase();
+                const endereco = (ubs.endereo || "").toLowerCase();
+                const nome = (ubs.nome_oficial || "").toLowerCase();
+
+                const espOk = especialidadeSelecionada === "" || especialidades.includes(especialidadeSelecionada);
+                const bairroOk = filtroBairro === "" || 
+                               bairro.includes(filtroBairro) || 
+                               endereco.includes(filtroBairro) ||
+                               nome.includes(filtroBairro);
+                               
                 return espOk && bairroOk;
             });
 
