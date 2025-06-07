@@ -36,7 +36,7 @@
                         <li><a href="./atend_esp.html">Informações sobre unidades</a></li>
                         <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
                         <li><a href="./geoloc.html">Unidades mais próximas</a></li>
-                        <li><a href="./farm.htm">Medicamentos</a></li>
+                        <li><a href="./farm.html">Medicamentos</a></li>
                         <li><a href="./pag_de_inf.html">Página de Informações</a></li>
                     </ul>
                 </li>
@@ -169,17 +169,39 @@
                     .filter(feature => feature && feature.properties)
                     .map(feature => {
                         const props = feature.properties;
+                        let bairro = '';
+                        
+                        // Tenta encontrar o bairro em vários campos possíveis
+                        if (props.BAIRRO) bairro = props.BAIRRO;
+                        else if (props.bairro) bairro = props.bairro;
+                        else if (props.NMENDUNID && props.NMENDUNID.includes(',')) {
+                            const partes = props.NMENDUNID.split(',');
+                            if (partes.length > 1) bairro = partes[1].trim();
+                        }
+                        else if (props.address && props.address.includes(',')) {
+                            const partes = props.address.split(',');
+                            if (partes.length > 1) bairro = partes[1].trim();
+                        }
+
                         return {
-                            nome: props.name || '',
-                            bairro: (props.bairro || '').toUpperCase(),
-                            tipo: props.type || '',
-                            especialidade: props.especialidade || props.tipo_servico || '',
-                            horario: props.horario || 'SEGUNDA A SEXTA 08:00 às 17:00',
-                            endereco: props.address || '',
-                            fone: props.fone || 'Não informado'
+                            nome: props.NMUNIDAD || props.name || 'Nome não disponível',
+                            bairro: bairro.toUpperCase(),
+                            tipo: props.CDTIPO || props.type || props.TIPO || 'Unidade de Saúde',
+                            especialidade: props.TIPO_SERVICO || props.especialidade || props.tipo_servico || '',
+                            horario: props.HORARIO || props.horario || 'SEGUNDA A SEXTA 08:00 às 17:00',
+                            endereco: props.NMENDUNID || props.address || props.ENDERECO || 'Endereço não disponível',
+                            fone: props.TELEFONE || props.fone || props.FONE || 'Não informado'
                         };
-                    });
+                    })
+                    .filter(unidade => unidade.nome && unidade.bairro); // Remove unidades sem nome ou bairro
+
                 console.log('Dados carregados:', todasUnidades.length, 'unidades');
+                // Debug: mostra todas as unidades do Ibura
+                const unidadesIbura = todasUnidades.filter(u => 
+                    u.bairro.toLowerCase().includes('ibura') || 
+                    u.endereco.toLowerCase().includes('ibura')
+                );
+                console.log('Unidades no Ibura:', unidadesIbura);
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
             }
@@ -214,13 +236,19 @@
                 return;
             }
 
-            // Filtra primeiro apenas unidades com bairro especificado
+            // Filtra as unidades
             const resultados = todasUnidades
-                .filter(unidade => unidade.bairro) // Remove unidades sem bairro
                 .filter(unidade => {
-                    const bairroMatch = unidade.bairro.toLowerCase().includes(termoBusca);
-                    const enderecoMatch = unidade.endereco && unidade.endereco.toLowerCase().includes(termoBusca);
-                    return bairroMatch || enderecoMatch;
+                    // Normaliza os textos para comparação
+                    const termo = termoBusca.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    const endereco = unidade.endereco.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    const bairro = unidade.bairro.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    const nome = unidade.nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                    // Procura o termo em todos os campos relevantes
+                    return bairro.includes(termo) || 
+                           endereco.includes(termo) ||
+                           nome.includes(termo);
                 });
 
             console.log('Resultados encontrados:', resultados.length);
@@ -246,10 +274,9 @@
                 html += `
             <div class="bairro-section">
                 <h2>${bairro}</h2>
-                <div class="servicos-list">
-        `;
+                <div class="servicos-list">`;
 
-                // Agrupa unidades por tipo
+                // Lista todas as unidades do bairro
                 unidades.forEach(unidade => {
                     html += `
                 <div class="servico-item">
@@ -257,18 +284,16 @@
                     <div class="unidade-info">
                         <p class="nome-unidade"><strong>${unidade.nome}</strong></p>
                         <p class="endereco"><i class="fas fa-map-marker-alt"></i> ${unidade.endereco}</p>
-                        <p class="telefone"><i class="fas fa-phone"></i> ${unidade.fone || 'Telefone não informado'}</p>
-                        <p class="horario"><i class="fas fa-clock"></i> ${unidade.horario || 'Horário não informado'}</p>
-                        ${formatarEspecialidades(unidade.especialidade)}
+                        <p class="telefone"><i class="fas fa-phone"></i> ${unidade.fone}</p>
+                        <p class="horario"><i class="fas fa-clock"></i> ${unidade.horario}</p>
+                        ${unidade.especialidade ? formatarEspecialidades(unidade.especialidade) : '<p class="sem-especialidades">Especialidades não disponíveis</p>'}
                     </div>
-                </div>
-            `;
+                </div>`;
                 });
 
                 html += `
                 </div>
-            </div>
-        `;
+            </div>`;
             }
 
             searchResults.innerHTML = html;

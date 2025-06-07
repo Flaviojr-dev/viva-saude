@@ -32,7 +32,7 @@
                         <li><a href="./atend_esp.html">Informações sobre unidades</a></li>
                         <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
                         <li><a href="./geoloc.html">Unidades mais próximas</a></li>
-                        <li><a href="./farm.htm">Medicamentos</a></li>
+                        <li><a href="./farm.html">Medicamentos</a></li>
                         <li><a href="./pag_de_inf.html">Página de Informações</a></li>
                     </ul>
                 </li>
@@ -43,11 +43,16 @@
     <main>
         <h1>Postos de Saúde do Recife</h1>
         <p class="info">Dados locais - Atualizado em 2023</p>
-        <div class="search-container"> <input class="btn2" type="text" id="bairro"
-                placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
-            <input class="btn2" type="text" id="cep" placeholder="Digite seu CEP" maxlength="9">
-            <button class="btn1" onclick="buscarPostos()">Buscar</button>
-            <button onclick="buscarPorCEP()" class="search-button">Buscar por CEP</button>
+        <div class="search-container">
+            <p class="search-instructions">Digite um bairro (ex: Boa Viagem, Santo Amaro) OU digite seu CEP para encontrar unidades próximas</p>
+            <div class="search-inputs">
+                <input class="btn2" type="text" id="bairro" placeholder="Digite um bairro">
+                <button class="btn1" onclick="buscarPostos()">Buscar por Bairro</button>
+            </div>
+            <div class="search-inputs">
+                <input class="btn2" type="text" id="cep" placeholder="Digite seu CEP" maxlength="9">
+                <button class="btn1" onclick="buscarPorCEP()">Buscar por CEP</button>
+            </div>
             <div id="feedback" class="feedback"></div>
         </div>
 
@@ -183,9 +188,11 @@
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);            // Carrega e processa os dados do GeoJSON do arquivo
+            }).addTo(map);
+
             try {
-                const response = await fetch('../data/unidades_saude.json');
+                console.log('Carregando dados das unidades...');
+                const response = await fetch('../data/unidades_saude_merged.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -199,21 +206,35 @@
         }        // Processa os dados do GeoJSON
         function processarDados(geoJsonData) {
             allPostos = geoJsonData.features.map(feature => {
-                // Calcula o centroide do polígono para posicionar o marcador
-                const coords = feature.geometry.coordinates[0];
-                const lat = coords.reduce((sum, point) => sum + point[1], 0) / coords.length;
-                const lng = coords.reduce((sum, point) => sum + point[0], 0) / coords.length;
+                let lat, lng;
+                
+                // Verifica o tipo de geometria
+                if (feature.geometry.type === 'Point') {
+                    // Para geometria do tipo Point
+                    [lng, lat] = feature.geometry.coordinates;
+                } else if (feature.geometry.type === 'Polygon') {
+                    // Para geometria do tipo Polygon, calcula o centroide
+                    const coords = feature.geometry.coordinates[0];
+                    lat = coords.reduce((sum, point) => sum + point[1], 0) / coords.length;
+                    lng = coords.reduce((sum, point) => sum + point[0], 0) / coords.length;
+                } else {
+                    console.warn('Tipo de geometria não suportado:', feature.geometry.type);
+                    return null;
+                }
 
+                const props = feature.properties;
                 return {
-                    nome: feature.properties.NMUNIDAD,
-                    endereco: feature.properties.NMENDUNID,
-                    tipo: feature.properties.CDTIPO,
+                    nome: props.name || props.NMUNIDAD || 'Nome não disponível',
+                    endereco: props.address || props.NMENDUNID || 'Endereço não disponível',
+                    tipo: props.type || props.CDTIPO || props.TIPO || 'Unidade de Saúde',
+                    especialidade: props.especialidade || props.TIPO_SERVICO || '',
+                    horario: props.horario || props.HORARIO || 'SEGUNDA A SEXTA 08:00 às 17:00',
                     latitude: lat,
                     longitude: lng
                 };
-            });
+            }).filter(posto => posto !== null); // Remove postos com geometria não suportada
 
-            console.log('Postos processados:', allPostos); // Para debug
+            console.log('Postos processados:', allPostos.length);
             buscarPostos();
         }
 
@@ -247,19 +268,15 @@
 
         async function buscarPostos() {
             const termoBusca = normalizarTexto(document.getElementById('bairro').value);
-            const cep = document.getElementById('cep').value.replace(/\D/g, '');
-            const resultadosDiv = document.getElementById('resultados');
-            const distanciaInfoDiv = document.getElementById('distancia-info');
-
-            resultadosDiv.innerHTML = '';
-            distanciaInfoDiv.innerHTML = '';
             limparMarcadores();
 
             let postosFiltrados = termoBusca
                 ? allPostos.filter(posto =>
                     normalizarTexto(posto.endereco).includes(termoBusca) ||
                     normalizarTexto(posto.nome).includes(termoBusca))
-                : allPostos; const unidadesContainer = document.getElementById('unidades-proximas');
+                : allPostos;
+
+            const unidadesContainer = document.getElementById('unidades-proximas');
             unidadesContainer.innerHTML = '';
 
             if (postosFiltrados.length === 0) {
@@ -270,28 +287,42 @@
             // Atualiza a lista de unidades encontradas
             unidadesContainer.innerHTML = `
                 <div class="unidades-header">
-                    <h3>Unidades encontradas em ${termoBusca.toUpperCase()}</h3>
+                    <h3>Unidades encontradas${termoBusca ? ` em ${termoBusca.toUpperCase()}` : ''}</h3>
                 </div>
-                ${postosFiltrados.map((unidade, index) => `
-                    <div class="unidade-item" onclick="focusUnidade(${unidade.latitude}, ${unidade.longitude})">
-                        <h4>${index + 1}. ${unidade.nome}</h4>
-                        <div class="unidade-info">
-                            <p><span>🏥 Endereço:</span> ${unidade.endereco}</p>
-                            <p><span>🏷️ Tipo:</span> ${unidade.tipo}</p>
+                ${postosFiltrados.map((unidade, index) => {
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(unidade.endereco + ", Recife, PE")}`;
+                    return `
+                        <div class="unidade-item" onclick="focusUnidade(${unidade.latitude}, ${unidade.longitude})">
+                            <h4>${index + 1}. ${unidade.nome}</h4>
+                            <div class="unidade-info">
+                                <p><span>🏥 Endereço:</span> ${unidade.endereco}</p>
+                                <p><span>🏷️ Tipo:</span> ${unidade.tipo}</p>
+                                <a href="${mapsUrl}" target="_blank" class="ver-maps-btn">
+                                    <span>📍</span> Ver no Google Maps
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                `).join('')}
+                    `;
+                }).join('')}
             `;
 
-            // Adiciona marcadores no mapa
+            // Adiciona marcadores no mapa com popup melhorado
             postosFiltrados.forEach(posto => {
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(posto.endereco + ", Recife, PE")}`;                const popupContent = `
+                    <div class="popup-content">
+                        <h3 style="margin-bottom: 8px; color: #0066cc;">${posto.nome}</h3>
+                        <p style="margin-bottom: 5px;"><strong>Endereço:</strong> ${posto.endereco}</p>
+                        <p style="margin-bottom: 8px;"><strong>Tipo:</strong> ${posto.tipo}</p>
+                        <a href="${mapsUrl}" target="_blank" class="ver-maps-btn">
+                            <span class="maps-icon">📍</span>
+                            <span class="maps-text">Ver no Google Maps</span>
+                        </a>
+                    </div>
+                `;
+
                 const marker = L.marker([posto.latitude, posto.longitude])
-                    .addTo(map)
-                    .bindPopup(`
-                    <strong>${posto.nome}</strong><br>
-                    ${posto.endereco}<br>
-                    <em>Tipo: ${posto.tipo}</em>
-                `);
+                    .bindPopup(popupContent)
+                    .addTo(map);
                 markers.push(marker);
             });
 
@@ -405,13 +436,22 @@
 
                 // Adiciona marcadores das unidades próximas
                 unidadesProximas.forEach(posto => {
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(posto.endereco + ", Recife, PE")}`;
+                    const popupContent = `
+                        <div class="popup-content">
+                            <h3>${posto.nome}</h3>
+                            <p><strong>Tipo:</strong> ${posto.tipo}</p>
+                            <p><strong>Distância:</strong> ${posto.distancia.toFixed(2)} km</p>
+                            <p><strong>Endereço:</strong> ${posto.endereco}</p>
+                            <a href="${mapsUrl}" target="_blank" class="ver-maps-btn">
+                                <span>📍</span> Ver no Google Maps
+                            </a>
+                        </div>
+                    `;
+
                     const marker = L.marker([posto.latitude, posto.longitude])
                         .addTo(map)
-                        .bindPopup(`
-                        <strong>${posto.nome}</strong><br>
-                        Distância: ${posto.distancia.toFixed(2)} km<br>
-                        ${posto.endereco}
-                    `);
+                        .bindPopup(popupContent);
                     markers.push(marker);
                 });
 
@@ -421,16 +461,22 @@
                     <div class="unidades-header">
                         <h3>Unidades mais próximas do CEP ${cep}</h3>
                     </div>
-                    ${unidadesProximas.map((unidade, index) => `
-                        <div class="unidade-item" onclick="focusUnidade(${unidade.latitude}, ${unidade.longitude})">
-                            <h4>${index + 1}. ${unidade.nome}</h4>
-                            <div class="unidade-info">
-                                <p><span>📍 Distância:</span> ${unidade.distancia.toFixed(2)} km</p>
-                                <p><span>🏥 Endereço:</span> ${unidade.endereco}</p>
-                                <p><span>🏷️ Tipo:</span> ${unidade.tipo}</p>
+                    ${unidadesProximas.map((unidade, index) => {
+                        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(unidade.endereco + ", Recife, PE")}`;
+                        return `
+                            <div class="unidade-item" onclick="focusUnidade(${unidade.latitude}, ${unidade.longitude})">
+                                <h4>${index + 1}. ${unidade.nome}</h4>
+                                <div class="unidade-info">
+                                    <p><strong>Tipo:</strong> ${unidade.tipo}</p>
+                                    <p><span>📍 Distância:</span> ${unidade.distancia.toFixed(2)} km</p>
+                                    <p><span>🏥 Endereço:</span> ${unidade.endereco}</p>
+                                    <a href="${mapsUrl}" target="_blank" class="ver-maps-btn">
+                                        <span>📍</span> Ver no Google Maps
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    `).join('')}
+                        `;
+                    }).join('')}
                 `;
 
                 // Ajusta visualização do mapa

@@ -33,7 +33,7 @@
                         <li><a href="./atend_esp.html">Informações sobre unidades</a></li>
                         <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
                         <li><a href="./geoloc.html">Unidades mais próximas</a></li>
-                        <li><a href="./farm.htm">Medicamentos</a></li>
+                        <li><a href="./farm.html">Medicamentos</a></li>
                         <li><a href="./pag_de_inf.html">Página de Informações</a></li>
                     </ul>
                 </li>
@@ -43,9 +43,8 @@
     </header>
 
     <main class="container-main">
-        <div class="filtro-container">
-            <select class="filtro-select" id="especialidades">
-                <option value="">Todas as especialidades</option>
+        <div class="filtro-container">            <select class="filtro-select" id="tipos">
+                <option value="">Todos os tipos de unidade</option>
             </select>
             <input type="text" class="filtro-input" id="filtro-bairro" placeholder="Filtrar por região ou bairro">
         </div>
@@ -72,50 +71,6 @@
     </main>    <script>
         let todasUbs = [];
         
-        // Carregar dados assim que o documento estiver pronto
-        window.addEventListener('load', () => {
-            console.log('Página carregada, iniciando carregamento de dados...');
-            carregarDados();
-        });
-
-        const hamburgerBtn = document.getElementById("hamburger-btn");
-        const navMenu = document.getElementById("nav-menu");
-        const dropdownToggle = document.querySelector(".dropdown-toggle");
-        const dropdownMenu = document.querySelector(".dropdown-menu");
-
-        function isMobile() {
-            return window.innerWidth <= 768;
-        }
-
-        // Toggle do menu hamburguer
-        hamburgerBtn.addEventListener("click", () => {
-            navMenu.classList.toggle("show");
-            navMenu.classList.add("mobile");
-        });
-
-        // Toggle do submenu "Serviços" no mobile
-        dropdownToggle.addEventListener("click", (e) => {
-            if (isMobile()) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle("show");
-            }
-        });
-
-        function handleDropdownClick() {
-            const dropdownMenu = document.querySelector(".dropdown-menu");
-            dropdownMenu.classList.toggle("show");
-        }
-
-        // Aplica o clique até 1024px (tablet)
-        if (window.innerWidth <= 1024) {
-            const dropdownBtn = document.getElementById("servicos-btn");
-            dropdownBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                handleDropdownClick();
-            });
-        }        // =============================
-        // Filtro de unidades de saúde
-        // =============================        
         async function carregarDados() {
             console.log('Iniciando carregamento de dados...');
             try {
@@ -128,7 +83,9 @@
                 
                 if (!data || !data.features) {
                     throw new Error('Formato de dados inválido');
-                }                todasUbs = data.features
+                }
+                
+                todasUbs = data.features
                     .filter(feature => feature && feature.properties)
                     .map(feature => {
                         const props = feature.properties || {};
@@ -136,8 +93,7 @@
                             nome_oficial: props.name || 'Nome não disponível',
                             endereo: props.address || 'Endereço não disponível',
                             bairro: props.bairro || '',
-                            tipo: props.type || '',
-                            especialidade: props.especialidade || props.tipo_servico || props.type || 'Tipo não informado',
+                            tipo: props.tipo || props.type || 'Tipo não informado',
                             distrito_sanitario: props.distrito_sanitario || '',
                             rpa: props.rpa || '',
                             fone: props.fone || 'Fone não disponível',
@@ -146,8 +102,9 @@
                     });
                 
                 console.log('Dados processados:', todasUbs);
+                
                 if (todasUbs.length > 0) {
-                    preencherEspecialidades(todasUbs);
+                    preencherTipos(todasUbs);
                     filtrarUbs();
                 } else {
                     throw new Error('Nenhuma unidade de saúde encontrada');
@@ -159,50 +116,53 @@
             }
         }
 
-        function preencherEspecialidades(lista) {
-            const select = document.getElementById("especialidades");
-            const especialidades = new Set();            lista.forEach(item => {
-                if (item.especialidade) {
-                    // Separa múltiplas especialidades se existirem
-                    const especialidadesArray = item.especialidade.split(',').map(e => e.trim());
-                    especialidadesArray.forEach(esp => {
-                        if (esp) especialidades.add(esp);
-                    });
+        function preencherTipos(lista) {
+            console.log('Preenchendo tipos com a lista:', lista);
+            const select = document.getElementById("tipos");
+            const tipos = new Set();
+            
+            lista.forEach(item => {
+                if (item.tipo) {
+                    console.log('Adicionando tipo:', item.tipo);
+                    tipos.add(item.tipo);
                 }
             });
 
-            select.innerHTML = `<option value="">Todas as especialidades</option>`;
-
-            Array.from(especialidades)
+            select.innerHTML = `<option value="">Todos os tipos de unidade</option>`;
+            
+            const tiposArray = Array.from(tipos);
+            console.log('Tipos únicos encontrados:', tiposArray);
+            
+            tiposArray
                 .sort()
-                .forEach(esp => {
+                .forEach(tipo => {
                     const option = document.createElement("option");
-                    option.value = esp;
-                    option.textContent = esp;
+                    option.value = tipo;
+                    option.textContent = tipo;
                     select.appendChild(option);
                 });
+        }
 
-            select.value = "";
-        }        function filtrarUbs() {
-            const especialidadeSelecionada = document.getElementById("especialidades").value.toLowerCase();
+        function filtrarUbs() {
+            const tipoSelecionado = document.getElementById("tipos").value.toUpperCase();
             const filtroBairro = document.getElementById("filtro-bairro").value.toLowerCase();
 
-            console.log("Especialidade selecionada:", especialidadeSelecionada);
+            console.log("Tipo selecionado:", tipoSelecionado);
             console.log("Bairro/Região:", filtroBairro);
 
             const resultado = todasUbs.filter(ubs => {
-                const especialidades = (ubs.especialidade || "").toLowerCase();
+                const tipo = (ubs.tipo || "").toUpperCase();
                 const bairro = (ubs.bairro || "").toLowerCase();
                 const endereco = (ubs.endereo || "").toLowerCase();
                 const nome = (ubs.nome_oficial || "").toLowerCase();
 
-                const espOk = especialidadeSelecionada === "" || especialidades.includes(especialidadeSelecionada);
+                const tipoOk = tipoSelecionado === "" || tipo === tipoSelecionado;
                 const bairroOk = filtroBairro === "" || 
-                               bairro.includes(filtroBairro) || 
-                               endereco.includes(filtroBairro) ||
-                               nome.includes(filtroBairro);
-                               
-                return espOk && bairroOk;
+                              bairro.includes(filtroBairro) || 
+                              endereco.includes(filtroBairro) ||
+                              nome.includes(filtroBairro);
+                
+                return tipoOk && bairroOk;
             });
 
             mostrarResultados(resultado);
@@ -214,7 +174,7 @@
             container.innerHTML = "";
 
             if (lista.length === 0) {
-                container.innerHTML = `<p class="no-results">Nenhuma unidade com a especialidade selecionada foi encontrada nesta região.</p>`;
+                container.innerHTML = `<p class="no-results">Nenhuma unidade encontrada com os filtros selecionados.</p>`;
                 return;
             }
             
@@ -224,7 +184,7 @@
                 card.className = "card-unidade";
                 card.innerHTML = `
                     <span class="nome-unidade">${nomeUnidade}</span>
-                    <p class="especialidades"><strong>${ubs.especialidade || 'Tipo não informado'}</strong></p>
+                    <p class="tipo"><strong>${ubs.tipo || 'Tipo não informado'}</strong></p>
                     <p class="endereco">${ubs.endereo || 'Endereço não informado'}</p>
                     <p class="telefone"><strong>Telefone:</strong> ${ubs.fone}</p>
                     ${ubs.distrito_sanitario ? `<p class="distrito">Distrito Sanitário: ${ubs.distrito_sanitario}</p>` : ''}
@@ -236,30 +196,16 @@
             });
         }
 
-        // Botão buscar
-        document.getElementById("buscarBtn").addEventListener("click", filtrarUbs);
-
-        const selectEspecialidades = document.getElementById("especialidades");
-
-        // NOVO: Executa ao clicar no <select>
-        selectEspecialidades.addEventListener("click", filtrarUbs);
-
-        // Executa ao alterar o valor do select
-        selectEspecialidades.addEventListener("change", filtrarUbs);
-
-        // Em dispositivos móveis (touch)
-        if ("ontouchstart" in window) {
-            selectEspecialidades.addEventListener("touchend", filtrarUbs);
-        }
-
-        // Carregar dados imediatamente
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Iniciando carregamento de dados...');
-            carregarDados();
-        });
-
-
-
+        // Event Listeners
+        window.addEventListener('load', carregarDados);
+        
+        const selectTipos = document.getElementById("tipos");
+        const botaoBuscar = document.getElementById("buscarBtn");
+        
+        selectTipos.addEventListener("change", filtrarUbs);
+        botaoBuscar.addEventListener("click", filtrarUbs);
+        
+        document.getElementById("filtro-bairro").addEventListener("input", filtrarUbs);
     </script>
 
 
