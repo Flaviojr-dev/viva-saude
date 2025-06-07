@@ -43,7 +43,7 @@
     </header>
 
     <main class="container-main">
-        <div class="filtro-container">            <select class="filtro-select" id="tipos">
+        <div class="filtro-container"> <select class="filtro-select" id="tipos">
                 <option value="">Todos os tipos de unidade</option>
             </select>
             <input type="text" class="filtro-input" id="filtro-bairro" placeholder="Filtrar por região ou bairro">
@@ -68,9 +68,11 @@
                 <a href="#" class="detalhes">Ver detalhes</a>
             </div>
         </div>
-    </main>    <script>
+    </main>
+    <script>
+
         let todasUbs = [];
-        
+
         async function carregarDados() {
             console.log('Iniciando carregamento de dados...');
             try {
@@ -80,11 +82,11 @@
                 }
                 const data = await response.json();
                 console.log('Dados JSON brutos:', data);
-                
+
                 if (!data || !data.features) {
                     throw new Error('Formato de dados inválido');
                 }
-                
+
                 todasUbs = data.features
                     .filter(feature => feature && feature.properties)
                     .map(feature => {
@@ -100,9 +102,9 @@
                             horario: props.horario || 'SEGUNDA A SEXTA 08:00 às 17:00'
                         };
                     });
-                
+
                 console.log('Dados processados:', todasUbs);
-                
+
                 if (todasUbs.length > 0) {
                     preencherTipos(todasUbs);
                     filtrarUbs();
@@ -111,7 +113,7 @@
                 }
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
-                document.getElementById('resultado-container').innerHTML = 
+                document.getElementById('resultado-container').innerHTML =
                     `<p class="no-results">Erro ao carregar os dados: ${error.message}</p>`;
             }
         }
@@ -120,7 +122,7 @@
             console.log('Preenchendo tipos com a lista:', lista);
             const select = document.getElementById("tipos");
             const tipos = new Set();
-            
+
             lista.forEach(item => {
                 if (item.tipo) {
                     console.log('Adicionando tipo:', item.tipo);
@@ -129,10 +131,10 @@
             });
 
             select.innerHTML = `<option value="">Todos os tipos de unidade</option>`;
-            
+
             const tiposArray = Array.from(tipos);
             console.log('Tipos únicos encontrados:', tiposArray);
-            
+
             tiposArray
                 .sort()
                 .forEach(tipo => {
@@ -157,11 +159,11 @@
                 const nome = (ubs.nome_oficial || "").toLowerCase();
 
                 const tipoOk = tipoSelecionado === "" || tipo === tipoSelecionado;
-                const bairroOk = filtroBairro === "" || 
-                              bairro.includes(filtroBairro) || 
-                              endereco.includes(filtroBairro) ||
-                              nome.includes(filtroBairro);
-                
+                const bairroOk = filtroBairro === "" ||
+                    bairro.includes(filtroBairro) ||
+                    endereco.includes(filtroBairro) ||
+                    nome.includes(filtroBairro);
+
                 return tipoOk && bairroOk;
             });
 
@@ -177,7 +179,7 @@
                 container.innerHTML = `<p class="no-results">Nenhuma unidade encontrada com os filtros selecionados.</p>`;
                 return;
             }
-            
+
             lista.forEach(ubs => {
                 const nomeUnidade = (ubs.nome_oficial && ubs.nome_oficial.trim()) || "Nome não disponível";
                 const card = document.createElement("div");
@@ -198,14 +200,51 @@
 
         // Event Listeners
         window.addEventListener('load', carregarDados);
-        
+
         const selectTipos = document.getElementById("tipos");
         const botaoBuscar = document.getElementById("buscarBtn");
-        
+
         selectTipos.addEventListener("change", filtrarUbs);
         botaoBuscar.addEventListener("click", filtrarUbs);
-        
+
         document.getElementById("filtro-bairro").addEventListener("input", filtrarUbs);
+
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const navMenu = document.getElementById("nav-menu");
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Toggle do menu hamburguer
+        hamburgerBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+            navMenu.classList.add("mobile");
+        });
+
+        // Toggle do submenu "Serviços" no mobile
+        dropdownToggle.addEventListener("click", (e) => {
+            if (isMobile()) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle("show");
+            }
+        });
+
+        function handleDropdownClick() {
+            const dropdownMenu = document.querySelector(".dropdown-menu");
+            dropdownMenu.classList.toggle("show");
+        }
+
+        // Aplica o clique até 1024px (tablet)
+        if (window.innerWidth <= 1024) {
+            const dropdownBtn = document.getElementById("servicos-btn");
+            dropdownBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                handleDropdownClick();
+            });
+        }
     </script>
 
 
