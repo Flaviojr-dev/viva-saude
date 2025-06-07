@@ -54,22 +54,23 @@
     margin: 0 auto;
 }
 
-.category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
 .category {
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px;
-    background-color: #fff;
+    padding: 30px;    background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.category:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 100, 148, 0.15);
+    background-color: #f0f9ff;
 }
 
 .category h2 {
