@@ -7,8 +7,11 @@
     <title>Postos de Saúde - Recife</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="../style/geolocalicao/geoloc.css">
+    <link rel="stylesheet" href="../style/nav_bar/style.css">
 </head>
-<body>    <header>
+
+<body>
+    <header>
         <nav>
             <div class="logo">
                 <a href="../index.html"><img src="../assets/images/logo.png" alt="Logotipo"></a>
@@ -19,28 +22,30 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>            <ul id="nav-menu">
+            </button>
+
+            <ul id="nav-menu">
                 <li><a href="../index.html">Início</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">Serviços</a>
                     <ul class="dropdown-menu hidden">
                         <li><a href="./atend_esp.html">Atendimento especializado</a></li>
                         <li><a href="./servicos_disponiveis.html">Serviços disponíveis</a></li>
-                        <li><a href="./pages/geoloc.html">Geolocalização</a></li>
+                        <li><a href="./geoloc.html">Geolocalização</a></li>
                         <li><a href="./farm.html">Medicamentos</a></li>
                         <li><a href="./pag_de_inf.html">Página de Informações</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
 
     </header>
-
     <main>
         <h1>Postos de Saúde do Recife</h1>
-        <p class="info">Dados locais - Atualizado em 2023</p>        <div class="search-container">            <input class="btn2" type="text" id="bairro" placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
+        <p class="info">Dados locais - Atualizado em 2023</p>
+        <div class="search-container"> <input class="btn2" type="text" id="bairro"
+                placeholder="Digite um bairro (ex: Boa Viagem, Santo Amaro)">
             <input class="btn2" type="text" id="cep" placeholder="Digite seu CEP" maxlength="9">
             <button class="btn1" onclick="buscarPostos()">Buscar</button>
             <button onclick="buscarPorCEP()" class="search-button">Buscar por CEP</button>
@@ -133,7 +138,7 @@
                 // Busca no ViaCEP
                 const responseCEP = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
                 const dataCEP = await responseCEP.json();
-                
+
                 if (dataCEP.erro) {
                     throw new Error('CEP não encontrado');
                 }
@@ -168,7 +173,7 @@
         }
 
         // Adiciona formatação ao campo CEP
-        document.getElementById('cep').addEventListener('input', function(e) {
+        document.getElementById('cep').addEventListener('input', function (e) {
             let cep = e.target.value;
             e.target.value = formatarCEP(cep);
         });
@@ -189,7 +194,7 @@
                 processarDados(geoJsonData);
             } catch (error) {
                 console.error('Erro ao carregar dados:', error);
-                document.getElementById('resultados').innerHTML = 
+                document.getElementById('resultados').innerHTML =
                     '<div class="error">Erro ao carregar os dados dos postos de saúde. Por favor, tente novamente mais tarde.</div>';
             }
         }        // Processa os dados do GeoJSON
@@ -199,7 +204,7 @@
                 const coords = feature.geometry.coordinates[0];
                 const lat = coords.reduce((sum, point) => sum + point[1], 0) / coords.length;
                 const lng = coords.reduce((sum, point) => sum + point[0], 0) / coords.length;
-                
+
                 return {
                     nome: feature.properties.NMUNIDAD,
                     endereco: feature.properties.NMENDUNID,
@@ -234,10 +239,10 @@
             const R = 6371; // Raio da Terra em km
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                    Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             return R * c; // Distância em km
         }
 
@@ -255,7 +260,7 @@
                 ? allPostos.filter(posto =>
                     normalizarTexto(posto.endereco).includes(termoBusca) ||
                     normalizarTexto(posto.nome).includes(termoBusca))
-                : allPostos;            const unidadesContainer = document.getElementById('unidades-proximas');
+                : allPostos; const unidadesContainer = document.getElementById('unidades-proximas');
             unidadesContainer.innerHTML = '';
 
             if (postosFiltrados.length === 0) {
@@ -280,9 +285,10 @@
             `;
 
             // Adiciona marcadores no mapa
-            postosFiltrados.forEach(posto => {                const marker = L.marker([posto.latitude, posto.longitude])
-                .addTo(map)
-                .bindPopup(`
+            postosFiltrados.forEach(posto => {
+                const marker = L.marker([posto.latitude, posto.longitude])
+                    .addTo(map)
+                    .bindPopup(`
                     <strong>${posto.nome}</strong><br>
                     ${posto.endereco}<br>
                     <em>Tipo: ${posto.tipo}</em>
@@ -321,7 +327,7 @@
                     buscarPostos();
                 }
             });
-            
+
             document.getElementById('cep').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     buscarPostos();
@@ -331,7 +337,7 @@
         function mostrarUnidadesProximas(unidades) {
             const container = document.getElementById('unidades-proximas');
             container.innerHTML = '';
-            
+
             unidades.forEach((unidade, index) => {
                 const unidadeDiv = document.createElement('div');
                 unidadeDiv.className = 'unidade-item';
@@ -340,17 +346,17 @@
                     <p>Distância: ${unidade.distancia.toFixed(2)} km</p>
                     <p>Endereço: ${unidade.endereco}</p>
                 `;
-                
+
                 unidadeDiv.addEventListener('click', () => {
                     map.setView([unidade.latitude, unidade.longitude], 16);
                     markers.forEach(marker => {
-                        if (marker.getLatLng().lat === unidade.latitude && 
+                        if (marker.getLatLng().lat === unidade.latitude &&
                             marker.getLatLng().lng === unidade.longitude) {
                             marker.openPopup();
                         }
                     });
                 });
-                
+
                 container.appendChild(unidadeDiv);
             });
         }
@@ -372,7 +378,7 @@
             try {
                 mostrarFeedback('Buscando unidades próximas...', 'info');
                 const coords = await buscarCoordenadas(cep);
-                
+
                 // Limpa marcadores anteriores
                 limparMarcadores();
 
@@ -385,23 +391,24 @@
                         iconAnchor: [12, 24]
                     })
                 }).addTo(map)
-                .bindPopup('Sua localização');
+                    .bindPopup('Sua localização');
                 markers.push(userMarker);
 
                 // Calcula e ordena unidades por distância
                 const unidadesOrdenadas = allPostos.map(posto => {
-                    const dist = calcularDistancia(coords.lat, coords.lon, 
+                    const dist = calcularDistancia(coords.lat, coords.lon,
                         posto.latitude, posto.longitude);
                     return { ...posto, distancia: dist };
                 }).sort((a, b) => a.distancia - b.distancia);
 
                 // Pega as 5 unidades mais próximas
                 const unidadesProximas = unidadesOrdenadas.slice(0, 5);
-                
+
                 // Adiciona marcadores das unidades próximas
-                unidadesProximas.forEach(posto => {                const marker = L.marker([posto.latitude, posto.longitude])
-                .addTo(map)
-                .bindPopup(`
+                unidadesProximas.forEach(posto => {
+                    const marker = L.marker([posto.latitude, posto.longitude])
+                        .addTo(map)
+                        .bindPopup(`
                         <strong>${posto.nome}</strong><br>
                         Distância: ${posto.distancia.toFixed(2)} km<br>
                         ${posto.endereco}

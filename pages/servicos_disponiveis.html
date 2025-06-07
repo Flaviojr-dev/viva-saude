@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/servicos_disponiveis/section_servhistoria.css">
     <link rel="stylesheet" href="../style/servicos_disponiveis/search.css">
-    
+
 
 </head>
 
@@ -38,10 +38,9 @@
                         <li><a href="./geoloc.html">Geolocalização</a></li>
                         <li><a href="./farm.html">Medicamentos</a></li>
                         <li><a href="./pag_de_inf.html">Página de Informações</a></li>
+
                     </ul>
                 </li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#">Sobre nós</a></li>
             </ul>
         </nav>
 
@@ -52,7 +51,8 @@
         <div class="box-atendimentoo">
             <h1>Entenda os serviços disponíveis no posto de saúde!</h1>
             <p>Acesse um guia simples com os principais atendimentos que você pode solicitar no posto mais próximo.</p>
-            <div class="search-container">                <input type="text" id="search-input" placeholder="Digite o nome do seu bairro...">
+            <div class="search-container"> <input type="text" id="search-input"
+                    placeholder="Digite o nome do seu bairro...">
                 <button id="search-button">Encontrar unidades próximas</button>
             </div>
         </div>
@@ -187,14 +187,14 @@
         }
 
         function formatarEspecialidades(especialidades) {
-    if (!especialidades) return '';
-    const listaEspecialidades = especialidades.split(',')
-        .map(esp => esp.trim())
-        .filter(esp => esp);
-    
-    if (listaEspecialidades.length === 0) return '';
+            if (!especialidades) return '';
+            const listaEspecialidades = especialidades.split(',')
+                .map(esp => esp.trim())
+                .filter(esp => esp);
 
-    return `
+            if (listaEspecialidades.length === 0) return '';
+
+            return `
         <div class="especialidades-disponiveis">
             <h4>Especialidades disponíveis:</h4>
             <ul>
@@ -202,57 +202,57 @@
             </ul>
         </div>
     `;
-}
-
-function buscarServicos(termoBusca) {
-    const searchResults = document.getElementById('search-results');
-    termoBusca = termoBusca.toLowerCase().trim();
-    
-    console.log('Buscando por:', termoBusca);
-
-    if (!termoBusca) {
-        searchResults.innerHTML = '<p class="no-results">Digite o nome do seu bairro para encontrar unidades de saúde próximas.</p>';
-        return;
-    }
-
-    // Filtra primeiro apenas unidades com bairro especificado
-    const resultados = todasUnidades
-        .filter(unidade => unidade.bairro) // Remove unidades sem bairro
-        .filter(unidade => {
-            const bairroMatch = unidade.bairro.toLowerCase().includes(termoBusca);
-            const enderecoMatch = unidade.endereco && unidade.endereco.toLowerCase().includes(termoBusca);
-            return bairroMatch || enderecoMatch;
-        });
-
-    console.log('Resultados encontrados:', resultados.length);
-
-    if (resultados.length === 0) {
-        searchResults.innerHTML = '<p class="no-results">Nenhuma unidade de saúde encontrada nesta localidade.</p>';
-        return;
-    }
-
-    // Agrupamento por bairro
-    const servicosPorBairro = {};
-    resultados.forEach(unidade => {
-        if (!servicosPorBairro[unidade.bairro]) {
-            servicosPorBairro[unidade.bairro] = [];
         }
-        servicosPorBairro[unidade.bairro].push(unidade);
-    });
 
-    let html = '';
-    
-    // Gera HTML para cada bairro
-    for (const [bairro, unidades] of Object.entries(servicosPorBairro)) {
-        html += `
+        function buscarServicos(termoBusca) {
+            const searchResults = document.getElementById('search-results');
+            termoBusca = termoBusca.toLowerCase().trim();
+
+            console.log('Buscando por:', termoBusca);
+
+            if (!termoBusca) {
+                searchResults.innerHTML = '<p class="no-results">Digite o nome do seu bairro para encontrar unidades de saúde próximas.</p>';
+                return;
+            }
+
+            // Filtra primeiro apenas unidades com bairro especificado
+            const resultados = todasUnidades
+                .filter(unidade => unidade.bairro) // Remove unidades sem bairro
+                .filter(unidade => {
+                    const bairroMatch = unidade.bairro.toLowerCase().includes(termoBusca);
+                    const enderecoMatch = unidade.endereco && unidade.endereco.toLowerCase().includes(termoBusca);
+                    return bairroMatch || enderecoMatch;
+                });
+
+            console.log('Resultados encontrados:', resultados.length);
+
+            if (resultados.length === 0) {
+                searchResults.innerHTML = '<p class="no-results">Nenhuma unidade de saúde encontrada nesta localidade.</p>';
+                return;
+            }
+
+            // Agrupamento por bairro
+            const servicosPorBairro = {};
+            resultados.forEach(unidade => {
+                if (!servicosPorBairro[unidade.bairro]) {
+                    servicosPorBairro[unidade.bairro] = [];
+                }
+                servicosPorBairro[unidade.bairro].push(unidade);
+            });
+
+            let html = '';
+
+            // Gera HTML para cada bairro
+            for (const [bairro, unidades] of Object.entries(servicosPorBairro)) {
+                html += `
             <div class="bairro-section">
                 <h2>${bairro}</h2>
                 <div class="servicos-list">
         `;
 
-        // Agrupa unidades por tipo
-        unidades.forEach(unidade => {
-            html += `
+                // Agrupa unidades por tipo
+                unidades.forEach(unidade => {
+                    html += `
                 <div class="servico-item">
                     <h3>${unidade.tipo || 'Unidade de Saúde'}</h3>
                     <div class="unidade-info">
@@ -264,35 +264,36 @@ function buscarServicos(termoBusca) {
                     </div>
                 </div>
             `;
-        });
+                });
 
-        html += `
+                html += `
                 </div>
             </div>
         `;
-    }
+            }
 
-    searchResults.innerHTML = html;
-}
-
-// Event listeners para a busca
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Inicializando...');
-    carregarDados();
-    
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-
-    searchButton.addEventListener('click', () => {
-        buscarServicos(searchInput.value);
-    });
-
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            buscarServicos(searchInput.value);
+            searchResults.innerHTML = html;
         }
-    });
-});
+
+        // Event listeners para a busca
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Inicializando...');
+            carregarDados();
+
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+
+            searchButton.addEventListener('click', () => {
+                buscarServicos(searchInput.value);
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    buscarServicos(searchInput.value);
+                }
+            });
+        });
     </script>
 </body>
+
 </html>
